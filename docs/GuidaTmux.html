@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Guida tmux</title>
+  </head>
+  <body>
+    <h1 class="entry-title title flipboard-title">[Guida] Come
+      utilizzare Tmux terminal multiplexer su GNU/Linux</h1>
+    <p><br>
+    </p>
+    <p>In questa mini-guida vi introdurrò i comandi base per utilizzare
+      <strong>Tmux</strong>. Questo software consente l’accesso
+      simultaneo a più sessioni del terminale in un’unica finestra. Un
+      tool utilissimo in quelle occasioni in cui si rende necessario
+      eseguire più di un programma da riga di comando,
+      contemporaneamente.</p>
+    <h2>Tmux può gestire n sessioni</h2>
+    <p>All’interno di una finestra del terminale è possibile, grazie a
+      questo tool, aprire più split view. Ogni riquadro contiene la
+      propria istanza di terminale in esecuzione indipendente. Ciò
+      consente di avere più comandi in esecuzione, visivamente uno
+      accanto all’altro, senza la necessità di aprire più finestre
+      dell’emulatore di terminale. Una manna dal cielo per chi, come me,
+      vuole sfruttare il terminale per quanti <a
+        href="https://www.lffl.org/2020/05/utilizzare-gnu-linux-solo-cli.html"
+        target="_blank" rel="noopener noreferrer">più task possibili</a>.<br>
+    </p>
+    <p>Ricordandosi del comando universale <em>CTRL – d</em>, che
+      permette di chiudere una sessione, una finestra o un pannello, la
+      gerarchia delle possibili modalità è la seguente:</p>
+    <ul>
+      <li>Sessione</li>
+      <li>Finestra</li>
+      <li>Pannello<br>
+      </li>
+    </ul>
+    <b><br>
+      Sessione</b>: la sessione è la “radice” del multiplexer. Sarà
+    mantenuta attiva fin quando non si procede alla chiusura di Tmux.
+    Questo vuol dire che, se per esempio state lavorando in remoto e
+    perdete la connessione, al successivo login troverete l’ambiente
+    come lo avevate lasciato.
+    <pre>tmux new -s pianovim        # creare una nuova sessione, denominata pianovim
+tmux detach                 # uscire dalla sessione
+tmux new -s setinterface    # creare una seconda sessione, denominata setinterface
+tmux attach -t pianovim     # entrare nella prima sessione
+tmux switch -t setinterface # switchare tra le due sessioni
+tmux ls                     # elencare tutte le sessioni
+tmux rename-session -t pianovim database #rinominare una sessione
+</pre>
+    <p>In questo caso, trovo molto utile la creazione di alcuni <a
+        href="https://www.lffl.org/2020/04/guida-bash-alias-funzioni.html"
+        target="_blank" rel="noopener noreferrer">alias</a>, per
+      semplificare un po’ le istruzioni.</p>
+    <h3>Finestre e pannelli</h3>
+    <p><b>Finestra</b>: ogni sessione, può a sua volta essere suddivisa
+      in finestre, che saranno riportate nella barra orizzontale come
+      nell’immagine di esempio. Le finestre le possiamo considerare come
+      dei tab della sessione che le contiene.</p>
+    <pre>CTRL + b  c            # creare nuova finestra
+CTRL + b  n  oppure p  # navigare tra le finestre 
+CTRL + b  w 	       # elencare tutte le finestre
+</pre>
+    <p><b>Pane</b>: ciascuna finestra, a sua volta, può essere
+      visualizzata come un insieme di pannelli, tramite le seguenti
+      combinazioni:</p>
+    <pre>CTRL + b  %  # suddividere la finestra verticalmente
+CTRL + b  “  # suddividere la finestra orizzontalmente 
+CTRL + b frecce direzionali  # navigare tra i pannelli
+CTRL + b z   # rendere un pannello full screen
+</pre>
+    <br>
+    <div style="position: absolute; left: 0px; top: 0px; width: 336px;
+      height: 280px; display: flex; align-items: center;
+      justify-content: center; background-color: rgba(200, 200, 200,
+      0.05);">
+      <div style="opacity: 0; background-color: transparent;
+        border-radius: 2px; color: rgb(105, 105, 105); font-size: 10px;
+        line-height: 1; font-family: Roboto, sans-serif; padding: 3px
+        4px 1px; border: 1px solid rgb(105, 105, 105); width: auto;"
+        class="eadv-placeholder-turn-on">eADV</div>
+    </div>
+    <div id="eadv-frame-slot-in-content-articoli-1-c-c-c-c">
+      <div id="eadv-slot-in-content-articoli-1-c-c-c-c"
+        style="margin-left: 0px; margin-right: 0px;"
+        data-google-query-id="CKXA3qa_toIDFSiegwcdF9wKMw">
+        <div
+          id="google_ads_iframe_/335695999/(s_18652)(IAB19)(u_3)_14__container__"
+          style="border: 0pt; display: inline-block; width: 336px;
+          height: 280px;"><iframe style="border: 0px; vertical-align:
+            bottom;"
+src="https://1d23428f3554e443d745f575d40b0a33.safeframe.googlesyndication.com/safeframe/1-0-40/html/container.html"
+            id="google_ads_iframe_/335695999/(s_18652)(IAB19)(u_3)_14"
+            title="3rd party ad content" name="" scrolling="no"
+            marginwidth="0" marginheight="0" data-is-safeframe="true"
+            sandbox="allow-forms allow-popups
+            allow-popups-to-escape-sandbox allow-same-origin
+            allow-scripts allow-top-navigation-by-user-activation"
+            role="region" aria-label="Advertisement" tabindex="0"
+            data-google-container-id="h" data-load-complete="true"
+            width="336" height="280" frameborder="0"><br>
+          </iframe></div>
+      </div>
+    </div>
+  </body>
+</html>

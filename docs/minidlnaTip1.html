@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>minidlnaTip1</title>
+  </head>
+  <body>
+    <div class="post-text" itemprop="text">
+      <p><code>/media/*</code> is automounted with udisks. If it's NTFS
+        or FAT, only the active user gets access to it, so the minidlna
+        user cannot access it.</p>
+      <p>It's silly that udisks has the permissions hardcoded, there's a
+        bug report about that: <a
+          href="https://bugs.launchpad.net/ubuntu/+source/udisks/+bug/682589">https://bugs.launchpad.net/ubuntu/+source/udisks/+bug/682589</a></p>
+      <p>If one mounts the disk with <code>sudo mount /dev/sdb1 /mnt</code>
+        or with <code>/etc/fstab</code>, he can put whatever
+        permissions he wants so that minidlna can read it. </p>
+      <p>So for home PCs one easy workaround is to edit <code>/etc/default/minidlna</code>,
+        and either specify that minidlna will run as root, or as the
+        user that usually mounts those disks.</p>
+      <pre><code># User and group the daemon should run as
+USER="root"
+#GROUP="minidlna"
+</code></pre>
+      <p>If you specified a user account instead of root, also run <code>sudo
+          chown -R user:user /var/lib/minidlna</code></p>
+      <p>To rescan the library after the changes, run <code>sudo
+          service minidlna force-reload</code></p>
+      <p>And a note to myself, rather than adding <code>media_dir=</code>
+        entries in /etc/minidlna.conf, I prefer creating symlinks under
+        /var/lib/minidlna, e.g.:</p>
+      <pre><code>sudo ln -sf /media/alkisg/mydisk/Photos /var/lib/minidlna/Photos
+</code></pre>
+      <p>...because that way I get an extra level of hierarchy when
+        browsing the media folders in DLNA clients.</p>
+    </div>
+  </body>
+</html>
