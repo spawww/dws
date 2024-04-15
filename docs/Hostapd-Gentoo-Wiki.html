@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<title>Hostapd - Gentoo Wiki</title>
+<script>document.documentElement.className = document.documentElement.className.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );</script>
+<script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Hostapd","wgTitle":"Hostapd","wgCurRevisionId":826684,"wgRevisionId":826684,"wgArticleId":59417,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Software"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Hostapd","wgRelevantArticleId":59417,"wgRequestId":"00b7eed03870b65e9bb5e443","wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":[],"wgULSCurrentAutonym":"English","wgPageFormsAutocompleteValues":[],"wgPageFormsAutocompleteOnAllChars":false,"wgPageFormsFieldProperties":[],"wgPageFormsCargoFields":[],"wgPageFormsDependentFields":[],"wgPageFormsCalendarValues":[],"wgPageFormsCalendarParams":[],"wgPageFormsCalendarHTML":null,"wgPageFormsGridValues":[],"wgPageFormsGridParams":[],"wgPageFormsContLangYes":null,"wgPageFormsContLangNo":null,"wgPageFormsContLangMonths":[],"wgPageFormsHeightForMinimizingInstances":800,"wgPageFormsShowOnSelect":[],"wgPageFormsScriptPath":"/extensions/PageForms","edgValues":null,"wgPageFormsEDSettings":null,"wgAmericanDates":false});mw.loader.state({"site.styles":"ready","noscript":"ready","user.styles":"ready","user":"ready","site":"ready","user.options":"ready","user.tokens":"loading","ext.cite.styles":"ready","ext.uls.pt":"ready","ext.smw.style":"ready","ext.smw.tooltip.styles":"ready","mediawiki.legacy.shared":"ready","mediawiki.legacy.commonPrint":"ready","mediawiki.sectionAnchor":"ready","mediawiki.skinning.interface":"ready","mediawiki.skinning.content.externallinks":"ready","skins.tyrian.styles":"ready","skins.tyrian.icons":"ready"});mw.loader.implement("user.tokens@09nliok",function($,jQuery,require,module){/*@nomin*/mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+});mw.loader.load(["ext.smw.style","ext.smw.tooltips","ext.cite.a11y","mediawiki.page.startup","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.toc","mediawiki.searchSuggest","ext.uls.init","ext.gentooPackages"]);});</script>
+<link rel="stylesheet" href="/load.php?debug=false&amp;lang=en&amp;modules=ext.cite.styles%7Cext.uls.pt%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.content.externallinks%7Cmediawiki.skinning.interface%7Cskins.tyrian.icons%2Cstyles&amp;only=styles&amp;skin=tyrian"/>
+<link rel="stylesheet" href="/load.php?debug=false&amp;lang=en&amp;modules=ext.smw.style%7Cext.smw.tooltip.styles&amp;only=styles&amp;skin=tyrian"/>
+<script async="" src="/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=tyrian"></script>
+<link rel="stylesheet" href="https://assets.gentoo.org/tyrian/bootstrap.min.css"/><link rel="stylesheet" href="https://assets.gentoo.org/tyrian/tyrian.min.css"/>
+<meta name="ResourceLoaderDynamicStyles" content=""/>
+<link rel="stylesheet" href="/load.php?debug=false&amp;lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=tyrian"/>
+<meta name="generator" content="MediaWiki 1.31.3-gentoo"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#54487a"/>
+<link rel="alternate" type="application/rdf+xml" title="Hostapd" href="/index.php?title=Special:ExportRDF/Hostapd&amp;xmlmime=rdf"/>
+<link rel="shortcut icon" href="https://www.gentoo.org/favicon.ico"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="Gentoo Wiki (en)"/>
+<link rel="EditURI" type="application/rsd+xml" href="//wiki.gentoo.org/api.php?action=rsd"/>
+<link rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/"/>
+<!--[if lt IE 9]><script src="/load.php?debug=false&amp;lang=en&amp;modules=html5shiv&amp;only=scripts&amp;skin=tyrian&amp;sync=1"></script><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Hostapd rootpage-Hostapd skin-tyrian action-view">	<div class="mw-jump sr-only">
+		Jump to:		<a href="#top">content</a>
+	</div>
+	<header>
+		<div class="site-title">
+			<div class="container">
+				<div class="row">
+					<div class="site-title-buttons">
+						<div class="btn-group btn-group-sm">
+							<a href="https://get.gentoo.org/" role="button" class="btn get-gentoo"><span class="fa fa-fw fa-download"></span> <strong>Get Gentoo!</strong></a>
+							<div class="btn-group btn-group-sm">
+								<a class="btn gentoo-org-sites dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">
+									<span class="fa fa-fw fa-map-o"></span> <span class="hidden-xs">gentoo.org sites</span> <span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-right">
+									<li><a href="https://www.gentoo.org/" title="Main Gentoo website"><span class="fa fa-home fa-fw"></span> gentoo.org</a></li>
+									<li><a href="https://wiki.gentoo.org/" title="Find and contribute documentation"><span class="fa fa-file-text-o fa-fw"></span> Wiki</a></li>
+									<li><a href="https://bugs.gentoo.org/" title="Report issues and find common issues"><span class="fa fa-bug fa-fw"></span> Bugs</a></li>
+									<li><a href="https://forums.gentoo.org/" title="Discuss with the community"><span class="fa fa-comments-o fa-fw"></span> Forums</a></li>
+									<li><a href="https://packages.gentoo.org/" title="Find software for your Gentoo"><span class="fa fa-hdd-o fa-fw"></span> Packages</a></li>
+									<li class="divider"></li>
+									<li><a href="https://planet.gentoo.org/" title="Find out what's going on in the developer community"><span class="fa fa-rss fa-fw"></span> Planet</a></li>
+									<li><a href="https://archives.gentoo.org/" title="Read up on past discussions"><span class="fa fa-archive fa-fw"></span> Archives</a></li>
+									<li><a href="https://gitweb.gentoo.org/" title="Browse our source code in Gitweb"><span class="fa fa-code fa-fw"></span> Gitweb</a></li>
+									<li><a href="https://sources.gentoo.org/" title="Browse our source code in CVS"><span class="fa fa-code fa-fw"></span> CVS sources</a></li>
+									<li class="divider"></li>
+									<li><a href="https://infra-status.gentoo.org/" title="Get updates on the services provided by Gentoo"><span class="fa fa-server fa-fw"></span> Infra Status</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="logo">
+						<a href="/" title="Back to the homepage" class="site-logo"><object data="https://assets.gentoo.org/tyrian/site-logo.svg" type="image/svg+xml">
+							<img src="https://assets.gentoo.org/tyrian/site-logo.png" alt="Gentoo Linux Logo">
+						</object></a>
+						<span class="site-label">Wiki</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="tyrian-navbar" role="navigation">
+			<div class="container">
+				<div class="row">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse navbar-main-collapse">
+						<ul class="nav navbar-nav">
+							<li id="n-mainpage-description"><a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z">Main page</a></li><li id="n-recentchanges"><a href="/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li><li id="n-help"><a href="/wiki/Special:MyLanguage/Help:Contents" title="The place to find out">Help</a></li>			<li class="dropdown">
+				<a href="/wiki/Gentoo_Wiki:Menu-Gentoo" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gentoo <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu"><li id="n-Gentoo-Projects"><a href="/wiki/Project:Gentoo">Gentoo Projects</a></li>				</ul>
+			</li>			<li class="dropdown">
+				<a href="/wiki/Gentoo_Wiki:Menu-Documentation" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Documentation <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu"><li id="n-Gentoo-Handbook"><a href="/wiki/Handbook:Main_Page">Gentoo Handbook</a></li><li id="n-Gentoo-FAQ"><a href="/wiki/FAQ">Gentoo FAQ</a></li><li id="n-Featured-Documents"><a href="/wiki/Project:Documentation/Overview">Featured Documents</a></li><li role="presentation" class="divider"></li><li role="presentation" class="dropdown-header">Topics</li><li id="n-Core-system"><a href="/wiki/Category:Core_system">Core system</a></li><li id="n-Hardware"><a href="/wiki/Category:Hardware">Hardware</a></li><li id="n-Software"><a href="/wiki/Category:Software">Software</a></li><li id="n-Desktop"><a href="/wiki/Category:Desktop">Desktop</a></li><li id="n-Server-.26-Security"><a href="/wiki/Category:Server_and_Security">Server &amp; Security</a></li><li id="n-Project-.26-Community"><a href="/wiki/Category:Project_and_Community">Project &amp; Community</a></li>				</ul>
+			</li>						</ul>
+						<ul class="nav navbar-nav navbar-right hidden-xs">
+									<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-cog"></i> Tools <span class="caret"></span></a>
+			<ul class="dropdown-menu" role="menu">
+				<li id="t-whatlinkshere"><a href="/wiki/Special:WhatLinksHere/Hostapd" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li><li id="t-recentchangeslinked"><a href="/wiki/Special:RecentChangesLinked/Hostapd" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li><li id="t-specialpages"><a href="/wiki/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li><li id="t-print"><a href="/index.php?title=Hostapd&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li><li id="t-permalink"><a href="/index.php?title=Hostapd&amp;oldid=826684" title="Permanent link to this revision of the page">Permanent link</a></li><li id="t-info"><a href="/index.php?title=Hostapd&amp;action=info" title="More information about this page">Page information</a></li><li id="t-smwbrowselink"><a href="/wiki/Special:Browse/:Hostapd" rel="search">Browse properties</a></li>			</ul>
+		</li>
+			<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+				<span class="fa fa-user" aria-label="Personal tools"></span>
+				User				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" role="menu">
+				<li id="pt-createaccount"><a href="/index.php?title=Special:CreateAccount&amp;returnto=Hostapd" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li><li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Hostapd" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>			</ul>
+		</li>
+								</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+		
+		<nav class="navbar navbar-grey navbar-stick" id="wiki-actions" role="navigation">
+			<div class="container"><div class="row">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gw-toolbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse" id="gw-toolbar">
+					<ul class="nav navbar-nav">
+					<li id="ca-nstab-main" class="selected active"><a href="/wiki/Hostapd" title="View the content page [c]" accesskey="c">Page</a></li><li id="ca-talk"><a href="/wiki/Talk:Hostapd" rel="discussion" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>					</ul>
+							<form action="/index.php" id="searchform" class="navbar-form navbar-right" role="search">
+			<input type='hidden' name="title" value="Special:Search"/>
+
+				<div class="input-group">
+					<input type="search" name="search" placeholder="Search" title="Search Gentoo Wiki [f]" accesskey="f" id="searchInput" class="form-control"/>					<div class="input-group-btn"><input type="submit" name="go" value="Go" title="Go to a page with this exact name if it exists" id="searchGoButton" class="searchButton btn btn-default"/><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton btn btn-default"/></div>
+				</div>
+		</form>
+						<ul class="nav navbar-nav navbar-right hidden-xs">
+					<li id="ca-viewsource"><a href="/index.php?title=Hostapd&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li><li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">more <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+					<li id="ca-history"><a href="/index.php?title=Hostapd&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>							</ul>
+						</li>
+					</ul>
+				</div>
+			</div></div>
+		</nav>
+		</header>
+	
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div id="content" class="mw-body" role="main">
+						<a id="top"></a>
+						
+						<h1 id="firstHeading" class="first-header" lang="en">
+							<span dir="auto">Hostapd</span>
+						</h1>
+
+						<div id="bodyContent" class="mw-body-content">
+							<div id="siteSub">From Gentoo Wiki</div>
+							<div id="contentSub">
+															</div>
+														<div id="jump-to-nav" class="mw-jump">
+								Jump to:								<a href="#column-one">navigation</a>, 								<a href="#searchInput">search</a>
+							</div>
+
+							<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div class="mw-parser-output"><div id="infobox-stack" class="list-group" style="width: 25em; float: right; clear: right; font-size: 90%; margin-left: 1em;">
+<div class="list-group-item text-center" style="padding-top: 3px; padding-bottom: 3px; background-color: #463C65; color: white;"><b>Resources</b></div>
+<div id="infobox" class="list-group-item" style="display: flex; align-items: center; padding: 5px; min-height: 3em;"><span style="display: inline-block; width: 3em; overflow: hidden; text-align: center;"><span class="fa fa-home fa-fw fa-2x"></span></span><span><a rel="nofollow" class="external text" href="https://w1.fi/hostapd/">Home</a></span></div>
+<div id="infobox" class="list-group-item" style="display: flex; align-items: center; padding: 5px; min-height: 3em;"><span style="display: inline-block; width: 3em; overflow: hidden; text-align: center;"><span class="fa fa-wikipedia-w fa-fw fa-2x"></span></span><span><a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Hostapd">Wikipedia</a></span></div>
+</div>
+<p><b>Hostapd</b> (<b>Host</b> <b>a</b>ccess <b>p</b>oint <b>d</b>aemon) is a user space software access point capable of turning normal network interface cards into access points and authentication servers. The current version supports Linux (Host AP, madwifi, mac80211-based drivers) and FreeBSD (net80211).<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">&#91;1&#93;</a></sup>
+</p>
+<div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Scope_of_this_document"><span class="tocnumber">1</span> <span class="toctext">Scope of this document</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Requirement"><span class="tocnumber">2</span> <span class="toctext">Requirement</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#WiFi_Technology"><span class="tocnumber">3</span> <span class="toctext">WiFi Technology</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#802.11"><span class="tocnumber">3.1</span> <span class="toctext">802.11</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Frequency_Bands"><span class="tocnumber">3.2</span> <span class="toctext">Frequency Bands</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Access_Point"><span class="tocnumber">3.3</span> <span class="toctext">Access Point</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Capabilities_of_Hostapd"><span class="tocnumber">4</span> <span class="toctext">Capabilities of Hostapd</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#What_it_can_do"><span class="tocnumber">4.1</span> <span class="toctext">What it can do</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#What_it_cannot_do"><span class="tocnumber">4.2</span> <span class="toctext">What it cannot do</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#IP.2C_DHCP.2C_and_Routing"><span class="tocnumber">5</span> <span class="toctext">IP, DHCP, and Routing</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#IP_of_the_AP"><span class="tocnumber">5.1</span> <span class="toctext">IP of the AP</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#DHCP"><span class="tocnumber">5.2</span> <span class="toctext">DHCP</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Routing"><span class="tocnumber">5.3</span> <span class="toctext">Routing</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Sample_configurations"><span class="tocnumber">6</span> <span class="toctext">Sample configurations</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="#802.11b.2Fg.2Fn_with_WPA2-PSK_and_CCMP"><span class="tocnumber">6.1</span> <span class="toctext">802.11b/g/n with WPA2-PSK and CCMP</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#802.11a.2Fn.2Fac_with_WPA2-PSK_and_CCMP"><span class="tocnumber">6.2</span> <span class="toctext">802.11a/n/ac with WPA2-PSK and CCMP</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#802.11b.2Fg.2Fn_triple_AP"><span class="tocnumber">6.3</span> <span class="toctext">802.11b/g/n triple AP</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Proper_use_of_the_5GHz_band"><span class="tocnumber">7</span> <span class="toctext">Proper use of the 5GHz band</span></a>
+<ul>
+<li class="toclevel-2 tocsection-19"><a href="#DFS"><span class="tocnumber">7.1</span> <span class="toctext">DFS</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-20"><a href="#External_resources"><span class="tocnumber">8</span> <span class="toctext">External resources</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#References"><span class="tocnumber">9</span> <span class="toctext">References</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Scope_of_this_document">Scope of this document</span></h2>
+<p>Hostapd can do a lot of things, but only its most basic aspects will be covered in this article.
+</p>
+<h2><span class="mw-headline" id="Requirement">Requirement</span></h2>
+<p>A WiFi card with AP mode support is needed:
+</p>
+<div class="cmd-box"><div><code style="color: #ef2929; font-weight: bold;">root #</code><span class="tripleclick-separator"></span><code>iw list | grep "Supported interface modes" -A 8</code></div><pre>        Supported interface modes:
+                 * IBSS
+                 * managed
+                 * AP
+                 * AP/VLAN
+                 * WDS
+                 * monitor
+                 * P2P-client
+                 * P2P-GO
+</pre></div>
+<h2><span class="mw-headline" id="WiFi_Technology">WiFi Technology</span></h2>
+<p>A brief reminder of the technology involved.
+</p>
+<h3><span class="mw-headline" id="802.11">802.11</span></h3>
+<table class="wikitable">
+
+<tbody><tr>
+<th>Technology
+</th>
+<th>Band
+</th>
+<th>Year
+</th>
+<th>Max Speed
+</th>
+<th>Usage
+</th>
+<th>notes
+</th></tr>
+<tr>
+<td>802.11a</td>
+<td>5GHz</td>
+<td>1999</td>
+<td>54Mbps</td>
+<td>obsolete</td>
+<td>
+</td></tr>
+<tr>
+<td>802.11b</td>
+<td>2.4GHz</td>
+<td>1999</td>
+<td>11Mbps</td>
+<td>obsolete</td>
+<td>
+</td></tr>
+<tr>
+<td>802.11g</td>
+<td>2.4GHz</td>
+<td>2003</td>
+<td>54Mbps</td>
+<td>modest</td>
+<td>on its way to become obsolete
+</td></tr>
+<tr>
+<td>802.11n</td>
+<td>2.4GHz or 5GHz</td>
+<td>2009</td>
+<td>600Mbps</td>
+<td>popular</td>
+<td>a device can only use one band at a time, <b>not both at the same time</b><br />some low-end devices claim to be 802.11n but really only support the 2.4GHz band
+</td></tr>
+<tr>
+<td>802.11ac</td>
+<td>5GHz</td>
+<td>2013</td>
+<td>6777Mbps</td>
+<td>rare</td>
+<td>on its way to become very popular
+</td></tr></tbody></table>
+<h3><span class="mw-headline" id="Frequency_Bands">Frequency Bands</span></h3>
+<table class="wikitable">
+
+<tbody><tr>
+<th>Frequency
+</th>
+<th>802.11
+</th>
+<th>Channels
+</th>
+<th>Interferences
+</th></tr>
+<tr>
+<td>2.4GHz</td>
+<td>b/g/n</td>
+<td>11 to 14</td>
+<td>high because channels overlap and high popularity
+</td></tr>
+<tr>
+<td>5GHz</td>
+<td>a/n/ac</td>
+<td>around 20, depends on the country</td>
+<td>low because channels do not overlap and low popularity
+</td></tr></tbody></table>
+<h3><span class="mw-headline" id="Access_Point">Access Point</span></h3>
+<ul><li>An AP is like a wireless switch;</li>
+<li>An AP can only use one band at a time: 2.4GHz OR 5GHz, a so-called "dual-band AP" is just one AP at 2.4GHz plus one at 5GHz;</li>
+<li>An AP using the 2.4GHz band can be b, g and n at the same time (if the hardware supports it);</li>
+<li>An AP using the 5GHz band can be a, n and ac at the same time (if the hardware supports it);</li>
+<li>An AP can have multiple SSIDs, making it look like multiple APs, but all will share the same band AND channel.</li></ul>
+<h2><span class="mw-headline" id="Capabilities_of_Hostapd">Capabilities of Hostapd</span></h2>
+<h3><span class="mw-headline" id="What_it_can_do">What it can do</span></h3>
+<ul><li>Create an AP;</li>
+<li>Create multiple APs on the same card (if the card supports it, usually up to 8);</li>
+<li>Create one AP on one card and another AP on a second card, all within a single instance of Hostapd;</li>
+<li>Use 2.4GHz and 5GHz at the same time on the same card. This requires a card with two radios though, which is pretty rare (but hostapd supports it) - if the card creates two wlanX interfaces, you might be lucky;</li></ul>
+<h3><span class="mw-headline" id="What_it_cannot_do">What it cannot do</span></h3>
+<ul><li>Create multiple APs on different channels on the same card. Multiple APs on the same card will share the same channel;</li>
+<li>Create a dual-band AP, even with two cards. But it can create two APs with the same SSID;</li>
+<li>Assign IPs to the devices connecting to the AP, a dhcp server is needed for that;</li>
+<li>Assign an IP to the AP itself, it is not hostapd's job to do that;</li></ul>
+<h2><span id="IP,_DHCP,_and_Routing"></span><span class="mw-headline" id="IP.2C_DHCP.2C_and_Routing">IP, DHCP, and Routing</span></h2>
+<p>Hostapd only creates wireless Ethernet switches, it does not know about the IP protocol or routing.
+</p>
+<h3><span class="mw-headline" id="IP_of_the_AP">IP of the AP</span></h3>
+<p>An AP's interface really is just an Ethernet interface:
+</p>
+<div class="box-caption"><span class="label" style="margin-right: .5em; background-color: #54487A">FILE</span> <strong><code style="border: none; background: none; color: #54487A; margin-right: .5em;">/etc/conf.d/net</code></strong><strong>Sample network configuration for an AP</strong></div><pre class="captioned">(...)
+modules_wlan0="!iwconfig&#160;!wpa_supplicant" # by default wireless interfaces are assumed to be clients, not APs
+config_wlan0="192.168.42.1/24"                   # the AP's IP and network</pre>
+<div class="cmd-box"><div><code style="color: #ef2929; font-weight: bold;">root #</code><span class="tripleclick-separator"></span><code>ln -s net.lo /etc/init.d/net.wlan0
+</code></div><div><code style="color: #ef2929; font-weight: bold;">root #</code><span class="tripleclick-separator"></span><code>rc-update add net.wlan0 default
+</code></div></div>
+<h3><span class="mw-headline" id="DHCP">DHCP</span></h3>
+<p>A DHCP server listening on the AP's interface will provide the AP's clients with IPs.
+</p>
+<h3><span class="mw-headline" id="Routing">Routing</span></h3>
+<p>Nothing special about routing an AP, it behaves exactly like an Ethernet interface.
+</p>
+<h2><span class="mw-headline" id="Sample_configurations">Sample configurations</span></h2>
+<h3><span id="802.11b/g/n_with_WPA2-PSK_and_CCMP"></span><span class="mw-headline" id="802.11b.2Fg.2Fn_with_WPA2-PSK_and_CCMP">802.11b/g/n with WPA2-PSK and CCMP</span></h3>
+<p>A simple but secure AP with maximal compatibility for current hardware:
+</p>
+<div class="box-caption"><span class="label" style="margin-right: .5em; background-color: #54487A">FILE</span> <strong><code style="border: none; background: none; color: #54487A; margin-right: .5em;">/etc/hostapd/hostapd.conf</code></strong><strong></strong></div><pre class="captioned">interface=wlan0       # the interface used by the AP
+hw_mode=g             # g simply means 2.4GHz band
+channel=10            # the channel to use
+ieee80211d=1          # limit the frequencies used to those allowed in the country
+country_code=FR       # the country code
+ieee80211n=1          # 802.11n support
+wmm_enabled=1         # QoS support
+
+ssid=somename         # the name of the AP
+auth_algs=1           # 1=wpa, 2=wep, 3=both
+wpa=2                 # WPA2 only
+wpa_key_mgmt=WPA-PSK  
+rsn_pairwise=CCMP
+wpa_passphrase=somepassword</pre>
+<h3><span id="802.11a/n/ac_with_WPA2-PSK_and_CCMP"></span><span class="mw-headline" id="802.11a.2Fn.2Fac_with_WPA2-PSK_and_CCMP">802.11a/n/ac with WPA2-PSK and CCMP</span></h3>
+<p>A simple but secure AP for recent hardware:
+</p>
+<div class="box-caption"><span class="label" style="margin-right: .5em; background-color: #54487A">FILE</span> <strong><code style="border: none; background: none; color: #54487A; margin-right: .5em;">/etc/hostapd/hostapd.conf</code></strong><strong></strong></div><pre class="captioned">interface=wlan0       # the interface used by the AP
+hw_mode=a             # a simply means 5GHz
+channel=0             # the channel to use, 0 means the AP will search for the channel with the least interferences 
+ieee80211d=1          # limit the frequencies used to those allowed in the country
+country_code=FR       # the country code
+ieee80211n=1          # 802.11n support
+ieee80211ac=1         # 802.11ac support
+wmm_enabled=1         # QoS support
+
+ssid=somename         # the name of the AP
+auth_algs=1           # 1=wpa, 2=wep, 3=both
+wpa=2                 # WPA2 only
+wpa_key_mgmt=WPA-PSK 
+rsn_pairwise=CCMP
+wpa_passphrase=somepassword</pre>
+<h3><span id="802.11b/g/n_triple_AP"></span><span class="mw-headline" id="802.11b.2Fg.2Fn_triple_AP">802.11b/g/n triple AP</span></h3>
+<p>Three APs on the same card, one with WPA2, one with WPA1, one without encryption.
+</p><p>Hostapd automatically creates new interfaces for the extra APs:
+</p>
+<div class="box-caption"><span class="label" style="margin-right: .5em; background-color: #54487A">FILE</span> <strong><code style="border: none; background: none; color: #54487A; margin-right: .5em;">/etc/hostapd/hostapd.conf</code></strong><strong></strong></div><pre class="captioned">interface=wlan0       # the interface used by the AP
+hw_mode=g             # g simply means 2.4GHz
+channel=10            # the channel to use
+ieee80211d=1          # limit the frequencies used to those allowed in the country
+country_code=FR       # the country code
+ieee80211n=1          # 802.11n support
+wmm_enabled=1         # QoS support
+
+# First AP
+ssid=test1            # the name of the AP
+auth_algs=1           # 1=wpa, 2=wep, 3=both
+wpa=2                 # WPA2 only
+wpa_key_mgmt=WPA-PSK 
+rsn_pairwise=CCMP
+wpa_passphrase=somepassword
+
+# Second AP
+bss=wlan1             # the name of the new interface hostapd will create to handle this AP 
+ssid=test2            # the name of the AP
+auth_algs=1           # 1=wpa, 2=wep, 3=both
+wpa=1                 # WPA1 only
+wpa_key_mgmt=WPA-PSK 
+wpa_passphrase=someotherpassword
+
+# Third AP
+bss=wlan2             # the name of the new interface hostapd will create to handle this AP 
+ssid=test3
+# since there is no encryption defined, none will be used</pre>
+<h2><span class="mw-headline" id="Proper_use_of_the_5GHz_band">Proper use of the 5GHz band</span></h2>
+<p>Depending on where you live, using the 5GHz band has limitations:
+</p>
+<ul><li>some channels are forbidden</li>
+<li>some channels are for indoor use only</li>
+<li>some channels require <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Dynamic_Frequency_Selection">DFS</a> to be used (Dynamic Frequency Selection, to prevent interferences with radars)</li>
+<li>some channels require <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/IEEE_802.11h-2003#Spectrum_and_Transmit_Power_Management_Extensions">TPC</a> to be used (Transmit Power Control, to limit interferences)</li></ul>
+<p>The problem is that <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/List_of_WLAN_channels#5_GHz_(802.11a/h/j/n/ac/ax)">each country has its own rules</a> and those rules are complex and regularly changing.
+</p><p>The package <a rel="nofollow" class="external text" href="https://packages.gentoo.org/packages/net-wireless/wireless-regdb">net-wireless/wireless-regdb</a> maintains a regulatory database, for each country, of what channels can be used and with what limitations.
+</p><p>To use the database, you either need to emerge <a rel="nofollow" class="external text" href="https://packages.gentoo.org/packages/net-wireless/hostapd">net-wireless/hostapd</a> with the <code>crda</code> USE flag, or make the database directly available to the kernel, as you would with a firmware (the files are: <span style="font-family: monospace; font-size: 95%">/lib/firmware/regulatory.db and /lib/firmware/regulatory.db.p7s</span>)
+</p><p><a rel="nofollow" class="external text" href="https://git.kernel.org/pub/scm/linux/kernel/git/mcgrof/crda.git/commit/?id=f4ef2531698fb9ba006e8b31a223b3269be8bc7c">CRDA is on its way to being deprecated</a> in favour of the firmware approach but is still maintained.
+</p>
+<h3><span class="mw-headline" id="DFS">DFS</span></h3>
+<p>The DFS requirement is relatively new and is usually only implemented in 802.11ac and recent 802.11n devices. 
+</p><p>Furthermore, only Atheros drivers (ath5k, ath9k, ath10k) support it.
+</p><p>Note that a driver missing DFS support can still use the 5Ghz band, but only on channels which do not require DFS
+</p>
+<h2><span class="mw-headline" id="External_resources">External resources</span></h2>
+<ul><li><a rel="nofollow" class="external text" href="http://wireless.kernel.org/en/users/Documentation/acs">Status of DFS support in Linux drivers</a></li></ul>
+<h2><span class="mw-headline" id="References">References</span></h2>
+<div class="reflist" style="list-style-type: decimal;">
+<div class="mw-references-wrap"><ol class="references">
+<li id="cite_note-1"><span class="mw-cite-backlink"><a href="#cite_ref-1">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="http://w1.fi/hostapd/">http://w1.fi/hostapd/</a></span>
+</li>
+</ol></div></div>
+
+<!-- 
+NewPP limit report
+Cached time: 20191126001310
+Cache expiry: 86400
+Dynamic content: false
+[SMW] In‐text annotation parser time: 0.005 seconds
+CPU time usage: 0.096 seconds
+Real time usage: 0.099 seconds
+Preprocessor visited node count: 719/1000000
+Preprocessor generated node count: 3250/1000000
+Post‐expand include size: 20308/2097152 bytes
+Template argument size: 8871/2097152 bytes
+Highest expansion depth: 14/40
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 629/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   41.628      1 -total
+ 28.64%   11.923      1 Template:InfoBox_stack
+ 24.11%   10.038      2 Template:RootCmd
+ 19.01%    7.914      2 Template:GenericCmd
+ 17.07%    7.106      2 Template:InfoBox
+ 14.12%    5.878      4 Template:FileBox
+ 12.05%    5.015      1 Template:InfoBox_homepage
+ 10.83%    4.509      1 Template:InfoBox_wikipedia
+ 10.14%    4.220      4 Template:PreBox
+  9.55%    3.976      1 Template:Reflist
+-->
+</div>
+<!-- Saved in parser cache with key gentoo-wiki:pcache:idhash:59417-0!canonical and timestamp 20191126001310 and revision id 826684
+ -->
+</div><div class="printfooter">
+Retrieved from "<a dir="ltr" href="https://wiki.gentoo.org/index.php?title=Hostapd&amp;oldid=826684">https://wiki.gentoo.org/index.php?title=Hostapd&amp;oldid=826684</a>"</div>
+<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/wiki/Category:Software" title="Category:Software">Software</a></li></ul></div></div>						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+			<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-md-offset-2 col-md-7">
+											<div class="spacer"></div>
+						<ul id="f-list">
+							<li id="lastmod>"> This page was last edited on 22 September 2019, at 06:01.</li><li id="privacy>"><a href="/wiki/Gentoo_Wiki:Privacy_policy" class="mw-redirect" title="Gentoo Wiki:Privacy policy">Privacy policy</a></li><li id="about>"><a href="/wiki/Gentoo_Wiki:About" title="Gentoo Wiki:About">About Gentoo Wiki</a></li><li id="disclaimer>"><a href="/wiki/Gentoo_Wiki:General_disclaimer" title="Gentoo Wiki:General disclaimer">Disclaimers</a></li>						</ul>
+									</div>
+				<div class="col-xs-12 col-md-3">
+					<!-- No questions or comments, the Wiki has enough information on how to contact us. -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3 col-md-2">
+					<ul class="footerlinks three-icons">
+						<li><a href="https://twitter.com/gentoo" title="@Gentoo on Twitter"><span class="fa fa-twitter fa-fw"></span></a></li>
+						<li><a href="https://www.facebook.com/gentoo.org" title="Gentoo on Facebook"><span class="fa fa-facebook fa-fw"></span></a></li>
+						<li></li>
+					</ul>
+				</div>
+				<div class="col-xs-9 col-md-9">
+					<strong>&copy; 2001&ndash;2019 Gentoo Foundation, Inc.</strong><br />
+					<small>
+						Gentoo is a trademark of the Gentoo Foundation, Inc.
+						The contents of this document, unless otherwise expressly stated, are licensed under the
+						<a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">CC-BY-SA-3.0</a> license.
+						The <a href="https://www.gentoo.org/inside-gentoo/foundation/name-logo-guidelines.html">Gentoo Name and Logo Usage Guidelines</a> apply.
+					</small>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script>function defer(method) {
+    if (window.jQuery) {
+        method();
+    } else {
+        setTimeout(function() { defer(method) }, 50);
+    }
+}
+defer(function() { mw.loader.load( 'https://assets.gentoo.org/tyrian/bootstrap.min.js'); });</script>
+<script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgPageParseReport":{"smw":{"limitreport-intext-parsertime":0.005},"limitreport":{"cputime":"0.096","walltime":"0.099","ppvisitednodes":{"value":719,"limit":1000000},"ppgeneratednodes":{"value":3250,"limit":1000000},"postexpandincludesize":{"value":20308,"limit":2097152},"templateargumentsize":{"value":8871,"limit":2097152},"expansiondepth":{"value":14,"limit":40},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":629,"limit":5000000},"timingprofile":["100.00%   41.628      1 -total"," 28.64%   11.923      1 Template:InfoBox_stack"," 24.11%   10.038      2 Template:RootCmd"," 19.01%    7.914      2 Template:GenericCmd"," 17.07%    7.106      2 Template:InfoBox"," 14.12%    5.878      4 Template:FileBox"," 12.05%    5.015      1 Template:InfoBox_homepage"," 10.83%    4.509      1 Template:InfoBox_wikipedia"," 10.14%    4.220      4 Template:PreBox","  9.55%    3.976      1 Template:Reflist"]},"cachereport":{"timestamp":"20191126001310","ttl":86400,"transientcontent":false}}});});</script><script>(window.RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":54});});</script></body></html>

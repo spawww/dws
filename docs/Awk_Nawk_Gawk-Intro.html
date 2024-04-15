@@ -1,0 +1,487 @@
+<html>
+<head>
+    <!-- Inizio modifica stile Villiam Panini -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body {
+      max-width : 40rem;
+      background-color: lightgrey;
+    }
+    code {
+      max-width : 40rem;
+      background-color: beige;
+    }
+
+    </style>
+    <!-- Fine modifica stile Villiam Panini -->
+
+   <title>Awk/Nawk/Gawk Intro</title>
+</head>
+<body bgcolor="#AABBCC">
+
+<h1 align=center><i><font color="#800000">Awk Introduction</font></i></h1>
+
+<h2 align=center><i>Explained by examples rather than by definitons</i></h2>
+
+<p>
+<hr size=3 noshade></p>
+
+<h2><i>Syntax for one line awk commands</i></h2>
+
+<pre><b><font color="#B22222">awk:  awk -Fs                     '/search/ {action}' awkvar=$shellvar infile
+nawk: awk -Fs -v awkvar=$shellvar '/search/ {action}'                  infile
+gawk: awk -Fs -v awkvar=$shellvar '/search/ {action}'                  infile</font></b>
+</pre>
+
+<h2><i>Konzept</i></h2>
+
+<p>Awk scannes ascii files or standard input. It can search strings easily
+and then has a lot of possibilities to process the found lines and output
+them in the new format. It does not change the input file but sends it's
+results onto standard output.</p>
+
+<h2><i>awk/nawk/gawk</i></h2>
+
+<p>Awk is the orignal awk. Nawk is new_awk and gawk the gnu_awk. The gnu_awk
+can do most, but is not available everywhere. So best is to use only things
+which nawk can do, because if that is not installed, then the system is
+not well anyway.</p>
+
+<h2><i>Search and Action</i></h2>
+
+<p>Searching happens within &quot;//&quot; and actions within &quot;{}&quot;.
+The main action is to print.<br>
+Reprint all: <b><font color="#B22222">awk '{print}' infile<br>
+</font></b>Print lines that contain &quot;love&quot;: <b><font color="#B22222">awk
+'/love/ { print }' infile<br>
+</font></b>Print first entry in lines that contain &quot;money&quot;: <b><font color="#B22222">awk
+'/money/ { print $1 }' infile</font></b><br>
+</p>
+
+<h2><i>Variables</i></h2>
+
+<p>Awk does not distinguish between strings and numbers. So one may just
+put anything into a variable with varname = othervar or varname = &quot;string&quot;.
+To get it out of the var just write it's name as a function argument or
+on the right side of any operator. </p>
+
+<h2><i>Multiline awk in a shell script</i></h2>
+
+<p>All between '' is in awk. With a=$var awk get's a shell variable.<br>
+The action is to print varable a and put it into a file.</p>
+
+<pre><b><font color="#B22222">awk '
+        BEGIN  { print a &gt; &quot;testfile&quot; }
+' a=$var</font></b>
+</pre>
+
+<h2><i>BEGIN { }, { } and end { }</i></h2>
+
+<p>An awk script can have three types of blocks. One of them must be there.
+The BEGIN{} block is processed before the file is checked. The {} block
+runs for every line of input and the END{} block is processed after the
+final line of the input file. </p>
+
+<pre><b><font color="#B22222">awk '
+        BEGIN    { myvalue = 1700 }
+        /debt/   { myvalue -= $4  }
+        /want/   { myvalue += $4  }
+        END      { print myvalue  }
+' infile</font></b>
+</pre>
+
+<h2><i>Match in a particular field</i></h2>
+
+<p>Awk autosplits a line on whitespace as default. The fields are stored
+in $1 through $NF and the whole line is in $0. One can match or not match
+an individual field. </p>
+
+<pre><b><font color="#B22222">awk '
+        $1 ~ /fred/ &amp;&amp; $4 !~ /ok/  {
+                print &quot;Fred has not yet paid $3&quot;
+        }
+' infile</font></b>
+</pre>
+
+<h2><i>For, If, substr()</i></h2>
+
+<p>Awk can do for() loops like in c++ and has the normal if and while structures.
+In NR is current line number and in NF the number of fields on the current
+line. </p>
+
+<pre><b><font color="#B22222">awk '
+        BEGIN     { count = 0 } 
+        /myline/  {
+                    for(i=1;i&lt;=NF;i++){
+                            if(substr($i,3,2) == &quot;ae&quot;){
+                                    bla = &quot;Found it on line: &quot;
+                                    print bla NR &quot; in field: &quot; i
+                                    count++
+			    }
+                    }
+        }
+        END       { print &quot;Found &quot; count &quot; instances of it&quot; }
+' infile</font></b>
+
+</pre>
+
+<p>Turn around each word in a file: </p>
+
+<pre><b><font color="#B22222">awk '
+        {       for(i=1;i&lt;=NF;i++){
+                        len = length($i)
+                        for(j=len;j&gt;0;j--){
+                                char = substr($i,j,1)
+                                tmp = tmp char
+                        }
+                        $i  = tmp
+                        tmp = &quot;&quot;
+                }     
+                print
+        }
+' infile</font></b>
+</pre>
+
+<h2><i>Awk scripts within a shell script</i></h2>
+
+<p>Extract email addresses from incoming mail. The mail would be guided
+to the following script from within the ~/.forward file. This is not an
+eficient method, but only an example to show serial processing of text.
+The next example will do the same thing within awk only and will be efficient.
+The mail comes in over standardinput into the script.<br>
+Between the commands there must be a pipe &quot;|&quot;. For continuing
+on the next line one needs a &quot;\&quot; behind the pipe to escape the
+invisible newline.<br>
+</p>
+
+<pre><font color="#B22222">#!/usr/bin/ksh
+{ while read line;do
+    print - &quot;$line&quot; 
+done } |\
+tee -a /path/mymailfile |\
+<b>awk ' 
+         /^From/ || /^Replay/  {
+              for(i=1;i&lt;=NF;i++){
+                  if($i ~ /@/){
+                      print $i
+                  }
+              }
+         }
+' |\
+</b>sed '
+          s/[&lt;&gt;]//g;
+          s/[()]//g;
+          s/&quot;//g;
+          ...more substitutions for really extracting the email only...
+' |\
+{ while read addr;do
+
+        if [[ $(grep -c $addr /path/antimailfile) -gt 0 ]];then
+
+             mail $addr &lt;&lt;EOF
+Please dont't send me mail any more!
+EOF
+        else
+             mail $addr &lt;&lt;EOF
+Thanks for mailing me. I'll answer as soon as possible!:-))
+EOF
+        fi
+
+done }</font>
+</pre>
+
+<h2><i>All the above in an awk script</i></h2>
+
+<p><b><i>nawk -f, while, break, &gt;&gt;, gsub(), getline, system()</i></b></p>
+
+<p><br>
+<i>With <b>#!/usr/bin/nawk -f</b> the whole script is interpreted intirely
+as an awk script and no more shell escapes are needed, but one can and
+has to do everything in awk itself. It's <b>nawk</b> because of the getline
+function. <br>
+<b>While</b> iterates until the expression becomes wrong or until a <b>break
+</b>is encountered.<br>
+<b>Gsub() </b>is for string substitution.<br>
+<b>Getline</b> reads in a line each time it es called.<br>
+<b>System()</b> executes a unix command.<br>
+<b>&quot;&gt;&gt;&quot;</b> appends to a file.</i> </p>
+
+<p>This script es an example only. For really extracting email addresses
+several special cases would have to be considered... </p>
+
+<pre><b><font color="#B22222">#!/usr/bin/nawk -f
+
+</font></b><font color="#000000"># Lines from a mail are dropping in over stdin. Append every line to a 
+# file before checking anything.
+
+</font><b><font color="#B22222">{ print &gt;&gt; &quot;/path/mymailfile&quot; }
+
+</font></b><font color="#000000"># Find lines with with From: or Replay: at beginning.
+
+</font><b><font color="#B22222">/^From:/ || /^Replay/ {
+
+</font></b><font color="#000000"># Find fields with @. Iterate over the fields and check for @
+
+</font><b><font color="#B22222">    for(i=1;i&lt;=nf;i++){
+
+        if($i ~ /@/){
+
+</font></b><font color="#B22222">            </font><font color="#000000"># Clean the email addresses with gsub()
+
+</font><font color="#B22222"><b>            gsub(/[&lt;&gt;()&quot;]/,&quot;&quot;,$i)
+
+</b>            </font><font color="#000000"># Check whether the email address is in the antimailfile
+
+</font><font color="#B22222"><b>            while( getline antiaddr &lt; &quot;/path/antimailfile&quot; ){
+
+</b>                </font><font color="#000000"># Compare actual address in $i with loaded address
+
+</font><font color="#B22222"><b>                if($i == antiaddr){
+
+</b>                    </font><font color="#000000"># Send a negative mail
+
+</font><font color="#B22222"><b>                    system(&quot;mail &quot; $i &quot; &lt; /path/badmail&quot;)
+
+</b>                    </font><font color="#000000"># Now end the while loop</font><font color="#B22222"> 
+<b> 
+                    break
+
+                }else{
+
+</b>                    </font><font color="#000000"># Send a positive mail
+
+</font><b><font color="#B22222">                    system(&quot;mail &quot; $i &quot; &lt; /path/goodmail&quot;)
+                }
+            }
+        }
+    }
+}</font></b>
+</pre>
+
+<h2><i>Calculate on columns and print formated output</i></h2>
+
+<p>If one has a formated input of number columns one can still split them
+on white space, but has to consider the format for output with printf()
+</p>
+
+<pre><b><font color="#B22222">#!/usr/bin/nawk -f
+
+</font></b><font color="#000000"># Reprintet lines without foo or boo
+
+</font><b><font color="#B22222">! /(foo|boo)/ { print }
+
+</font></b><font color="#000000"># Rearange and calculate with columns but only on lines with foo or boo
+
+</font><b><font color="#B22222">/(foo|boo)/ {
+
+</font></b><font color="#000000">        # Extract fields
+
+</font><b><font color="#B22222">        mytype = $1
+        var1   = $2
+        var2   = $3
+        var3   = $4
+ 
+</font></b><font color="#000000">        # Calculate
+
+</font><b><font color="#B22222">        if(mytype == &quot;foo&quot;){
+
+            var1 *= 10
+            var2 += 20
+            var3  = log(var3)
+        }
+        if(mytype == &quot;boo&quot;){
+
+            var1 *= 4
+            var2 += 10
+            var3  = cos(var3)
+        }
+
+</font></b><font color="#000000">        # Print formated output in reverse order
+
+</font><b><font color="#B22222">        printf(&quot;%-4s%10.3f%10.3f%10.3f\n&quot;,mytype,var3,var2,var1)
+}</font></b>
+</pre>
+
+<h2><i>How to iterate over each word of a shell variable in awk</i></h2>
+
+<p>In this example there is first a shell variable filled in and then it
+is given to awk. Awk splits it into an array and then iterates over the
+array and looks for each word on the current line of a file. If it finds
+it, it prints the whole line.<br>
+</p>
+
+<pre><b><font color="#B22222">#!/usr/bin/ksh
+var=&quot;term1 term2 term3 term4 term5&quot;
+awk '
+      BEGIN { split(myvar,myarr)  }
+            {
+                 for(val in myarr){
+                     if($0 ~ myarr[val]){
+                         print
+                     }   
+                 }   
+            }  
+' myvar=&quot;$var&quot; file</font></b>
+</pre>
+
+<h2><i>Functions</i></h2>
+
+This example substitutes the first three occurences of "searchterm"
+with a different term in each case and from the fourth case it just
+prints the line as it is.<p>
+
+It should show where to place a function and how to call it.<p>
+
+<font color="#B22222">
+<pre><b>
+#!/usr/bin/nawk -f
+BEGIN{
+        mysub1   = "first_sub"
+        mysub2   = "second_sub"
+        mysub3   = "third_sub"
+        mycount  = 1
+        find     = "searchterm"
+}
+{
+        if($0 ~ find){
+                if(mycount == 1){ replace(mysub1); }
+                if(mycount == 2){ replace(mysub2); }
+                if(mycount == 3){ replace(mysub3); }
+                if(mycount &gt;  3){ print; }
+                mycount++
+         }else{
+                print
+         }
+}
+function replace(mysub) {
+ 
+        sub(find,mysub)
+        print
+        break
+}
+</b></pre>
+</font>
+<p>
+
+
+<h2><i>CGI with gawk</i></h2>
+
+<p>As an example for a CGI script in awk I make one which presents
+the unix man pages in html.<p>
+
+<center>
+<font size=+1><b>
+<a href="http://eurasia.ethz.ch/~kistler/cgi/man_cgi.html">
+man.cgi</a><p>
+</b></font>
+</center>
+
+<h2><i>String functions</i></h2>
+
+<table>
+<tr>
+<td><b><font color="#800000">sub(regexp,sub)</font></b></td>
+
+<td>Substitute sub for regexp in $0</td>
+</tr>
+
+<tr>
+<td><b><font color="#800000">sub(regexp,sub,var)</font></b></td>
+
+<td>Substitute sub for regexp in var</td>
+</tr>
+
+<tr>
+<td><b><font color="#800000">gsub(regexp,sub)</font></b></td>
+
+<td>Globally substitute sub for regexp in $0</td>
+</tr>
+
+<tr>
+<td><b><font color="#800000">gsub(regexp,sub,var)</font></b></td>
+
+<td>Globally substitute sub for regexp in var</td>
+</tr>
+
+<tr>
+<td><b><font color="#800000">split(var,arr)</font></b></td>
+
+<td>Split var on white space into arr</td>
+</tr>
+
+<tr>
+<td><b><font color="#800000">split(var,arr,sep)</font></b></td>
+
+<td>Split var on white space into arr on sep as separator</td>
+</tr>
+
+<tr>
+<td><b><font color="#800000">index(bigvar,smallvar)</font></b></td>
+
+<td>Find index of smallvar in bigvar</td>
+</tr>
+
+<tr>
+<td><b><font color="#800000">match(bigvar,expr)</font></b></td>
+
+<td>Find index for regexp in bigvar</td>
+</tr>
+
+<tr>
+<td><b><font color="#800000">length(var)</font></b></td>
+
+<td>Number of characters in var</td>
+</tr>
+
+<tr>
+<td><b><font color="#800000">substr(var,num)</font></b></td>
+
+<td>Extract chars from posistion num to end</td>
+</tr>
+
+<tr>
+<td><b><font color="#800000">substr(var,num1,num2)</font></b></td>
+
+<td>Extract chars from num1 through num2</td>
+</tr>
+
+<tr>
+<td><b><font color="#800000">sprintf(format,vars)</font></b></td>
+
+<td>Format vars to a string</td>
+</tr>
+
+<tr>
+<td></td>
+
+<td></td>
+</tr>
+</table>
+
+<p>
+<hr size=3 noshade></p>
+
+<p><b>When to use awk, when to use perl?</b></p>
+
+<p>Perl can do 100 times more than awk can, but awk is present on any standard
+unix system, where perl first has to be installed. And for short commands
+awk seems to be more practical. The autosplit mode of perl splits into
+pieces called: $F[0] through $F[$#F] which is not so nice as $1 through
+$NF where awk retains the whole line in $0 at the same time.<br>
+To get the first column of any file in awk and in perl:</p>
+
+<p><b><font color="#226622">awk '{print $1}' infile<br>
+perl -nae 'print $F[0],&quot;\n&quot;;' infile </font></b><br>
+</p>
+
+<p>
+<hr size=3 noshade></p>
+
+<center><p><font color="#B22222"><i><a href="mailto:kistler@erdw.ethz.ch">Mail
+to Per Kistler</a></i> </font></p></center>
+
+<p>
+<hr size=3 noshade></p>
+
+</body>
+</html>

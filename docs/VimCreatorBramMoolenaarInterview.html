@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>VimCreatorBramMoolenaarInterview</title>
+  </head>
+  <body>
+    <header class="page-header clr">
+      <h1 class="page-header-title">10 Questions with Vim’s creator,
+        Bram Moolenaar</h1>
+    </header>
+    <div class="page-thumbnail"> <img
+src="./bram-moolenaar-vim.png"> </div>
+    <p><a href="https://www.vim.org/" target="_blank" rel="noopener">Vim</a>&nbsp;has
+      existed&nbsp;for 23 years, and it’s been used to write&nbsp;<em>millions
+        upon millions&nbsp;</em>of lines of code. We caught up with Bram
+      Moolenaar, creator of the text editor, to ask him about what he’s
+      learned building it over the past two decades, his thoughts
+      on&nbsp;<a href="http://neovim.org/" target="_blank"
+        rel="noopener">NeoVim</a>&nbsp;and more. In addition, we posed
+      some questions suggested by the Vim hive mind&nbsp;<a
+href="https://www.reddit.com/r/vim/comments/2ip7e4/heres_your_chance_to_ask_bram_moolenaar_a_question/"
+        target="_blank" rel="noopener">on Reddit</a>. Check
+      out&nbsp;Bram’s answers below.</p>
+    <h2>1: What have you learned from maintaining such a large and
+      widely-used piece of software for such a long time?</h2>
+    <p>I have learned all the different things that one can do wrong.
+      Both my own mistakes and what I find in code from others. That Vim
+      is written in C does not help, since it makes writing bad code
+      easy. Now that computers are much faster and have lots of memory I
+      would prefer a compiler that takes work out of the hands of the
+      programmer. As a hobby project I’m working on a compiler,
+      called&nbsp;<a href="http://www.zimbu.org/" target="_blank"
+        rel="noopener">Zimbu</a>, that does this. Making sure the
+      resulting code is fast enough that you could write something like
+      Vim with it.</p>
+    <span id="ezoic-pub-ad-placeholder-121"></span>
+    <p>Another thing I learned is that one must have a vision for the
+      future. Users often request a small new feature that seems easy to
+      add. Doing this one feature at a time, without considering the
+      direction this is going, often makes it difficult for later
+      features to be easily accessible. For Vim every command has to be
+      assigned to one or two keystrokes. One key is easier to type, of
+      course, thus we need to reserve them for often used commands. But
+      what commands will be added in the future? It’s a bit of guessing
+      I suppose. Although you might also call it a vision.</p>
+    <p>For example, when adding the word object, I decided to use two
+      characters: “aw”. It stands for “a word”. I could have made it one
+      character, but I just knew that other objects would come later.
+      Now we also have “ap” for “a paragraph” and many others. That
+      would not have been possible if “a” by itself would have been used
+      for the first feature that could use it.</p>
+    <h2>2:&nbsp;In a world where many text editors have plugins that
+      introduce Vim-like behavior, what do you feel differentiates Vim
+      from other editors?&nbsp;Put another way: If Vim is the champion
+      of something, what is it the champion of?</h2>
+    <p>It requires an investment to learn the Vim commands and keep
+      learning tricks to make your daily editing work more efficient.
+      What Vim provides is the promise that the things you learned will
+      keep on working. Other programs bring out a “new and improved”
+      version where functionality has moved around, and it takes a while
+      before you can work effectively again. Vim, and Vi before it, has
+      set a standard. And you can trust it to keep working on all your
+      computers.</p>
+    <h2>3:&nbsp;Vim is often criticized for having default options which
+      seem counter-intuitive. If you could do the whole thing over
+      again, would you change any of the defaults? Would you change any
+      behavior?</h2>
+    <p>This is part of what I mentioned above: Adding one feature at a
+      time. When making changes later, and especially adding features,
+      it may require setting an option to get that new feature to avoid
+      problems with backwards compatibility. For example, multi-level
+      undo makes the “u” command work differently. Thus you need an
+      option to disable the old behavior.</p>
+    <span id="ezoic-pub-ad-placeholder-122"></span>
+    <p>There are not many things that I would do differently now though.
+      I would enable more features by default, such as multi-level undo,
+      syntax highlighting and everything triggered by the ‘nocompatible’
+      option. Basically what’s in $VIMRTIME/vimrc_example.vim.</p>
+    <p>Otherwise, I think a lot of users have their own expectations.
+      It’s easy for a user to assume that others have the same
+      expectations. In practice users have a lot different preferences.
+      So I end up deciding what the default is, and there is always a
+      group of users that will complain. I’m trying hard to make that
+      group as small as possible.</p>
+    <h2>4:&nbsp;NeoVim has been under development for roughly eight
+      months. What are your thoughts about it now that it’s gained some
+      traction?</h2>
+    <p>No idea. Some of the basic choices seem odd and irrelevant for
+      the main goals. Such as dropping support for some systems and not
+      being backwards compatible. The goals could just as well been
+      implemented without that.
+    </p>
+    <p>A lot of it feels like someone who doesn’t like the old code and
+      wants to do it “right.” I can agree that the old code is ugly. But
+      it will take an awful lot of effort to make a new implementation.
+      It’s a lot like what happened to&nbsp;<a
+        href="https://en.wikipedia.org/wiki/Elvis_(text_editor)"
+        target="_blank" rel="noopener">Elvis</a>: A rewrite was going to
+      make it much better, but it took so long, during which Vim added
+      more features, that eventually there are not so many Elvis users.
+      And the rewritten Elvis may have nice code, but users don’t notice
+      that.</p>
+    I do hope that the nice things that NeoVim comes up with can be
+    added back to Vim. I mean, who doesn’t want better plugin support, a
+    better GUI and embedding? The big question is how to do that, and
+    who is going to implement it properly.<br>
+    <h2>5:&nbsp;What advice would you give to folks with open source
+      projects when it comes to working with and building a community?</h2>
+    <p>Nothing specific. Obviously you both need to set good goals, make
+      some useful code and advertise properly. A nice looking website
+      helps a lot, that’s one thing that NeoVim did right.</p>
+    <h2>6:&nbsp;In your years of working on open source software, what’s
+      one mistake you’d rather not repeat?</h2>
+    <p>Without being specific, I have included code from others trusting
+      that it would work, and that they would fix reported problems. And
+      often that is true, there are quite a few faithful contributors.
+      But sometimes someone just wants to get his feature in, and as
+      soon as the things he uses are working, he disappears. And then I
+      end up having to fix problems.</p>
+    <p>These days I’m a lot more careful about including new features.
+      Especially when it’s complex and interferes with several existing
+      parts of the code. I’m insisting more often on writing tests and
+      documentation before including anything.<span
+        id="ezoic-pub-ad-placeholder-127" class="ezoic-adpicker-ad"></span><span
+        class="ezoic-ad leader-1 leader-1127 adtester-container
+        adtester-container-127" data-ez-name="binpress_com-leader-1"
+        style="min-height: 250px;"><span
+          id="div-gpt-ad-binpress_com-leader-1-0" ezaw="250" ezah="250"
+          style="position: relative; z-index: 0; padding: 0px; width:
+          100%; max-width: 1200px; margin-left: auto !important;
+          margin-right: auto !important; min-height: 250px; min-width:
+          250px;" class="ezoic-ad ezfound"
+          data-google-query-id="CPvjt-2s3fICFUXquwgdjs8BmA"></span></span></p>
+    <h2>7:&nbsp;What’s the best way to make open source projects
+      sustainable?</h2>
+    <p>Write nice code. Use white space properly, use good names for
+      methods, add comments to explain anything that isn’t obvious, etc.
+      If you write ugly code, anyone who intends to fix a bug or add a
+      feature will not enjoy his work and likely avoid it next time. I’m
+      afraid Vim is not a good example of this.</p>
+    <h2>8:&nbsp;How can the community ensure that the Vim project
+      succeeds for the foreseeable future?</h2>
+    <p>Keep me alive.</p>
+    <h2>9:&nbsp;Why do you have such a big focus on charity? Why is your
+      charity of choice&nbsp;<a href="http://iccf-holland.org/"
+        target="_blank" rel="noopener">ICCF Holland</a>, and why is its
+      cause so important to you?</h2>
+    <p><span id="ezoic-pub-ad-placeholder-128" class="ezoic-adpicker-ad"></span><span
+        class="ezoic-ad large-mobile-banner-2 large-mobile-banner-2128
+        adtester-container adtester-container-128"
+        data-ez-name="binpress_com-large-mobile-banner-2"
+        style="min-height: 250px;"><span
+          id="div-gpt-ad-binpress_com-large-mobile-banner-2-0"
+          ezaw="300" ezah="250" style="position: relative; z-index: 0;
+          padding: 0px; width: 100%; max-width: 1200px; margin-left:
+          auto !important; margin-right: auto !important; min-height:
+          250px; min-width: 300px;" class="ezoic-ad ezfound"></span></span></p>
+    We often forget how well we are doing. We complain about the wine
+    not tasting well today or the waiter being rude. This actually means
+    we can afford to buy wine and go out for dinner, isn’t that great?
+    At some point while developing Vim I didn’t have a job and asked for
+    sponsoring. Once I got back to a paid job I thought it would be good
+    to send that sponsorship money to people who really need it. And it
+    turns out Vim users think the same way.
+    <p>There are many charities and it’s not always clear who you are
+      actually helping. How much money stays in the country of the
+      donor? How much gets wasted on administration, transport and other
+      things that do not really help the people who are being helped.
+      One organisation I worked with had only 30% of the money ending up
+      with the child who it was for. Clever bookkeeping makes it look
+      like 90% of the money is used. But a large part of it goes to
+      staff driving around in Land Cruisers. Not to the small school
+      where the child is.</p>
+    <p>The project I encountered in Kibaale is completely different. The
+      foreigners who work there are volunteers, they have sponsors
+      themselves to make it possible to live and work there. All the
+      donations for children go to the project and are spent there. Also
+      for staff and vehicles, but that’s local staff that then spend
+      their money in the country, thus indirectly it helps others. And
+      in the end seeing the children grow up, finish their studies and
+      find a job is wonderful.</p>
+    <h2>10:&nbsp;What does the future hold for Vim?</h2>
+    <p><span id="ezoic-pub-ad-placeholder-129" class="ezoic-adpicker-ad"></span><span
+        class="ezoic-ad large-mobile-banner-1 large-mobile-banner-1129
+        adtester-container adtester-container-129"
+        data-ez-name="binpress_com-large-mobile-banner-1"
+        style="min-height: 250px;"><span
+          id="div-gpt-ad-binpress_com-large-mobile-banner-1-0"
+          ezaw="300" ezah="250" style="position: relative; z-index: 0;
+          padding: 0px; width: 100%; max-width: 1200px; margin-left:
+          auto !important; margin-right: auto !important; min-height:
+          250px; min-width: 300px;" class="ezoic-ad ezfound"></span></span></p>
+    Nothing spectacular. Mainly small improvements. There are a few
+    areas that could do with bigger improvements, such as making it
+    easier to write and use plugins. But it’s not clear how to do that.
+    And plugin managers appear to be filling the gap quite well.
+    <p>But you never know what comes up. For example, the undofile
+      feature seemed like a “nice to have” item. After a student worked
+      on it for a while it wasn’t too much work to include. And now I
+      completely rely on it, being able to make some changes, build,
+      test and undo when it doesn’t work. It’s certainly possible that
+      an idea for a useful feature comes up and gets implemented.</p>
+    <p><em>Author:&nbsp;Alexis Santos</em></p>
+    <p><em>Date:&nbsp;September 2018</em></p>
+    <span id="ezoic-pub-ad-placeholder-123"></span>
+    <footer class="entry-footer"> </footer>
+    <aside id="secondary" class="sidebar-container" role="complementary">
+      <div class="sidebar-inner">
+        <div class="widget-area">
+          <div id="custom_html-2" class="widget_text sidebar-widget
+            widget_custom_html clr">
+            <div class="textwidget custom-html-widget">
+              <span id="ezoic-pub-ad-placeholder-119"></span>
+            </div>
+          </div>
+          <br>
+          <div id="custom_html-3" class="widget_text sidebar-widget
+            widget_custom_html clr">
+            <div class="textwidget custom-html-widget">
+              <span id="ezoic-pub-ad-placeholder-120"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </body>
+</html>

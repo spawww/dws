@@ -1,0 +1,1362 @@
+<!doctype html >
+<!--[if IE 8]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->
+<head>
+    <title>DNS and DHCP with Dnsmasq - Linux.com</title>
+    <meta charset="UTF-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={licenseKey:"981d6c8a9f",applicationID:"176909146"};window.NREUM||(NREUM={}),__nr_require=function(e,n,t){function r(t){if(!n[t]){var o=n[t]={exports:{}};e[t][0].call(o.exports,function(n){var o=e[t][1][n];return r(o||n)},o,o.exports)}return n[t].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<t.length;o++)r(t[o]);return r}({1:[function(e,n,t){function r(){}function o(e,n,t){return function(){return i(e,[c.now()].concat(u(arguments)),n?null:this,t),n?void 0:this}}var i=e("handle"),a=e(3),u=e(4),f=e("ee").get("tracer"),c=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,n){s[n]=o(d+n,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),n.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,n){var t={},r=this,o="function"==typeof n;return i(l+"tracer",[c.now(),e,t],r),function(){if(f.emit((o?"":"no-")+"fn-start",[c.now(),r,o],t),o)try{return n.apply(this,arguments)}catch(e){throw f.emit("fn-err",[arguments,this,e],t),e}finally{f.emit("fn-end",[c.now()],t)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,n){m[n]=o(l+n)}),newrelic.noticeError=function(e,n){"string"==typeof e&&(e=new Error(e)),i("err",[e,c.now(),!1,n])}},{}],2:[function(e,n,t){function r(e,n){if(!o)return!1;if(e!==o)return!1;if(!n)return!0;if(!i)return!1;for(var t=i.split("."),r=n.split("."),a=0;a<r.length;a++)if(r[a]!==t[a])return!1;return!0}var o=null,i=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var u=navigator.userAgent,f=u.match(a);f&&u.indexOf("Chrome")===-1&&u.indexOf("Chromium")===-1&&(o="Safari",i=f[1])}n.exports={agent:o,version:i,match:r}},{}],3:[function(e,n,t){function r(e,n){var t=[],r="",i=0;for(r in e)o.call(e,r)&&(t[i]=n(r,e[r]),i+=1);return t}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],4:[function(e,n,t){function r(e,n,t){n||(n=0),"undefined"==typeof t&&(t=e?e.length:0);for(var r=-1,o=t-n||0,i=Array(o<0?0:o);++r<o;)i[r]=e[n+r];return i}n.exports=r},{}],5:[function(e,n,t){n.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,n,t){function r(){}function o(e){function n(e){return e&&e instanceof r?e:e?f(e,u,i):i()}function t(t,r,o,i){if(!d.aborted||i){e&&e(t,r,o);for(var a=n(o),u=v(t),f=u.length,c=0;c<f;c++)u[c].apply(a,r);var p=s[y[t]];return p&&p.push([b,t,r,a]),a}}function l(e,n){h[e]=v(e).concat(n)}function m(e,n){var t=h[e];if(t)for(var r=0;r<t.length;r++)t[r]===n&&t.splice(r,1)}function v(e){return h[e]||[]}function g(e){return p[e]=p[e]||o(t)}function w(e,n){c(e,function(e,t){n=n||"feature",y[t]=n,n in s||(s[n]=[])})}var h={},y={},b={on:l,addEventListener:l,removeEventListener:m,emit:t,get:g,listeners:v,context:n,buffer:w,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",f=e("gos"),c=e(3),s={},p={},d=n.exports=o();d.backlog=s},{}],gos:[function(e,n,t){function r(e,n,t){if(o.call(e,n))return e[n];var r=t();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,n,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[n]=r,r}var o=Object.prototype.hasOwnProperty;n.exports=r},{}],handle:[function(e,n,t){function r(e,n,t,r){o.buffer([e],r),o.emit(e,n,t)}var o=e("ee").get("handle");n.exports=r,r.ee=o},{}],id:[function(e,n,t){function r(e){var n=typeof e;return!e||"object"!==n&&"function"!==n?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");n.exports=r},{}],loader:[function(e,n,t){function r(){if(!E++){var e=x.info=NREUM.info,n=l.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&n))return s.abort();c(y,function(n,t){e[n]||(e[n]=t)}),f("mark",["onload",a()+x.offset],null,"api");var t=l.createElement("script");t.src="https://"+e.agent,n.parentNode.insertBefore(t,n)}}function o(){"complete"===l.readyState&&i()}function i(){f("mark",["domContent",a()+x.offset],null,"api")}function a(){return O.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-x.offset}var u=(new Date).getTime(),f=e("handle"),c=e(3),s=e("ee"),p=e(2),d=window,l=d.document,m="addEventListener",v="attachEvent",g=d.XMLHttpRequest,w=g&&g.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:g,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var h=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1130.min.js"},b=g&&w&&w[m]&&!/CriOS/.test(navigator.userAgent),x=n.exports={offset:u,now:a,origin:h,features:{},xhrWrappable:b,userAgent:p};e(1),l[m]?(l[m]("DOMContentLoaded",i,!1),d[m]("load",r,!1)):(l[v]("onreadystatechange",o),d[v]("onload",r)),f("mark",["firstbyte",u],null,"api");var E=0,O=e(5)},{}]},{},["loader"]);</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="pingback" href="https://www.linux.com/xmlrpc.php" />
+    
+<!-- Google Tag Manager for WordPress by gtm4wp.com -->
+<script data-cfasync="false" data-pagespeed-no-defer type="text/javascript">//<![CDATA[
+	var gtm4wp_datalayer_name = "dataLayer";
+	var dataLayer = dataLayer || [];
+//]]>
+</script>
+<!-- End Google Tag Manager for WordPress by gtm4wp.com --><meta property="og:image" content="https://www.linux.com/wp-content/uploads/2019/08/dnsmasq.jpg" /><link rel="icon" type="image/png" href="https://www.linux.com/wp-content/uploads/2019/08/favicon-300x300.png">
+<!-- This site is optimized with the Yoast SEO Premium plugin v11.9 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="DNS and DHCP with Dnsmasq - Linux.com" />
+<meta property="og:description" content="Last week, we learned a batch of tips and tricks for Dnsmasq. Today, we&#8217;re going more in-depth into configuring DNS and DHCP, including entering DHCP hostnames automatically into DNS, and assigning static IP addresses from DHCP. You will edit three configuration files on your Dnsmasq server: /etc/dnsmasq.conf, /etc/resolv.conf, and /etc/hosts. Just like the olden days &hellip;" />
+<meta property="og:url" content="https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/" />
+<meta property="og:site_name" content="Linux.com" />
+<meta property="article:section" content="Networking" />
+<meta property="article:published_time" content="2018-02-15T15:21:22+00:00" />
+<meta property="og:image" content="https://www.linux.com/wp-content/uploads/2019/08/dnsmasq.jpg" />
+<meta property="og:image:secure_url" content="https://www.linux.com/wp-content/uploads/2019/08/dnsmasq.jpg" />
+<meta property="og:image:width" content="1600" />
+<meta property="og:image:height" content="894" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Last week, we learned a batch of tips and tricks for Dnsmasq. Today, we&#8217;re going more in-depth into configuring DNS and DHCP, including entering DHCP hostnames automatically into DNS, and assigning static IP addresses from DHCP. You will edit three configuration files on your Dnsmasq server: /etc/dnsmasq.conf, /etc/resolv.conf, and /etc/hosts. Just like the olden days [&hellip;]" />
+<meta name="twitter:title" content="DNS and DHCP with Dnsmasq - Linux.com" />
+<meta name="twitter:image" content="https://www.linux.com/wp-content/uploads/2019/08/dnsmasq.jpg" />
+<script type='application/ld+json' class='yoast-schema-graph yoast-schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.linux.com/#website","url":"https://www.linux.com/","name":"Linux.com","potentialAction":{"@type":"SearchAction","target":"https://www.linux.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/#primaryimage","url":"https://www.linux.com/wp-content/uploads/2019/08/dnsmasq.jpg","width":1600,"height":894},{"@type":"WebPage","@id":"https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/#webpage","url":"https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/","inLanguage":"en-US","name":"DNS and DHCP with Dnsmasq - Linux.com","isPartOf":{"@id":"https://www.linux.com/#website"},"primaryImageOfPage":{"@id":"https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/#primaryimage"},"datePublished":"2018-02-15T15:21:22+00:00","dateModified":"2018-02-15T15:21:22+00:00","author":{"@id":"https://www.linux.com/#/schema/person/6398a137d592824ddabfbe0294b53698"}}]}</script>
+<!-- / Yoast SEO Premium plugin. -->
+
+<link rel='dns-prefetch' href='//www.linux.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Linux.com &raquo; Feed" href="https://www.linux.com/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.linux.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.3"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='mpp_gutenberg-css'  href='https://www.linux.com/wp-content/plugins/metronet-profile-picture/dist/blocks.style.build.css?ver=2.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='td-plugin-multi-purpose-css'  href='https://www.linux.com/wp-content/plugins/td-composer/td-multi-purpose/style.css?ver=5a862b9d7c39671de80dd6dee389818b' type='text/css' media='all' />
+<link rel='stylesheet' id='google-fonts-style-css'  href='https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400%2C400italic%2C600%2C600italic%2C700%7CRoboto%3A300%2C400%2C400italic%2C500%2C500italic%2C700%2C900&#038;ver=9.8' type='text/css' media='all' />
+<link rel='stylesheet' id='td-theme-css'  href='https://www.linux.com/wp-content/themes/Newspaper/style.css?ver=9.8' type='text/css' media='all' />
+<style id='td-theme-inline-css' type='text/css'>
+    
+        @media (max-width: 767px) {
+            .td-header-desktop-wrap {
+                display: none;
+            }
+        }
+        @media (min-width: 767px) {
+            .td-header-mobile-wrap {
+                display: none;
+            }
+        }
+    
+	
+</style>
+<link rel='stylesheet' id='td-legacy-framework-front-style-css'  href='https://www.linux.com/wp-content/plugins/td-composer/legacy/Newspaper/assets/css/td_legacy_main.css?ver=5a862b9d7c39671de80dd6dee389818b' type='text/css' media='all' />
+<link rel='stylesheet' id='tdb_front_style-css'  href='https://www.linux.com/wp-content/plugins/td-cloud-library/assets/css/tdb_less_front.css?ver=489325fca4f12cbec6ded350cf173551' type='text/css' media='all' />
+<script type='text/javascript' src='https://www.linux.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script>
+<script type='text/javascript' src='https://www.linux.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://www.linux.com/wp-content/plugins/duracelltomi-google-tag-manager/js/gtm4wp-form-move-tracker.js?ver=1.10.1'></script>
+<link rel='https://api.w.org/' href='https://www.linux.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.linux.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.linux.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.2.3" />
+<link rel='shortlink' href='https://www.linux.com/?p=472208' />
+<link rel="alternate" type="application/json+oembed" href="https://www.linux.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.linux.com%2Ftutorials%2Fdns-and-dhcp-dnsmasq%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.linux.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.linux.com%2Ftutorials%2Fdns-and-dhcp-dnsmasq%2F&#038;format=xml" />
+
+<!-- Google Tag Manager for WordPress by gtm4wp.com -->
+<script data-cfasync="false" data-pagespeed-no-defer type="text/javascript">//<![CDATA[
+	var dataLayer_content = {"pagePostType":"post","pagePostType2":"single-post","pageCategory":["networking","tutorials"]};
+	dataLayer.push( dataLayer_content );//]]>
+</script>
+<script data-cfasync="false">//<![CDATA[
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.'+'js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NXGNZW');//]]>
+</script>
+<!-- End Google Tag Manager -->
+<!-- End Google Tag Manager for WordPress by gtm4wp.com --><!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+        <script>
+        window.tdb_globals = {"wpRestNonce":"527870c2ef","wpRestUrl":"https:\/\/www.linux.com\/wp-json\/","permalinkStructure":"\/%category%\/%postname%\/","isAjax":false,"isAdminBarShowing":false,"autoloadScrollPercent":50,"postAutoloadStatus":"off","origPostEditUrl":null};
+    </script>
+    			<script>
+				window.tdwGlobal = {"adminUrl":"https:\/\/www.linux.com\/wp-admin\/","wpRestNonce":"527870c2ef","wpRestUrl":"https:\/\/www.linux.com\/wp-json\/","permalinkStructure":"\/%category%\/%postname%\/"};
+			</script>
+			
+<!-- JS generated by theme -->
+
+<script>
+    
+    
+
+	    var tdBlocksArray = []; //here we store all the items for the current page
+
+	    //td_block class - each ajax block uses a object of this class for requests
+	    function tdBlock() {
+		    this.id = '';
+		    this.block_type = 1; //block type id (1-234 etc)
+		    this.atts = '';
+		    this.td_column_number = '';
+		    this.td_current_page = 1; //
+		    this.post_count = 0; //from wp
+		    this.found_posts = 0; //from wp
+		    this.max_num_pages = 0; //from wp
+		    this.td_filter_value = ''; //current live filter value
+		    this.is_ajax_running = false;
+		    this.td_user_action = ''; // load more or infinite loader (used by the animation)
+		    this.header_color = '';
+		    this.ajax_pagination_infinite_stop = ''; //show load more at page x
+	    }
+
+
+        // td_js_generator - mini detector
+        (function(){
+            var htmlTag = document.getElementsByTagName("html")[0];
+
+	        if ( navigator.userAgent.indexOf("MSIE 10.0") > -1 ) {
+                htmlTag.className += ' ie10';
+            }
+
+            if ( !!navigator.userAgent.match(/Trident.*rv\:11\./) ) {
+                htmlTag.className += ' ie11';
+            }
+
+	        if ( navigator.userAgent.indexOf("Edge") > -1 ) {
+                htmlTag.className += ' ieEdge';
+            }
+
+            if ( /(iPad|iPhone|iPod)/g.test(navigator.userAgent) ) {
+                htmlTag.className += ' td-md-is-ios';
+            }
+
+            var user_agent = navigator.userAgent.toLowerCase();
+            if ( user_agent.indexOf("android") > -1 ) {
+                htmlTag.className += ' td-md-is-android';
+            }
+
+            if ( -1 !== navigator.userAgent.indexOf('Mac OS X')  ) {
+                htmlTag.className += ' td-md-is-os-x';
+            }
+
+            if ( /chrom(e|ium)/.test(navigator.userAgent.toLowerCase()) ) {
+               htmlTag.className += ' td-md-is-chrome';
+            }
+
+            if ( -1 !== navigator.userAgent.indexOf('Firefox') ) {
+                htmlTag.className += ' td-md-is-firefox';
+            }
+
+            if ( -1 !== navigator.userAgent.indexOf('Safari') && -1 === navigator.userAgent.indexOf('Chrome') ) {
+                htmlTag.className += ' td-md-is-safari';
+            }
+
+            if( -1 !== navigator.userAgent.indexOf('IEMobile') ){
+                htmlTag.className += ' td-md-is-iemobile';
+            }
+
+        })();
+
+
+
+
+        var tdLocalCache = {};
+
+        ( function () {
+            "use strict";
+
+            tdLocalCache = {
+                data: {},
+                remove: function (resource_id) {
+                    delete tdLocalCache.data[resource_id];
+                },
+                exist: function (resource_id) {
+                    return tdLocalCache.data.hasOwnProperty(resource_id) && tdLocalCache.data[resource_id] !== null;
+                },
+                get: function (resource_id) {
+                    return tdLocalCache.data[resource_id];
+                },
+                set: function (resource_id, cachedData) {
+                    tdLocalCache.remove(resource_id);
+                    tdLocalCache.data[resource_id] = cachedData;
+                }
+            };
+        })();
+
+    
+    
+var td_viewport_interval_list=[{"limitBottom":767,"sidebarWidth":228},{"limitBottom":1018,"sidebarWidth":300},{"limitBottom":1140,"sidebarWidth":324}];
+var tdc_is_installed="yes";
+var td_ajax_url="https:\/\/www.linux.com\/wp-admin\/admin-ajax.php?td_theme_name=Newspaper&v=9.8";
+var td_get_template_directory_uri="https:\/\/www.linux.com\/wp-content\/plugins\/td-composer\/legacy\/common";
+var tds_snap_menu="";
+var tds_logo_on_sticky="";
+var tds_header_style="12";
+var td_please_wait="Please wait...";
+var td_email_user_pass_incorrect="User or password incorrect!";
+var td_email_user_incorrect="Email or username incorrect!";
+var td_email_incorrect="Email incorrect!";
+var tds_more_articles_on_post_enable="";
+var tds_more_articles_on_post_time_to_wait="";
+var tds_more_articles_on_post_pages_distance_from_top=0;
+var tds_theme_color_site_wide="#ff6c0e";
+var tds_smart_sidebar="";
+var tdThemeName="Newspaper";
+var td_magnific_popup_translation_tPrev="Previous (Left arrow key)";
+var td_magnific_popup_translation_tNext="Next (Right arrow key)";
+var td_magnific_popup_translation_tCounter="%curr% of %total%";
+var td_magnific_popup_translation_ajax_tError="The content from %url% could not be loaded.";
+var td_magnific_popup_translation_image_tError="The image #%curr% could not be loaded.";
+var tdBlockNonce="048b5ceefc";
+var tdDateNamesI18n={"month_names":["January","February","March","April","May","June","July","August","September","October","November","December"],"month_names_short":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"day_names":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"day_names_short":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]};
+var td_ad_background_click_link="";
+var td_ad_background_click_target="";
+</script>
+
+
+<!-- Header style compiled by theme -->
+
+<style>
+    
+.td-header-wrap .black-menu .sf-menu > .current-menu-item > a,
+    .td-header-wrap .black-menu .sf-menu > .current-menu-ancestor > a,
+    .td-header-wrap .black-menu .sf-menu > .current-category-ancestor > a,
+    .td-header-wrap .black-menu .sf-menu > li > a:hover,
+    .td-header-wrap .black-menu .sf-menu > .sfHover > a,
+    .td-header-style-12 .td-header-menu-wrap-full,
+    .sf-menu > .current-menu-item > a:after,
+    .sf-menu > .current-menu-ancestor > a:after,
+    .sf-menu > .current-category-ancestor > a:after,
+    .sf-menu > li:hover > a:after,
+    .sf-menu > .sfHover > a:after,
+    .td-header-style-12 .td-affix,
+    .header-search-wrap .td-drop-down-search:after,
+    .header-search-wrap .td-drop-down-search .btn:hover,
+    input[type=submit]:hover,
+    .td-read-more a,
+    .td-post-category:hover,
+    .td-grid-style-1.td-hover-1 .td-big-grid-post:hover .td-post-category,
+    .td-grid-style-5.td-hover-1 .td-big-grid-post:hover .td-post-category,
+    .td_top_authors .td-active .td-author-post-count,
+    .td_top_authors .td-active .td-author-comments-count,
+    .td_top_authors .td_mod_wrap:hover .td-author-post-count,
+    .td_top_authors .td_mod_wrap:hover .td-author-comments-count,
+    .td-404-sub-sub-title a:hover,
+    .td-search-form-widget .wpb_button:hover,
+    .td-rating-bar-wrap div,
+    .td_category_template_3 .td-current-sub-category,
+    .dropcap,
+    .td_wrapper_video_playlist .td_video_controls_playlist_wrapper,
+    .wpb_default,
+    .wpb_default:hover,
+    .td-left-smart-list:hover,
+    .td-right-smart-list:hover,
+    .woocommerce-checkout .woocommerce input.button:hover,
+    .woocommerce-page .woocommerce a.button:hover,
+    .woocommerce-account div.woocommerce .button:hover,
+    #bbpress-forums button:hover,
+    .bbp_widget_login .button:hover,
+    .td-footer-wrapper .td-post-category,
+    .td-footer-wrapper .widget_product_search input[type="submit"]:hover,
+    .woocommerce .product a.button:hover,
+    .woocommerce .product #respond input#submit:hover,
+    .woocommerce .checkout input#place_order:hover,
+    .woocommerce .woocommerce.widget .button:hover,
+    .single-product .product .summary .cart .button:hover,
+    .woocommerce-cart .woocommerce table.cart .button:hover,
+    .woocommerce-cart .woocommerce .shipping-calculator-form .button:hover,
+    .td-next-prev-wrap a:hover,
+    .td-load-more-wrap a:hover,
+    .td-post-small-box a:hover,
+    .page-nav .current,
+    .page-nav:first-child > div,
+    .td_category_template_8 .td-category-header .td-category a.td-current-sub-category,
+    .td_category_template_4 .td-category-siblings .td-category a:hover,
+    #bbpress-forums .bbp-pagination .current,
+    #bbpress-forums #bbp-single-user-details #bbp-user-navigation li.current a,
+    .td-theme-slider:hover .slide-meta-cat a,
+    a.vc_btn-black:hover,
+    .td-trending-now-wrapper:hover .td-trending-now-title,
+    .td-scroll-up,
+    .td-smart-list-button:hover,
+    .td-weather-information:before,
+    .td-weather-week:before,
+    .td_block_exchange .td-exchange-header:before,
+    .td_block_big_grid_9.td-grid-style-1 .td-post-category,
+    .td_block_big_grid_9.td-grid-style-5 .td-post-category,
+    .td-grid-style-6.td-hover-1 .td-module-thumb:after,
+    .td-pulldown-syle-2 .td-subcat-dropdown ul:after,
+    .td_block_template_9 .td-block-title:after,
+    .td_block_template_15 .td-block-title:before,
+    div.wpforms-container .wpforms-form div.wpforms-submit-container button[type=submit] {
+        background-color: #ff6c0e;
+    }
+
+    .td_block_template_4 .td-related-title .td-cur-simple-item:before {
+        border-color: #ff6c0e transparent transparent transparent !important;
+    }
+
+    .woocommerce .woocommerce-message .button:hover,
+    .woocommerce .woocommerce-error .button:hover,
+    .woocommerce .woocommerce-info .button:hover {
+        background-color: #ff6c0e !important;
+    }
+    
+    
+    .td_block_template_4 .td-related-title .td-cur-simple-item,
+    .td_block_template_3 .td-related-title .td-cur-simple-item,
+    .td_block_template_9 .td-related-title:after {
+        background-color: #ff6c0e;
+    }
+
+    .woocommerce .product .onsale,
+    .woocommerce.widget .ui-slider .ui-slider-handle {
+        background: none #ff6c0e;
+    }
+
+    .woocommerce.widget.widget_layered_nav_filters ul li a {
+        background: none repeat scroll 0 0 #ff6c0e !important;
+    }
+
+    a,
+    cite a:hover,
+    .td_mega_menu_sub_cats .cur-sub-cat,
+    .td-mega-span h3 a:hover,
+    .td_mod_mega_menu:hover .entry-title a,
+    .header-search-wrap .result-msg a:hover,
+    .td-header-top-menu .td-drop-down-search .td_module_wrap:hover .entry-title a,
+    .td-header-top-menu .td-icon-search:hover,
+    .td-header-wrap .result-msg a:hover,
+    .top-header-menu li a:hover,
+    .top-header-menu .current-menu-item > a,
+    .top-header-menu .current-menu-ancestor > a,
+    .top-header-menu .current-category-ancestor > a,
+    .td-social-icon-wrap > a:hover,
+    .td-header-sp-top-widget .td-social-icon-wrap a:hover,
+    .td-page-content blockquote p,
+    .td-post-content blockquote p,
+    .mce-content-body blockquote p,
+    .comment-content blockquote p,
+    .wpb_text_column blockquote p,
+    .td_block_text_with_title blockquote p,
+    .td_module_wrap:hover .entry-title a,
+    .td-subcat-filter .td-subcat-list a:hover,
+    .td-subcat-filter .td-subcat-dropdown a:hover,
+    .td_quote_on_blocks,
+    .dropcap2,
+    .dropcap3,
+    .td_top_authors .td-active .td-authors-name a,
+    .td_top_authors .td_mod_wrap:hover .td-authors-name a,
+    .td-post-next-prev-content a:hover,
+    .author-box-wrap .td-author-social a:hover,
+    .td-author-name a:hover,
+    .td-author-url a:hover,
+    .td_mod_related_posts:hover h3 > a,
+    .td-post-template-11 .td-related-title .td-related-left:hover,
+    .td-post-template-11 .td-related-title .td-related-right:hover,
+    .td-post-template-11 .td-related-title .td-cur-simple-item,
+    .td-post-template-11 .td_block_related_posts .td-next-prev-wrap a:hover,
+    .comment-reply-link:hover,
+    .logged-in-as a:hover,
+    #cancel-comment-reply-link:hover,
+    .td-search-query,
+    .td-category-header .td-pulldown-category-filter-link:hover,
+    .td-category-siblings .td-subcat-dropdown a:hover,
+    .td-category-siblings .td-subcat-dropdown a.td-current-sub-category,
+    .widget a:hover,
+    .td_wp_recentcomments a:hover,
+    .archive .widget_archive .current,
+    .archive .widget_archive .current a,
+    .widget_calendar tfoot a:hover,
+    .woocommerce a.added_to_cart:hover,
+    .woocommerce-account .woocommerce-MyAccount-navigation a:hover,
+    #bbpress-forums li.bbp-header .bbp-reply-content span a:hover,
+    #bbpress-forums .bbp-forum-freshness a:hover,
+    #bbpress-forums .bbp-topic-freshness a:hover,
+    #bbpress-forums .bbp-forums-list li a:hover,
+    #bbpress-forums .bbp-forum-title:hover,
+    #bbpress-forums .bbp-topic-permalink:hover,
+    #bbpress-forums .bbp-topic-started-by a:hover,
+    #bbpress-forums .bbp-topic-started-in a:hover,
+    #bbpress-forums .bbp-body .super-sticky li.bbp-topic-title .bbp-topic-permalink,
+    #bbpress-forums .bbp-body .sticky li.bbp-topic-title .bbp-topic-permalink,
+    .widget_display_replies .bbp-author-name,
+    .widget_display_topics .bbp-author-name,
+    .footer-text-wrap .footer-email-wrap a,
+    .td-subfooter-menu li a:hover,
+    .footer-social-wrap a:hover,
+    a.vc_btn-black:hover,
+    .td-smart-list-dropdown-wrap .td-smart-list-button:hover,
+    .td_module_17 .td-read-more a:hover,
+    .td_module_18 .td-read-more a:hover,
+    .td_module_19 .td-post-author-name a:hover,
+    .td-instagram-user a,
+    .td-pulldown-syle-2 .td-subcat-dropdown:hover .td-subcat-more span,
+    .td-pulldown-syle-2 .td-subcat-dropdown:hover .td-subcat-more i,
+    .td-pulldown-syle-3 .td-subcat-dropdown:hover .td-subcat-more span,
+    .td-pulldown-syle-3 .td-subcat-dropdown:hover .td-subcat-more i,
+    .td-block-title-wrap .td-wrapper-pulldown-filter .td-pulldown-filter-display-option:hover,
+    .td-block-title-wrap .td-wrapper-pulldown-filter .td-pulldown-filter-display-option:hover i,
+    .td-block-title-wrap .td-wrapper-pulldown-filter .td-pulldown-filter-link:hover,
+    .td-block-title-wrap .td-wrapper-pulldown-filter .td-pulldown-filter-item .td-cur-simple-item,
+    .td_block_template_2 .td-related-title .td-cur-simple-item,
+    .td_block_template_5 .td-related-title .td-cur-simple-item,
+    .td_block_template_6 .td-related-title .td-cur-simple-item,
+    .td_block_template_7 .td-related-title .td-cur-simple-item,
+    .td_block_template_8 .td-related-title .td-cur-simple-item,
+    .td_block_template_9 .td-related-title .td-cur-simple-item,
+    .td_block_template_10 .td-related-title .td-cur-simple-item,
+    .td_block_template_11 .td-related-title .td-cur-simple-item,
+    .td_block_template_12 .td-related-title .td-cur-simple-item,
+    .td_block_template_13 .td-related-title .td-cur-simple-item,
+    .td_block_template_14 .td-related-title .td-cur-simple-item,
+    .td_block_template_15 .td-related-title .td-cur-simple-item,
+    .td_block_template_16 .td-related-title .td-cur-simple-item,
+    .td_block_template_17 .td-related-title .td-cur-simple-item,
+    .td-theme-wrap .sf-menu ul .td-menu-item > a:hover,
+    .td-theme-wrap .sf-menu ul .sfHover > a,
+    .td-theme-wrap .sf-menu ul .current-menu-ancestor > a,
+    .td-theme-wrap .sf-menu ul .current-category-ancestor > a,
+    .td-theme-wrap .sf-menu ul .current-menu-item > a,
+    .td_outlined_btn,
+     .td_block_categories_tags .td-ct-item:hover {
+        color: #ff6c0e;
+    }
+
+    a.vc_btn-black.vc_btn_square_outlined:hover,
+    a.vc_btn-black.vc_btn_outlined:hover,
+    .td-mega-menu-page .wpb_content_element ul li a:hover,
+    .td-theme-wrap .td-aj-search-results .td_module_wrap:hover .entry-title a,
+    .td-theme-wrap .header-search-wrap .result-msg a:hover {
+        color: #ff6c0e !important;
+    }
+
+    .td-next-prev-wrap a:hover,
+    .td-load-more-wrap a:hover,
+    .td-post-small-box a:hover,
+    .page-nav .current,
+    .page-nav:first-child > div,
+    .td_category_template_8 .td-category-header .td-category a.td-current-sub-category,
+    .td_category_template_4 .td-category-siblings .td-category a:hover,
+    #bbpress-forums .bbp-pagination .current,
+    .post .td_quote_box,
+    .page .td_quote_box,
+    a.vc_btn-black:hover,
+    .td_block_template_5 .td-block-title > *,
+    .td_outlined_btn {
+        border-color: #ff6c0e;
+    }
+
+    .td_wrapper_video_playlist .td_video_currently_playing:after {
+        border-color: #ff6c0e !important;
+    }
+
+    .header-search-wrap .td-drop-down-search:before {
+        border-color: transparent transparent #ff6c0e transparent;
+    }
+
+    .block-title > span,
+    .block-title > a,
+    .block-title > label,
+    .widgettitle,
+    .widgettitle:after,
+    .td-trending-now-title,
+    .td-trending-now-wrapper:hover .td-trending-now-title,
+    .wpb_tabs li.ui-tabs-active a,
+    .wpb_tabs li:hover a,
+    .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab.vc_active > a,
+    .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab:hover > a,
+    .td_block_template_1 .td-related-title .td-cur-simple-item,
+    .woocommerce .product .products h2:not(.woocommerce-loop-product__title),
+    .td-subcat-filter .td-subcat-dropdown:hover .td-subcat-more, 
+    .td_3D_btn,
+    .td_shadow_btn,
+    .td_default_btn,
+    .td_round_btn, 
+    .td_outlined_btn:hover {
+    	background-color: #ff6c0e;
+    }
+
+    .woocommerce div.product .woocommerce-tabs ul.tabs li.active {
+    	background-color: #ff6c0e !important;
+    }
+
+    .block-title,
+    .td_block_template_1 .td-related-title,
+    .wpb_tabs .wpb_tabs_nav,
+    .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container,
+    .woocommerce div.product .woocommerce-tabs ul.tabs:before {
+        border-color: #ff6c0e;
+    }
+    .td_block_wrap .td-subcat-item a.td-cur-simple-item {
+	    color: #ff6c0e;
+	}
+
+
+    
+    .td-grid-style-4 .entry-title
+    {
+        background-color: rgba(255, 108, 14, 0.7);
+    }
+
+    
+    @media (max-width: 767px) {
+        body .td-header-wrap .td-header-main-menu {
+            background-color: #333333 !important;
+        }
+    }
+
+
+    
+    .td-menu-background:before,
+    .td-search-background:before {
+        background: #333333;
+        background: -moz-linear-gradient(top, #333333 0%, #333333 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, #333333), color-stop(100%, #333333));
+        background: -webkit-linear-gradient(top, #333333 0%, #333333 100%);
+        background: -o-linear-gradient(top, #333333 0%, #333333 100%);
+        background: -ms-linear-gradient(top, #333333 0%, #333333 100%);
+        background: linear-gradient(to bottom, #333333 0%, #333333 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#333333', endColorstr='#333333', GradientType=0 );
+    }
+
+    
+    .td-mobile-content .current-menu-item > a,
+    .td-mobile-content .current-menu-ancestor > a,
+    .td-mobile-content .current-category-ancestor > a,
+    #td-mobile-nav .td-menu-login-section a:hover,
+    #td-mobile-nav .td-register-section a:hover,
+    #td-mobile-nav .td-menu-socials-wrap a:hover i,
+    .td-search-close a:hover i {
+        color: #333333;
+    }
+
+    
+    .block-title > span,
+    .block-title > a,
+    .widgettitle,
+    .td-trending-now-title,
+    .wpb_tabs li a,
+    .vc_tta-container .vc_tta-color-grey.vc_tta-tabs-position-top.vc_tta-style-classic .vc_tta-tabs-container .vc_tta-tab > a,
+    .td-theme-wrap .td-related-title a,
+    .woocommerce div.product .woocommerce-tabs ul.tabs li a,
+    .woocommerce .product .products h2:not(.woocommerce-loop-product__title),
+    .td-theme-wrap .td-block-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td_module_1 .td-module-title {
+    	text-transform:capitalize;
+	
+    }
+    
+    .td_module_2 .td-module-title {
+    	text-transform:capitalize;
+	
+    }
+    
+    .td_module_3 .td-module-title {
+    	text-transform:capitalize;
+	
+    }
+    
+    .td_module_4 .td-module-title {
+    	text-transform:capitalize;
+	
+    }
+    
+    .td_module_5 .td-module-title {
+    	text-transform:capitalize;
+	
+    }
+    
+    .td_module_6 .td-module-title {
+    	text-transform:capitalize;
+	
+    }
+    
+    .td_module_mx1 .td-module-title {
+    	text-transform:capitalize;
+	
+    }
+    
+    .td_module_mx2 .td-module-title {
+    	text-transform:capitalize;
+	
+    }
+    
+    .td_module_mx3 .td-module-title {
+    	text-transform:capitalize;
+	
+    }
+    
+    .td_module_mx4 .td-module-title {
+    	text-transform:capitalize;
+	
+    }
+    
+    .td-theme-slider.iosSlider-col-1 .td-module-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-theme-slider.iosSlider-col-2 .td-module-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-theme-slider.iosSlider-col-3 .td-module-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-big-grid-post.td-big-thumb .td-big-grid-meta,
+    .td-big-thumb .td-big-grid-meta .entry-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-big-grid-post.td-medium-thumb .td-big-grid-meta,
+    .td-medium-thumb .td-big-grid-meta .entry-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-big-grid-post.td-small-thumb .td-big-grid-meta,
+    .td-small-thumb .td-big-grid-meta .entry-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-big-grid-post.td-tiny-thumb .td-big-grid-meta,
+    .td-tiny-thumb .td-big-grid-meta .entry-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .homepage-post .td-post-template-8 .td-post-header .entry-title {
+        text-transform:capitalize;
+	
+    }
+
+
+    
+    .td-post-template-default .td-post-header .entry-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-post-template-1 .td-post-header .entry-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-post-template-2 .td-post-header .entry-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-post-template-3 .td-post-header .entry-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-post-template-4 .td-post-header .entry-title {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-post-content h2 {
+        text-transform:capitalize;
+	
+    }
+    
+    .td-page-title,
+    .woocommerce-page .page-title,
+    .td-category-title-holder .td-page-title {
+    	text-transform:capitalize;
+	
+    }
+</style>
+
+
+
+
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "WebSite",
+                    "@id": "https://www.linux.com/",
+                    "name": "Home"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                    "item": {
+                    "@type": "WebPage",
+                    "@id": "https://www.linux.com/topic/",
+                    "name": "Topic"
+                }
+            }
+            ,{
+                "@type": "ListItem",
+                "position": 3,
+                    "item": {
+                    "@type": "WebPage",
+                    "@id": "https://www.linux.com/topic/networking/",
+                    "name": "Networking"                                
+                }
+            }
+            ,{
+                "@type": "ListItem",
+                "position": 4,
+                    "item": {
+                    "@type": "WebPage",
+                    "@id": "https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/",
+                    "name": "DNS and DHCP with Dnsmasq"                                
+                }
+            }    
+        ]
+    }
+</script>
+
+<!-- Button style compiled by theme -->
+
+<style>
+    .tdm-menu-active-style3 .tdm-header.td-header-wrap .sf-menu > .current-category-ancestor > a,
+                .tdm-menu-active-style3 .tdm-header.td-header-wrap .sf-menu > .current-menu-ancestor > a,
+                .tdm-menu-active-style3 .tdm-header.td-header-wrap .sf-menu > .current-menu-item > a,
+                .tdm-menu-active-style3 .tdm-header.td-header-wrap .sf-menu > .sfHover > a,
+                .tdm-menu-active-style3 .tdm-header.td-header-wrap .sf-menu > li > a:hover,
+                .tdm_block_column_content:hover .tdm-col-content-title-url .tdm-title,
+                .tds-button2 .tdm-btn-text,
+                .tds-button2 i,
+                .tds-button5:hover .tdm-btn-text,
+                .tds-button5:hover i,
+                .tds-button6 .tdm-btn-text,
+                .tds-button6 i,
+                .tdm_block_list .tdm-list-item i,
+                .tdm_block_pricing .tdm-pricing-feature i,
+                .tdm-social-item i {
+                  color: #ff6c0e;
+                }
+                .tdm-menu-active-style5 .td-header-menu-wrap .sf-menu > .current-menu-item > a,
+                .tdm-menu-active-style5 .td-header-menu-wrap .sf-menu > .current-menu-ancestor > a,
+                .tdm-menu-active-style5 .td-header-menu-wrap .sf-menu > .current-category-ancestor > a,
+                .tdm-menu-active-style5 .td-header-menu-wrap .sf-menu > li > a:hover,
+                .tdm-menu-active-style5 .td-header-menu-wrap .sf-menu > .sfHover > a,
+                .tds-button1,
+                .tds-button6:after,
+                .tds-title2 .tdm-title-line:after,
+                .tds-title3 .tdm-title-line:after,
+                .tdm_block_pricing.tdm-pricing-featured:before,
+                .tdm_block_pricing.tds_pricing2_block.tdm-pricing-featured .tdm-pricing-header,
+                .tds-progress-bar1 .tdm-progress-bar:after,
+                .tds-progress-bar2 .tdm-progress-bar:after,
+                .tds-social3 .tdm-social-item {
+                  background-color: #ff6c0e;
+                }
+                .tdm-menu-active-style4 .tdm-header .sf-menu > .current-menu-item > a,
+                .tdm-menu-active-style4 .tdm-header .sf-menu > .current-menu-ancestor > a,
+                .tdm-menu-active-style4 .tdm-header .sf-menu > .current-category-ancestor > a,
+                .tdm-menu-active-style4 .tdm-header .sf-menu > li > a:hover,
+                .tdm-menu-active-style4 .tdm-header .sf-menu > .sfHover > a,
+                .tds-button2:before,
+                .tds-button6:before,
+                .tds-progress-bar3 .tdm-progress-bar:after {
+                  border-color: #ff6c0e;
+                }
+                .tdm-btn-style1 {
+					background-color: #ff6c0e;
+				}
+				.tdm-btn-style2:before {
+				    border-color: #ff6c0e;
+				}
+				.tdm-btn-style2 {
+				    color: #ff6c0e;
+				}
+				.tdm-btn-style3 {
+				    -webkit-box-shadow: 0 2px 16px #ff6c0e;
+                    -moz-box-shadow: 0 2px 16px #ff6c0e;
+                    box-shadow: 0 2px 16px #ff6c0e;
+				}
+				.tdm-btn-style3:hover {
+				    -webkit-box-shadow: 0 4px 26px #ff6c0e;
+                    -moz-box-shadow: 0 4px 26px #ff6c0e;
+                    box-shadow: 0 4px 26px #ff6c0e;
+				}
+</style>
+
+	<style id="tdw-css-placeholder"></style></head>
+
+<body class="post-template-default single single-post postid-472208 single-format-standard dns-and-dhcp-dnsmasq global-block-template-4 single_template_1 td-full-layout" itemscope="itemscope" itemtype="https://schema.org/WebPage">
+
+        <div class="td-scroll-up"><i class="td-icon-menu-up"></i></div>
+
+    <div class="td-menu-background"></div>
+<div id="td-mobile-nav">
+    <div class="td-mobile-container">
+        <!-- mobile menu top section -->
+        <div class="td-menu-socials-wrap">
+            <!-- socials -->
+            <div class="td-menu-socials">
+                            </div>
+            <!-- close button -->
+            <div class="td-mobile-close">
+                <a href="#"><i class="td-icon-close-mobile"></i></a>
+            </div>
+        </div>
+
+        <!-- login section -->
+        
+        <!-- menu section -->
+        <div class="td-mobile-content">
+            <div class="menu-primary-menu-container"><ul id="menu-primary-menu" class="td-mobile-main-menu"><li id="menu-item-577242" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-first menu-item-577242"><a href="https://www.linux.com/news/">News<i class="td-icon-menu-right td-element-after"></i></a>
+<ul class="sub-menu">
+	<li id="menu-item-577204" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577204"><a href="https://www.linux.com/topic/ai-ml/">AI/ML</a></li>
+	<li id="menu-item-577207" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577207"><a href="https://www.linux.com/topic/cloud/">Cloud</a></li>
+	<li id="menu-item-577208" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577208"><a href="https://www.linux.com/topic/desktop/">Desktop</a></li>
+	<li id="menu-item-577211" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577211"><a href="https://www.linux.com/topic/embedded-iot/">Embedded/IoT</a></li>
+	<li id="menu-item-577212" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577212"><a href="https://www.linux.com/topic/governance/">Governance</a></li>
+	<li id="menu-item-577213" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577213"><a href="https://www.linux.com/topic/hardware/">Hardware</a></li>
+	<li id="menu-item-577215" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577215"><a href="https://www.linux.com/topic/linux/">Linux</a></li>
+	<li id="menu-item-577216" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-577216"><a href="https://www.linux.com/topic/networking/">Networking</a></li>
+	<li id="menu-item-577217" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577217"><a href="https://www.linux.com/topic/open-source/">Open Source</a></li>
+	<li id="menu-item-577219" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577219"><a href="https://www.linux.com/topic/security/">Security</a></li>
+	<li id="menu-item-577221" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577221"><a href="https://www.linux.com/topic/system-administration/">System Administration</a></li>
+</ul>
+</li>
+<li id="menu-item-577276" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-577276"><a href="#">Audience<i class="td-icon-menu-right td-element-after"></i></a>
+<ul class="sub-menu">
+	<li id="menu-item-577235" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577235"><a href="https://www.linux.com/audience/developers/">Developers</a></li>
+	<li id="menu-item-577236" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577236"><a href="https://www.linux.com/audience/devops/">DevOps</a></li>
+	<li id="menu-item-577237" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-577237"><a href="https://www.linux.com/audience/enterprise/">Enterprise</a></li>
+</ul>
+</li>
+<li id="menu-item-577257" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-577257"><a href="#">Resources<i class="td-icon-menu-right td-element-after"></i></a>
+<ul class="sub-menu">
+	<li id="menu-item-577289" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-577289"><a href="/tutorials">Tutorials</a></li>
+	<li id="menu-item-577260" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-577260"><a target="_blank" href="https://training.linuxfoundation.org/">Training</a></li>
+	<li id="menu-item-577259" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-577259"><a target="_blank" href="https://events.linuxfoundation.org/">Events</a></li>
+	<li id="menu-item-577261" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-577261"><a target="_blank" href="https://training.linuxfoundation.org/certification/">Certification</a></li>
+	<li id="menu-item-577256" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-577256"><a target="_blank" href="https://forum.linuxfoundation.org/">Forums</a></li>
+	<li id="menu-item-577268" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-577268"><a href="https://www.linux.com/what-is-linux/">What is Linux?</a></li>
+	<li id="menu-item-577274" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-577274"><a href="https://www.linux.com/qa/">Q&#038;A</a></li>
+</ul>
+</li>
+<li id="menu-item-577025" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-577025"><a href="https://www.linux.com/about/">About Us</a></li>
+</ul></div>        </div>
+    </div>
+
+    <!-- register/login section -->
+            <div id="login-form-mobile" class="td-register-section">
+            
+            <div id="td-login-mob" class="td-login-animation td-login-hide-mob">
+            	<!-- close button -->
+	            <div class="td-login-close">
+	                <a href="#" class="td-back-button"><i class="td-icon-read-down"></i></a>
+	                <div class="td-login-title">Sign in</div>
+	                <!-- close button -->
+		            <div class="td-mobile-close">
+		                <a href="#"><i class="td-icon-close-mobile"></i></a>
+		            </div>
+	            </div>
+	            <div class="td-login-form-wrap">
+	                <div class="td-login-panel-title"><span>Welcome!</span>Log into your account</div>
+	                <div class="td_display_err"></div>
+	                <div class="td-login-inputs"><input class="td-login-input" type="text" name="login_email" id="login_email-mob" value="" required><label>your username</label></div>
+	                <div class="td-login-inputs"><input class="td-login-input" type="password" name="login_pass" id="login_pass-mob" value="" required><label>your password</label></div>
+	                <input type="button" name="login_button" id="login_button-mob" class="td-login-button" value="LOG IN">
+	                <div class="td-login-info-text">
+	                <a href="#" id="forgot-pass-link-mob">Forgot your password?</a>
+	                </div>
+	                <div class="td-login-register-link">
+	                
+	                </div>
+	                
+	                
+
+                </div>
+            </div>
+
+            
+            
+            
+            
+            <div id="td-forgot-pass-mob" class="td-login-animation td-login-hide-mob">
+                <!-- close button -->
+	            <div class="td-forgot-pass-close">
+	                <a href="#" class="td-back-button"><i class="td-icon-read-down"></i></a>
+	                <div class="td-login-title">Password recovery</div>
+	            </div>
+	            <div class="td-login-form-wrap">
+	                <div class="td-login-panel-title">Recover your password</div>
+	                <div class="td_display_err"></div>
+	                <div class="td-login-inputs"><input class="td-login-input" type="text" name="forgot_email" id="forgot_email-mob" value="" required><label>your email</label></div>
+	                <input type="button" name="forgot_button" id="forgot_button-mob" class="td-login-button" value="Send My Pass">
+                </div>
+            </div>
+        </div>
+    </div>    <div class="td-search-background"></div>
+<div class="td-search-wrap-mob">
+	<div class="td-drop-down-search" aria-labelledby="td-header-search-button">
+		<form method="get" class="td-search-form" action="https://www.linux.com/">
+			<!-- close button -->
+			<div class="td-search-close">
+				<a href="#"><i class="td-icon-close-mobile"></i></a>
+			</div>
+			<div role="search" class="td-search-input">
+				<span>Search</span>
+				<input id="td-header-search-mob" type="text" value="" name="s" autocomplete="off" />
+			</div>
+		</form>
+		<div id="td-aj-search-mob"></div>
+	</div>
+</div>
+
+    <div id="td-outer-wrap" class="td-theme-wrap">
+    
+        
+            <div class="tdc-header-wrap ">
+
+            <!--
+Header style 12
+-->
+
+
+<div class="td-header-wrap td-header-style-12 ">
+    
+	<div class="td-header-menu-wrap-full td-container-wrap ">
+        
+        <div class="td-header-menu-wrap td-header-gradient ">
+			<div class="td-container td-header-row td-header-main-menu">
+				<div id="td-header-menu" role="navigation">
+    <div id="td-top-mobile-toggle"><a href="#"><i class="td-icon-font td-icon-mobile"></i></a></div>
+    <div class="td-main-menu-logo td-logo-in-menu">
+                <a class="td-main-logo" href="https://www.linux.com/">
+            <img class="td-retina-data" data-retina="https://www.linux.com/wp-content/uploads/2019/08/ldc-white-544-300x99.png" src="https://www.linux.com/wp-content/uploads/2019/08/ldc-white-272.png" alt="Linux.com" title="Linux.com"/>
+            <span class="td-visual-hidden">Linux.com</span>
+        </a>
+        </div>
+    <div class="menu-primary-menu-container"><ul id="menu-primary-menu-1" class="sf-menu"><li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-first td-menu-item td-normal-menu menu-item-577242"><a href="https://www.linux.com/news/">News</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577204"><a href="https://www.linux.com/topic/ai-ml/">AI/ML</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577207"><a href="https://www.linux.com/topic/cloud/">Cloud</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577208"><a href="https://www.linux.com/topic/desktop/">Desktop</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577211"><a href="https://www.linux.com/topic/embedded-iot/">Embedded/IoT</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577212"><a href="https://www.linux.com/topic/governance/">Governance</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577213"><a href="https://www.linux.com/topic/hardware/">Hardware</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577215"><a href="https://www.linux.com/topic/linux/">Linux</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent td-menu-item td-normal-menu menu-item-577216"><a href="https://www.linux.com/topic/networking/">Networking</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577217"><a href="https://www.linux.com/topic/open-source/">Open Source</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577219"><a href="https://www.linux.com/topic/security/">Security</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577221"><a href="https://www.linux.com/topic/system-administration/">System Administration</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children td-menu-item td-normal-menu menu-item-577276"><a href="#">Audience</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577235"><a href="https://www.linux.com/audience/developers/">Developers</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577236"><a href="https://www.linux.com/audience/devops/">DevOps</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-category td-menu-item td-normal-menu menu-item-577237"><a href="https://www.linux.com/audience/enterprise/">Enterprise</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children td-menu-item td-normal-menu menu-item-577257"><a href="#">Resources</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom td-menu-item td-normal-menu menu-item-577289"><a href="/tutorials">Tutorials</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom td-menu-item td-normal-menu menu-item-577260"><a target="_blank" href="https://training.linuxfoundation.org/">Training</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom td-menu-item td-normal-menu menu-item-577259"><a target="_blank" href="https://events.linuxfoundation.org/">Events</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom td-menu-item td-normal-menu menu-item-577261"><a target="_blank" href="https://training.linuxfoundation.org/certification/">Certification</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom td-menu-item td-normal-menu menu-item-577256"><a target="_blank" href="https://forum.linuxfoundation.org/">Forums</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page td-menu-item td-normal-menu menu-item-577268"><a href="https://www.linux.com/what-is-linux/">What is Linux?</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page td-menu-item td-normal-menu menu-item-577274"><a href="https://www.linux.com/qa/">Q&#038;A</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page td-menu-item td-normal-menu menu-item-577025"><a href="https://www.linux.com/about/">About Us</a></li>
+</ul></div></div>
+
+
+    <div class="header-search-wrap">
+        <div class="td-search-btns-wrap">
+            <a id="td-header-search-button" href="#" role="button" class="dropdown-toggle " data-toggle="dropdown"><i class="td-icon-search"></i></a>
+            <a id="td-header-search-button-mob" href="#" class="dropdown-toggle " data-toggle="dropdown"><i class="td-icon-search"></i></a>
+        </div>
+
+        <div class="td-drop-down-search" aria-labelledby="td-header-search-button">
+            <form method="get" class="td-search-form" action="https://www.linux.com/">
+                <div role="search" class="td-head-form-search-wrap">
+                    <input id="td-header-search" type="text" value="" name="s" autocomplete="off" /><input class="wpb_button wpb_btn-inverse btn" type="submit" id="td-header-search-top" value="Search" />
+                </div>
+            </form>
+            <div id="td-aj-search"></div>
+        </div>
+    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="td-header-top-menu-full td-container-wrap ">
+		<div class="td-container td-header-row td-header-top-menu">
+            <!-- LOGIN MODAL -->
+
+                <div  id="login-form" class="white-popup-block mfp-hide mfp-with-anim">
+                    <div class="td-login-wrap">
+                        <a href="#" class="td-back-button"><i class="td-icon-modal-back"></i></a>
+                        <div id="td-login-div" class="td-login-form-div td-display-block">
+                            <div class="td-login-panel-title">Sign in</div>
+                            <div class="td-login-panel-descr">Welcome! Log into your account</div>
+                            <div class="td_display_err"></div>
+                            <div class="td-login-inputs"><input class="td-login-input" type="text" name="login_email" id="login_email" value="" required><label>your username</label></div>
+	                        <div class="td-login-inputs"><input class="td-login-input" type="password" name="login_pass" id="login_pass" value="" required><label>your password</label></div>
+                            <input type="button" name="login_button" id="login_button" class="wpb_button btn td-login-button" value="Login">
+                            <div class="td-login-info-text"><a href="#" id="forgot-pass-link">Forgot your password? Get help</a></div>
+                            
+                            
+                            
+                            
+                        </div>
+
+                        
+
+                         <div id="td-forgot-pass-div" class="td-login-form-div td-display-none">
+                            <div class="td-login-panel-title">Password recovery</div>
+                            <div class="td-login-panel-descr">Recover your password</div>
+                            <div class="td_display_err"></div>
+                            <div class="td-login-inputs"><input class="td-login-input" type="text" name="forgot_email" id="forgot_email" value="" required><label>your email</label></div>
+                            <input type="button" name="forgot_button" id="forgot_button" class="wpb_button btn td-login-button" value="Send My Password">
+                            <div class="td-login-info-text">A password will be e-mailed to you.</div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                		</div>
+	</div>
+
+    </div>
+            </div>
+
+            
+    <div class="td-main-content-wrap td-container-wrap">
+
+        <div class="td-container td-post-template-1 ">
+            <div class="td-crumb-container"><div class="entry-crumbs"><span><a title="" class="entry-crumb" href="https://www.linux.com/">Home</a></span> <i class="td-icon-right td-bread-sep"></i> <span><a title="View all posts in Topic" class="entry-crumb" href="https://www.linux.com/topic/">Topic</a></span> <i class="td-icon-right td-bread-sep"></i> <span><a title="View all posts in Networking" class="entry-crumb" href="https://www.linux.com/topic/networking/">Networking</a></span> <i class="td-icon-right td-bread-sep td-bred-no-url-last"></i> <span class="td-bred-no-url-last">DNS and DHCP with Dnsmasq</span></div></div>
+            <div class="td-pb-row">
+                                        <div class="td-pb-span12 td-main-content" role="main">
+                            <div class="td-ss-main-content">
+                                
+
+    <article id="post-472208" class="post-472208 post type-post status-publish format-standard has-post-thumbnail category-networking category-tutorials author-cschroder type-tutorial" itemscope itemtype="https://schema.org/Article">
+        <div class="td-post-header">
+
+            <ul class="td-category"><li class="entry-category"><a  href="https://www.linux.com/topic/">Topic</a></li><li class="entry-category"><a  href="https://www.linux.com/topic/networking/">Networking</a></li><li class="entry-category"><a  href="https://www.linux.com/tutorials/">Tutorials</a></li></ul>
+            <header class="td-post-title">
+                <h1 class="entry-title">DNS and DHCP with Dnsmasq</h1>
+
+                
+
+                <div class="td-module-meta-info">
+                    <div class="td-post-author-name"><div class="td-author-by">By</div> <a href="https://www.linux.com/author/cschroder/">Carla Schroder</a><div class="td-author-line"> - </div> </div>                    <span class="td-post-date"><time class="entry-date updated td-module-date" datetime="2018-02-15T15:21:22+00:00" >February 15, 2018</time></span>                                        <div class="td-post-views"><i class="td-icon-views"></i><span class="td-nr-views-472208">11994</span></div>                </div>
+
+            </header>
+
+
+        </div>
+
+        <div class="td-post-sharing-top"><div id="td_social_sharing_article_top" class="td-post-sharing td-ps-border td-ps-border-grey td-ps-notext td-ps-icon-color td-ps-text-color td-post-sharing-style16 "><div class="td-post-sharing-visible"><a class="td-social-sharing-button td-social-sharing-button-js td-social-network td-social-facebook" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.linux.com%2Ftutorials%2Fdns-and-dhcp-dnsmasq%2F">
+                                        <div class="td-social-but-icon"><i class="td-icon-facebook"></i></div>
+                                        <div class="td-social-but-text">Facebook</div>
+                                    </a><a class="td-social-sharing-button td-social-sharing-button-js td-social-network td-social-twitter" href="https://twitter.com/intent/tweet?text=DNS+and+DHCP+with+Dnsmasq&url=https%3A%2F%2Fwww.linux.com%2Ftutorials%2Fdns-and-dhcp-dnsmasq%2F&via=Linux.com">
+                                        <div class="td-social-but-icon"><i class="td-icon-twitter"></i></div>
+                                        <div class="td-social-but-text">Twitter</div>
+                                    </a><a class="td-social-sharing-button td-social-sharing-button-js td-social-network td-social-pinterest" href="https://pinterest.com/pin/create/button/?url=https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/&amp;media=https://www.linux.com/wp-content/uploads/2019/08/dnsmasq.jpg&description=DNS+and+DHCP+with+Dnsmasq">
+                                        <div class="td-social-but-icon"><i class="td-icon-pinterest"></i></div>
+                                        <div class="td-social-but-text">Pinterest</div>
+                                    </a><a class="td-social-sharing-button td-social-sharing-button-js td-social-network td-social-whatsapp" href="whatsapp://send?text=DNS+and+DHCP+with+Dnsmasq %0A%0A https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/">
+                                        <div class="td-social-but-icon"><i class="td-icon-whatsapp"></i></div>
+                                        <div class="td-social-but-text">WhatsApp</div>
+                                    </a><a class="td-social-sharing-button td-social-sharing-button-js td-social-network td-social-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/&title=DNS+and+DHCP+with+Dnsmasq">
+                                        <div class="td-social-but-icon"><i class="td-icon-linkedin"></i></div>
+                                        <div class="td-social-but-text">Linkedin</div>
+                                    </a><a class="td-social-sharing-button td-social-sharing-button-js td-social-network td-social-reddit" href="https://reddit.com/submit?url=https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/&title=DNS+and+DHCP+with+Dnsmasq">
+                                        <div class="td-social-but-icon"><i class="td-icon-reddit"></i></div>
+                                        <div class="td-social-but-text">ReddIt</div>
+                                    </a><a class="td-social-sharing-button td-social-sharing-button-js td-social-network td-social-mail" href="mailto:?subject=DNS and DHCP with Dnsmasq&body=https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/">
+                                        <div class="td-social-but-icon"><i class="td-icon-mail"></i></div>
+                                        <div class="td-social-but-text">Email</div>
+                                    </a></div><div class="td-social-sharing-hidden"><ul class="td-pulldown-filter-list"></ul><a class="td-social-sharing-button td-social-handler td-social-expand-tabs" href="#" data-block-uid="td_social_sharing_article_top">
+                                    <div class="td-social-but-icon"><i class="td-icon-plus td-social-expand-tabs-icon"></i></div>
+                                </a></div></div></div>
+
+        <div class="td-post-content tagdiv-type">
+            <div class="td-featured-image-rec">
+
+            <div class="td-post-featured-image"><a href="https://www.linux.com/wp-content/uploads/2019/08/dnsmasq.jpg" data-caption=""><img width="696" height="389" class="entry-thumb td-modal-image" src="https://www.linux.com/wp-content/uploads/2019/08/dnsmasq.jpg" srcset="https://www.linux.com/wp-content/uploads/2019/08/dnsmasq.jpg 1600w, https://www.linux.com/wp-content/uploads/2019/08/dnsmasq-300x168.jpg 300w, https://www.linux.com/wp-content/uploads/2019/08/dnsmasq-768x429.jpg 768w, https://www.linux.com/wp-content/uploads/2019/08/dnsmasq-1024x572.jpg 1024w, https://www.linux.com/wp-content/uploads/2019/08/dnsmasq-360x201.jpg 360w" sizes="(max-width: 696px) 100vw, 696px" alt="" title="dnsmasq.jpg"/></a></div>            </div>
+
+            <p>Last week, we learned a batch of <a href="https://www.linux.com/learn/intro-to-linux/2018/2/advanced-dnsmasq-tips-and-tricks">tips and tricks for Dnsmasq</a>. Today, we&#8217;re going more in-depth into configuring DNS and DHCP, including entering DHCP hostnames automatically into DNS, and assigning static IP addresses from DHCP.</p>
+<p>You will edit three configuration files on your Dnsmasq server: <code>/etc/dnsmasq.conf</code>, <code>/etc/resolv.conf</code>, and <code>/etc/hosts</code>. Just like the olden days when we had nice clean configuration files for everything, instead of messes of scripts and nested configuration files.</p>
+<p>Use Dnsmasq&#8217;s built-in syntax checker to check for configuration file errors, and run Dnsmasq from the command-line rather than as daemon so you can quickly test configuration changes and log the results. (See last week&#8217;s tutorial to learn more about this.)</p>
+<h3>Taming Network Manager and resolv.conf</h3>
+<p>Disable Network Manager on your Dnsmasq server, and give its network interfaces static configurations. You also need control of <code>/etc/resolv.conf</code>, which in these modern times is usually controlled by other processes, such as Network Manager. In these cases <code>/etc/resolv.conf</code> is a symbolic link to another file such as <code>/run/resolvconf/resolv.conf</code> or <code>/var/run/NetworkManager/resolv.conf</code>. To get around this delete the symlink and then re-create the <code>/etc/resolv.conf</code> file. Now your changes will not be overwritten.</p>
+<p>There are many ways to use Dnsmasq and <code>/etc/resolv.conf</code> together. My preference is to enter only 127.0.0.1 in <code>/etc/resolv.conf</code>, and enter all upstream nameservers in <code>/etc/dnsmasq.conf</code>. You don&#8217;t need to touch any client configurations because Dnsmasq will provide all network information to them via DHCP.</p>
+<h3>Local DHCP</h3>
+<p>This example configuration includes some typical global options, and then defines a single DHCP address range. Replace the italicized values with your own values.</p>
+<pre>
+# global options
+domain-needed
+bogus-priv
+no-resolv
+filterwin2k
+expand-hosts
+domain=<i>mydomain.net</i>
+local=<i>/mydomain.net/</i>
+listen-address=127.0.0.1
+listen-address=<i>192.168.10.4</i>
+
+# DHCP range
+dhcp-range=<i>192.168.10.10,192.168.10.50,12h</i>
+dhcp-lease-max=<i>25</i>
+</pre>
+<p><strong>dhcp-range=192.168.10.10,192.168.10.50,12h</strong> defines a range of 40 available address leases, with a lease time of 12 hours. This range must not include your Dnsmasq server. You may define the lease time in seconds, minutes, or hours. The default is one hour and the minimum possible is two minutes. If you want infinite lease times then don&#8217;t specify a lease time.</p>
+<p><strong>dhcp-lease-max=25</strong> defines how many leases can be active at one time. You can have large address pool available and then limit the number of active leases to prevent denial of service problems from hosts going nuts and demanding a lot of DHCP leases.</p>
+<h3>DHCP Zones and Options</h3>
+<p>You can define DHCP zones for different subnets, like this example that has an <code>eth</code> and a <code>wifi</code> zone, and then give each zone different options. This example shows how to define the zones:</p>
+<pre>
+dhcp-range=eth,192.168.10.10,192.168.10.50,12h
+dhcp-range=wifi,192.168.20.10,192.168.20.50,24h
+</pre>
+<p>The default route advertised to all clients is the address of your Dnsmasq server. You can configure DHCP to assign each zone a different default route:</p>
+<pre>
+dhcp-option=eth,3,192.168.10.0
+dhcp-option=wifi,3,192.168.20.0
+</pre>
+<p>How do you know that 3 is the default route option? Run <code>dnsmasq --help dhcp</code> to see all the IPv4 options. <code>dnsmasq --help dhcp6</code> lists the IPv6 options. (See <code>man 5 dhcp-options</code> for more information on options.) You may also use the option names instead of the numbers, like this example for your NTP server:</p>
+<pre>
+dhcp-option=eth,option:ntp-server,192.168.10.5
+</pre>
+<h3>Upstream Name Servers</h3>
+<p>Controlling which upstream name servers your network uses is one of the nicer benefits of running your own name server, instead of being stuck with whatever your ISP wants you to use. This example uses the Google public name servers. You don&#8217;t have to use Google; a quick Web search will find a lot of public DNS servers.</p>
+<pre>
+server=8.8.4.4
+server=8.8.8.8
+</pre>
+<h3>DNS Hosts</h3>
+<p>Adding DNS hosts to Dnsmasq is almost as easy as falling over. All you do is add them to <code>/etc/hosts</code>, like this, using your own addresses and hostnames:</p>
+<pre>
+127.0.0.1       localhost
+192.168.10.2    webserver
+192.168.10.3    fileserver 
+192.168.10.4    dnsmasq
+192.168.10.5    timeserver
+</pre>
+<p>Dnsmasq reads <code>/etc/hosts</code>, and these hosts are available to your LAN either by hostname or by their fully-qualified domain names. The <code>expand-hosts</code> option in <code>/etc/dnsmasq.conf</code> expands the hostnames to the <code>domain=</code> value, for example webserver.mydomain.net</p>
+<h3>Set Static Addresses from DHCP</h3>
+<p>This is my favorite thing. You may assign static IP addresses to your LAN hosts by MAC address, or by hostname. The address must fall in a range you have already configured with <code>dhcp-range=</code>:</p>
+<pre>
+dhcp-host=<i>d0:50:99:82:e7:2b,192.168.10.46</i>
+dhcp-host=<i>turnip,192.168.10.45</i>
+</pre>
+<p>On most Linux distributions it is the default for dhclient to send the hostname. You can confirm this in <code>dhclient.conf</code>, with the <code>send host-name</code> option. Do not have any duplicate entries in <code>/etc/hosts</code>.</p>
+<p>Here we are again at the end already. Check out these articles for more Dnsmasq features and howtos:</p>
+<ul>
+<li><a href="https://www.linux.com/learn/intro-to-linux/2018/2/advanced-dnsmasq-tips-and-tricks">Advanced Dnsmasq Tips and Tricks</a></li>
+<li><a href="https://www.linux.com/learn/intro-to-linux/2017/7/dns-spoofing-dnsmasq">DNS Spoofing with Dnsmasq</a></li>
+<li><a href="https://www.linux.com/learn/dnsmasq-easy-lan-name-services">Dnsmasq For Easy LAN Name Services</a></li>
+<li><a href="http://www.thekelleys.org.uk/dnsmasq/doc.html">Dnsmasq home</a></li>
+</ul>
+<p><em>Learn more about Linux through the free&nbsp;<a href="https://training.linuxfoundation.org/linux-courses/system-administration-training/introduction-to-linux">&#8220;Introduction to Linux&#8221;&nbsp;</a>course from The Linux Foundation and edX.</em></p>
+        </div>
+
+
+        <footer>
+                        
+            <div class="td-post-source-tags">
+                                            </div>
+
+                        <div class="td-block-row td-post-next-prev"><div class="td-block-span6 td-post-prev-post"><div class="td-post-next-prev-content"><span>Previous article</span><a href="https://www.linux.com/news/gpus-googles-kubernetes-engine-are-now-available-open-beta/">GPUs on Google’s Kubernetes Engine Are Now Available in Open Beta</a></div></div><div class="td-next-prev-separator"></div><div class="td-block-span6 td-post-next-post"><div class="td-post-next-prev-content"><span>Next article</span><a href="https://www.linux.com/tutorials/5-open-source-technology-trends-2018/">5 Open Source Technology Trends for 2018</a></div></div></div>            <div class="author-box-wrap"><a href="https://www.linux.com/author/cschroder/"><img alt='' src='https://secure.gravatar.com/avatar/?s=96&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/?s=192&#038;d=mm&#038;r=g 2x' class='avatar avatar-96 photo avatar-default' height='96' width='96' /></a><div class="desc"><div class="td-author-name vcard author"><span class="fn"><a href="https://www.linux.com/author/cschroder/">Carla Schroder</a></span></div><div class="td-author-description"></div><div class="td-author-social"></div><div class="clearfix"></div></div></div>	        <span class="td-page-meta" itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Carla Schroder"></span><meta itemprop="datePublished" content="2018-02-15T15:21:22+00:00"><meta itemprop="dateModified" content="2018-02-15T15:21:22-04:00"><meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="https://www.linux.com/tutorials/dns-and-dhcp-dnsmasq/"/><span class="td-page-meta" itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><span class="td-page-meta" itemprop="logo" itemscope itemtype="https://schema.org/ImageObject"><meta itemprop="url" content="https://www.linux.com/wp-content/uploads/2019/08/ldc-white-272.png"></span><meta itemprop="name" content="Linux.com"></span><meta itemprop="headline " content="DNS and DHCP with Dnsmasq"><span class="td-page-meta" itemprop="image" itemscope itemtype="https://schema.org/ImageObject"><meta itemprop="url" content="https://www.linux.com/wp-content/uploads/2019/08/dnsmasq.jpg"><meta itemprop="width" content="1600"><meta itemprop="height" content="894"></span>        </footer>
+
+    </article> <!-- /.post -->
+
+    <div class="td_block_wrap td_block_related_posts td-related-full-width td_uid_3_5dcae1063c57c_rand td_with_ajax_pagination td-pb-border-top td_block_template_4"  data-td-block-uid="td_uid_3_5dcae1063c57c" ><script>var block_td_uid_3_5dcae1063c57c = new tdBlock();
+block_td_uid_3_5dcae1063c57c.id = "td_uid_3_5dcae1063c57c";
+block_td_uid_3_5dcae1063c57c.atts = '{"limit":5,"ajax_pagination":"next_prev","live_filter":"cur_post_same_categories","td_ajax_filter_type":"td_custom_related","class":"td-related-full-width td_uid_3_5dcae1063c57c_rand","td_column_number":5,"live_filter_cur_post_id":472208,"live_filter_cur_post_author":"0","block_template_id":"","header_color":"","ajax_pagination_infinite_stop":"","offset":"","td_ajax_preloading":"","td_filter_default_txt":"","td_ajax_filter_ids":"","el_class":"","color_preset":"","border_top":"","css":"","tdc_css":"","tdc_css_class":"td_uid_3_5dcae1063c57c_rand","tdc_css_class_style":"td_uid_3_5dcae1063c57c_rand_style"}';
+block_td_uid_3_5dcae1063c57c.td_column_number = "5";
+block_td_uid_3_5dcae1063c57c.block_type = "td_block_related_posts";
+block_td_uid_3_5dcae1063c57c.post_count = "5";
+block_td_uid_3_5dcae1063c57c.found_posts = "7117";
+block_td_uid_3_5dcae1063c57c.header_color = "";
+block_td_uid_3_5dcae1063c57c.ajax_pagination_infinite_stop = "";
+block_td_uid_3_5dcae1063c57c.max_num_pages = "1424";
+tdBlocksArray.push(block_td_uid_3_5dcae1063c57c);
+</script><h4 class="td-related-title td-block-title"><a id="td_uid_4_5dcae10644692" class="td-related-left td-cur-simple-item" data-td_filter_value="" data-td_block_id="td_uid_3_5dcae1063c57c" href="#">RELATED ARTICLES</a><a id="td_uid_5_5dcae1064469c" class="td-related-right" data-td_filter_value="td_related_more_from_author" data-td_block_id="td_uid_3_5dcae1063c57c" href="#">MORE FROM AUTHOR</a></h4><div id=td_uid_3_5dcae1063c57c class="td_block_inner">
+
+	<div class="td-related-row">
+
+	<div class="td-related-span4">
+
+        <div class="td_module_related_posts td-animation-stack td_mod_related_posts">
+            <div class="td-module-image">
+                <div class="td-module-thumb"><a href="https://www.linux.com/news/att-sets-a-date-to-put-danos-into-the-linux-foundation/" rel="bookmark" class="td-image-wrap" title="AT&#038;T sets a date to put DANOS into the Linux Foundation"><img width="218" height="150" class="entry-thumb" src="https://www.linux.com/wp-content/plugins/td-composer/legacy/Newspaper/assets/images/no-thumb/td_218x150.png"  alt="" /></a></div>                            </div>
+            <div class="item-details">
+                <h3 class="entry-title td-module-title"><a href="https://www.linux.com/news/att-sets-a-date-to-put-danos-into-the-linux-foundation/" rel="bookmark" title="AT&#038;T sets a date to put DANOS into the Linux Foundation">AT&#038;T sets a date to put DANOS into the Linux Foundation</a></h3>            </div>
+        </div>
+        
+	</div> <!-- ./td-related-span4 -->
+
+	<div class="td-related-span4">
+
+        <div class="td_module_related_posts td-animation-stack td_mod_related_posts">
+            <div class="td-module-image">
+                <div class="td-module-thumb"><a href="https://www.linux.com/news/onf-open-sources-stratum/" rel="bookmark" class="td-image-wrap" title="ONF Open Sources Stratum"><img width="218" height="150" class="entry-thumb" src="https://www.linux.com/wp-content/uploads/2019/09/world-network-218x150.jpg"  srcset="https://www.linux.com/wp-content/uploads/2019/09/world-network-218x150.jpg 218w, https://www.linux.com/wp-content/uploads/2019/09/world-network-100x70.jpg 100w" sizes="(max-width: 218px) 100vw, 218px"  alt="" title="ONF Open Sources Stratum" /></a></div>                            </div>
+            <div class="item-details">
+                <h3 class="entry-title td-module-title"><a href="https://www.linux.com/news/onf-open-sources-stratum/" rel="bookmark" title="ONF Open Sources Stratum">ONF Open Sources Stratum</a></h3>            </div>
+        </div>
+        
+	</div> <!-- ./td-related-span4 -->
+
+	<div class="td-related-span4">
+
+        <div class="td_module_related_posts td-animation-stack td_mod_related_posts">
+            <div class="td-module-image">
+                <div class="td-module-thumb"><a href="https://www.linux.com/tutorials/essential-developer-guide-for-building-blockchain-applications-using-hyperledger-sawtooth/" rel="bookmark" class="td-image-wrap" title="Essential Developer Guide for Building Blockchain Applications Using Hyperledger Sawtooth"><img width="218" height="150" class="entry-thumb" src="https://www.linux.com/wp-content/plugins/td-composer/legacy/Newspaper/assets/images/no-thumb/td_218x150.png"  alt="" /></a></div>                            </div>
+            <div class="item-details">
+                <h3 class="entry-title td-module-title"><a href="https://www.linux.com/tutorials/essential-developer-guide-for-building-blockchain-applications-using-hyperledger-sawtooth/" rel="bookmark" title="Essential Developer Guide for Building Blockchain Applications Using Hyperledger Sawtooth">Essential Developer Guide for Building Blockchain Applications Using Hyperledger Sawtooth</a></h3>            </div>
+        </div>
+        
+	</div> <!-- ./td-related-span4 -->
+
+	<div class="td-related-span4">
+
+        <div class="td_module_related_posts td-animation-stack td_mod_related_posts">
+            <div class="td-module-image">
+                <div class="td-module-thumb"><a href="https://www.linux.com/tutorials/running-blockchain-applications-hyperledger-explorer/" rel="bookmark" class="td-image-wrap" title="Running Blockchain Applications in  Hyperledger Explorer"><img width="218" height="150" class="entry-thumb" src="https://www.linux.com/wp-content/plugins/td-composer/legacy/Newspaper/assets/images/no-thumb/td_218x150.png"  alt="" /></a></div>                            </div>
+            <div class="item-details">
+                <h3 class="entry-title td-module-title"><a href="https://www.linux.com/tutorials/running-blockchain-applications-hyperledger-explorer/" rel="bookmark" title="Running Blockchain Applications in  Hyperledger Explorer">Running Blockchain Applications in  Hyperledger Explorer</a></h3>            </div>
+        </div>
+        
+	</div> <!-- ./td-related-span4 -->
+
+	<div class="td-related-span4">
+
+        <div class="td_module_related_posts td-animation-stack td_mod_related_posts">
+            <div class="td-module-image">
+                <div class="td-module-thumb"><a href="https://www.linux.com/tutorials/linode-brings-commercial-grade-gpus-masses-0/" rel="bookmark" class="td-image-wrap" title="Linode Brings Commercial Grade GPUs to the Masses"><img width="218" height="150" class="entry-thumb" src="https://www.linux.com/wp-content/plugins/td-composer/legacy/Newspaper/assets/images/no-thumb/td_218x150.png"  alt="" /></a></div>                            </div>
+            <div class="item-details">
+                <h3 class="entry-title td-module-title"><a href="https://www.linux.com/tutorials/linode-brings-commercial-grade-gpus-masses-0/" rel="bookmark" title="Linode Brings Commercial Grade GPUs to the Masses">Linode Brings Commercial Grade GPUs to the Masses</a></h3>            </div>
+        </div>
+        
+	</div> <!-- ./td-related-span4 --></div><!--./row-fluid--></div><div class="td-next-prev-wrap"><a href="#" class="td-ajax-prev-page ajax-page-disabled" id="prev-page-td_uid_3_5dcae1063c57c" data-td_block_id="td_uid_3_5dcae1063c57c"><i class="td-icon-font td-icon-menu-left"></i></a><a href="#"  class="td-ajax-next-page" id="next-page-td_uid_3_5dcae1063c57c" data-td_block_id="td_uid_3_5dcae1063c57c"><i class="td-icon-font td-icon-menu-right"></i></a></div></div> <!-- ./block -->
+                            </div>
+                        </div>
+                                    </div> <!-- /.td-pb-row -->
+        </div> <!-- /.td-container -->
+    </div> <!-- /.td-main-content-wrap -->
+
+<!-- Instagram -->
+
+
+
+
+	<!-- Footer -->
+	
+	<!-- Sub Footer -->
+	    <div class="td-sub-footer-container td-container-wrap ">
+        <div class="td-container">
+            <div class="td-pb-row">
+                <div class="td-pb-span td-sub-footer-menu">
+                                    </div>
+
+                <div class="td-pb-span td-sub-footer-copy">
+                    Copyright © 2019 The Linux Foundation®. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage">Trademark Usage</a> page. Linux is a registered trademark of Linus Torvalds.                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div><!--close td-outer-wrap-->
+
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXGNZW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <!--
+
+        Theme: Newspaper by tagDiv.com 2019
+        Version: 9.8 (rara)
+        Deploy mode: deploy
+        
+        uid: 5dcae10647878
+    -->
+
+    
+<!-- Custom css from theme panel -->
+<style type="text/css" media="screen">
+/* custom css theme panel */
+.td-grid-style-2 .td-big-grid-post-0 .td-module-thumb a:last-child:before, .td-grid-style-3 .td-big-grid-post-0 .td-module-thumb a:last-child:before {
+    background: linear-gradient(45deg, #4db2ec 0%, #4a8f5e 100%);
+    
+}
+
+.td-grid-style-3 .td-module-thumb a:last-child:before {
+    opacity: 0.2;
+}
+</style>
+
+<script type='text/javascript' src='https://www.linux.com/wp-content/plugins/metronet-profile-picture/js/mpp-frontend.js?ver=2.3.2'></script>
+<script type='text/javascript' src='https://www.linux.com/wp-includes/js/underscore.min.js?ver=1.8.3'></script>
+<script type='text/javascript' src='https://www.linux.com/wp-content/plugins/td-cloud-library/assets/js/js_posts_autoload.min.js?ver=489325fca4f12cbec6ded350cf173551'></script>
+<script type='text/javascript' src='https://www.linux.com/wp-content/plugins/td-composer/legacy/Newspaper/js/tagdiv_theme.min.js?ver=9.8'></script>
+<script type='text/javascript' src='https://www.linux.com/wp-content/plugins/td-cloud-library/assets/js/js_files_for_front.min.js?ver=489325fca4f12cbec6ded350cf173551'></script>
+<script type='text/javascript' src='https://www.linux.com/wp-includes/js/wp-embed.min.js?ver=5.2.3'></script>
+
+<!-- JS generated by theme -->
+
+<script>
+    
+
+                jQuery().ready(function jQuery_ready() {
+                    tdAjaxCount.tdGetViewsCountsAjax("post","[472208]");
+                });
+            
+</script>
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"981d6c8a9f","applicationID":"176909146","transactionName":"ZwZWMhNZXxcFABFaXF5MdQUVUV4KSxAMXVRcBmsSBFVBCAUXAGwC","queueTime":0,"applicationTime":569,"atts":"S0FVRFtDTBk=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

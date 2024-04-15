@@ -1,0 +1,1931 @@
+﻿<!DOCTYPE html><html><head>
+<base href="file:///C:/Users/vpanini/Downloads/Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router.html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@buckyphilia">
+        <!--<meta name="twitter:creator" content="@buckyphilia">-->
+        <meta name="twitter:title" content="Using Raspberry Pi 3 running Stretch for a WiFi router">
+        <meta name="twitter:description" content="There are several tutorials out there about turning your Rapberry Pi into a WiFi access point, but they all seem to written for Raspbian Jessie or earlier. There are a few changes in Stretch, the most recent version of the Pi’s operating system, that seem to break these tutorials.">
+        
+        <meta name="twitter:url" content="https://wrbrooks.github.io/blog/2017/10/Raspberry-Pi-router/">
+        
+        <meta name="citation_title" content="Using Raspberry Pi 3 running Stretch for a WiFi router">
+        <meta name="citation_publication_date" content="2017/10/30">
+        <meta name="citation_journal_title" content="somesquares.org">
+        
+        <meta name="citation_author" content="Wesley Brooks">
+        
+
+        <title>Using Raspberry Pi 3 running Stretch for a WiFi router</title>
+
+        <!-- Pure CSS -->
+        <link rel="stylesheet" href="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+        <![endif]-->
+        <!--[if gt IE 8]><!-->
+            <link rel="stylesheet" href="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/grids-responsive-min.css">
+        <!--<![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/syntax.css">
+
+        <!-- Custom CSS -->
+        <!--<link rel="stylesheet" href="/static/css/mademistakes.css">-->
+        <link rel="stylesheet" href="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/main.css">
+        
+        <!-- jQuery -->
+        <script async="" data-savepage-src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" data-savepage-src="https://www.gstatic.com/recaptcha/api2/v1526338122299/recaptcha__en.js"></script><script async="" data-savepage-src="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/analytics.js"></script><script type="text/javascript" async="" data-savepage-src="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/recaptcha__en.js"></script><script data-savepage-src="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/jquery-1.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+
+        <!-- plugin CSS -->
+        <!--<link rel="stylesheet" href="/static/plugins/lightbox/css/lightbox.css">
+        <link rel="stylesheet" href="/static/plugins/bigfootjs/css/bigfoot-default.css">-->
+        <link rel="stylesheet" href="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/barefoot.css">
+
+        <!-- reCaptcha anti-bot widget -->
+        <script data-savepage-src="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/api.js"></script>
+    <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+<link rel="icon" href="">
+<style id="savepage-cssvariables">
+  :root {
+  }
+</style>
+<script id="savepage-shadowloader" type="application/javascript">
+  "use strict"
+  window.addEventListener("DOMContentLoaded",
+  function(event)
+  {
+    savepage_ShadowLoader(5);
+  },false);
+  function savepage_ShadowLoader(c){createShadowDOMs(0,document.documentElement);function createShadowDOMs(a,b){var i;if(b.localName=="iframe"||b.localName=="frame"){if(a<c){try{if(b.contentDocument.documentElement!=null){createShadowDOMs(a+1,b.contentDocument.documentElement)}}catch(e){}}}else{if(b.children.length>=1&&b.children[0].localName=="template"&&b.children[0].hasAttribute("data-savepage-shadowroot")){b.attachShadow({mode:"open"}).appendChild(b.children[0].content);b.removeChild(b.children[0]);for(i=0;i<b.shadowRoot.children.length;i++)if(b.shadowRoot.children[i]!=null)createShadowDOMs(a,b.shadowRoot.children[i])}for(i=0;i<b.children.length;i++)if(b.children[i]!=null)createShadowDOMs(a,b.children[i])}}}
+</script>
+<meta name="savepage-url" content="file:///C:/Users/vpanini/Downloads/Using Raspberry Pi 3 running Stretch for a WiFi router.html">
+<meta name="savepage-title" content="Using Raspberry Pi 3 running Stretch for a WiFi router">
+<meta name="savepage-from" content="file:///C:/Users/vpanini/Downloads/Using Raspberry Pi 3 running Stretch for a WiFi router.html">
+<meta name="savepage-date" content="Fri Nov 15 2019 11:22:53 GMT+0100 (Ora standard dell’Europa centrale)">
+<meta name="savepage-state" content="Standard Items; Retained cross-origin frames; Removed unsaved URLs; Max frame depth = 5; Max resource size = 50MB; Max resource time = 10s;">
+<meta name="savepage-version" content="16.2">
+<meta name="savepage-comments" content="">
+  </head>
+    <body class="js"><div id="MathJax_Message" style="display: none;"></div><div id="MathJax_Message" style="display: none;"></div>
+
+      <div class="pure-g">
+        <div class="pure-u-1-6 pure-hidden-xs pure-hidden-sm"> </div>
+        <div class="central pure-u-22-24 pure-u-md-2-3" id="content">
+          <div id="header">
+  <h1 class="pagehead"><a id="site-title" class="navbutton" href="https://somesquares.org/">somesquares.org</a></h1>
+  <div class="pure-g">
+    <div class="pure-u-1-3"><h3 class="pagehead"><a class="navbutton" href="https://somesquares.org/">Blog</a></h3></div>
+    <div class="pure-u-1-3"><h3 class="pagehead"><a class="navbutton" href="https://somesquares.org/feeds/feed.xml">Feed</a></h3></div>
+    <div class="pure-u-1-3"><h3 class="pagehead"><a class="navbutton" href="https://somesquares.org/search/">Search</a></h3></div>
+  </div>
+</div>
+
+
+            <div id="post-title"><h1>Using Raspberry Pi 3 running Stretch for a WiFi router</h1></div>
+  <div class="meta">30 Oct 2017</div>
+
+  <div id="post">
+    <p>There are <a href="https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md">several</a> <a href="https://learn.adafruit.com/setting-up-a-raspberry-pi-as-a-wifi-access-point/overview">tutorials</a>
+ out there about turning your Rapberry Pi into a WiFi access point, but 
+they all seem to written for Raspbian Jessie or earlier. There are a few
+ changes in Stretch, the most recent version of the Pi’s operating 
+system, that seem to break these tutorials.</p>
+
+<p>Here I will describe what I did to turn my Raspberry Pi 3 into a WiFi
+ router. This should all work for any Pi running Stretch, though I have 
+only tested it on the 3. My desired routing setup is to plug an Ethernet
+ cable from the Pi into a modem, so that the Internet connection through
+ that modem can be shared by several wireless devices.</p>
+
+<p>Differences between what I found in previous tutorials and what I 
+needed to do related mainly to the switch from configuring the WiFi 
+interface device via the <code class="highlighter-rouge">/etc/network/interfaces</code> file (used under Jessie and prior versions of Raspbian) to using the <code class="highlighter-rouge">/etc/dhcpcd.conf</code> file (as used by Stretch). Here’s how I set up my router:</p>
+
+<h2 id="software">Software</h2>
+
+<p>Over the course of this tutorial, you’ll need to <code class="highlighter-rouge">sudo apt-get install</code> three packages. But don’t install them just yet! Installing <code class="highlighter-rouge">iptables-persistent</code>
+ as the final step causes it to notice you’ve changed the defaults 
+already, and prompts you to save your work. It’s very convenient! The 
+three packages are:</p>
+
+<ul>
+  <li>hostapd</li>
+  <li>dnsmasq</li>
+  <li>iptables-persistent</li>
+</ul>
+
+<p>The first is the access point software, which creates and broadcasts a
+ wireless network to which other computers can connect. The second 
+manages the addresses that will be handed out to computers connecting on
+ the new network. And the third makes sure that settings about how to 
+route packets between the wired Ethernet device and the WiFi device are 
+saved, so that the connection will be restored when the Pi is restarted.</p>
+
+<h3 id="configure-hostapd">Configure hostapd</h3>
+
+<p>First, install <code class="highlighter-rouge">hostapd	</code> via</p>
+
+<p><code class="highlighter-rouge">sudo apt-get install hostapd</code></p>
+
+<p>You’ll configure two files to make your Pi into an access point. First, create the file <code class="highlighter-rouge">/etc/hostapd/hostapd.conf</code> for editing via <code class="highlighter-rouge">nano</code>:</p>
+
+<p><code class="highlighter-rouge">sudo nano /etc/hostapd/hostapd.conf</code></p>
+
+<p>This file will hold the settings for your access point. Just copy paste this code, but put your own choices in for <code class="highlighter-rouge">ssid</code> (this will be the name of the network you’re creating) and <code class="highlighter-rouge">wpa_passphrase</code> (this is the password for connecting to your new network):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface=wlan0
+ssid=network_name_here
+hw_mode=g
+channel=7
+ht_capab=[HT40][SHORT-GI-20][DSSS_CCK-40]
+wmm_enabled=0
+macaddr_acl=0
+auth_algs=1
+wpa=2
+ignore_broadcast_ssid=0
+wpa_passphrase=network_password_here
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+</code></pre></div></div>
+
+<p>If you’d like to learn more about these configuration options, check the <a href="https://wireless.wiki.kernel.org/en/users/documentation/hostapd">documentation</a>.</p>
+
+<p>Now you need to tell <code class="highlighter-rouge">hostapd</code> to read this configuration file when it starts. To do so, edit the <code class="highlighter-rouge">/etc/default/hostapd</code> file:</p>
+
+<p><code class="highlighter-rouge">sudo nano /etc/default/hostapd</code></p>
+
+<p>and change the line that reads</p>
+
+<p><code class="highlighter-rouge">DAEMON_CONF=""</code></p>
+
+<p>to</p>
+
+<p><code class="highlighter-rouge">DAEMON_CONF="/etc/hostapd/hostapd.conf"</code></p>
+
+<h3 id="configure-dnsmasq">Configure dnsmasq</h3>
+
+<p>Install <code class="highlighter-rouge">dnsmasq</code> via</p>
+
+<p><code class="highlighter-rouge">sudo apt-get install dnsmasq</code></p>
+
+<p>You have to configure two files in order for <code class="highlighter-rouge">dnsmasq</code> to start assigning IP adresses to devices that connect to your newly configured access point. First, open the <code class="highlighter-rouge">dhcpcd</code>
+ configuration file in order to assign your Pi a static IP address on 
+the WiFi device. This might not be necessary, but it does give you an 
+address where you can wirelessly SSH into the Pi, so you’ll no longer 
+need it to be connected to a monitor and keyboard.</p>
+
+<p>Note that before you can SSH into your Pi, you must enable it for SSH, either by creating an empty file called <code class="highlighter-rouge">ssh</code> at the top level of the <code class="highlighter-rouge">boot</code> partition, or by connecting the Pi to a keyboard and monitor, opening a terminal, and using the menu under the <code class="highlighter-rouge">sudo raspi-config</code> command. Googling “headless Raspberry Pi ssh” will get you answers here.</p>
+
+<p>Back to the main story. At the terminal, enter <code class="highlighter-rouge">sudo nano /etc/dhcpcd.conf</code>. At the bottom of the file, enter the following lines, but change the <code class="highlighter-rouge">ip_address</code> and <code class="highlighter-rouge">routers</code> to whatever address you want to assign to your Pi.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface wlan0
+static ip_address=192.168.1.1
+static routers=192.168.1.1
+static domain_name_servers=8.8.8.8
+</code></pre></div></div>
+
+<p>Now, edit the <code class="highlighter-rouge">dnsmasq</code> config file so it knows which addresses to assign to devices that connect on WiFi. Open the file with the command <code class="highlighter-rouge">sudo nano /etc/dnsmasq.conf</code>, and add the following lines at the end, except that <code class="highlighter-rouge">dhcp-range</code> should indicate whatever addresses you want to be assignable on your network:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface=wlan0
+domain-needed
+bogus-priv
+dhcp-range=192.168.1.8,192.168.1.250,12h
+</code></pre></div></div>
+
+<h3 id="configure-ip-routing">Configure IP routing</h3>
+
+<p>At this point you have a wireless access point, but it doesn’t 
+connect to your Pi’s wired Ethernet port, which is its connection to the
+ Internet. Making this final link is pretty easy. First, enable routing 
+by opening the config file with <code class="highlighter-rouge">sudo nano /etc/sysctl.conf</code>, and add the following line:</p>
+
+<p><code class="highlighter-rouge">net.ipv4.ip_forward=1</code></p>
+
+<p>Then, at the command line, tell the Pi how to decide which packets get routed. That’s done by executing these three commands:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo iptables -t nat -A  POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+</code></pre></div></div>
+
+<p>Finally, make these routing settings permanent by installing the <code class="highlighter-rouge">iptables-persistent</code> package, and saying yes when prompted to save the current settings:</p>
+
+<p><code class="highlighter-rouge">sudo apt-get install iptables-persistent</code></p>
+
+<h2 id="finish">Finish</h2>
+
+<p>That’s it! Just reboot your Pi to see the network you’ve configured 
+and access the Internet through it! You may now want to learn something 
+about network security and firewalls.</p>
+
+
+  </div>
+
+  <div id="comments">
+    <section class="page__reactions">
+  
+    
+
+    
+      <!-- Start static comments -->
+      <div id="comments" class="js-comments">
+        <h2 class="page__section-label">
+          
+            26
+          
+          Comments
+        </h2>
+        
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-1" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Chris
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-1" title="Permalink to this comment">
+        <time datetime="2018-03-24T23:20:04+00:00">March 24, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>I followed the exact instructions but when i connect to the 
+raspberry AP i don’t have internet access to my device. Am i missing 
+something?</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-1" onclick="return addComment.moveForm('comment-1', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Chris</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-2" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Bill Z
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-2" title="Permalink to this comment">
+        <time datetime="2018-03-19T14:57:36+00:00">March 19, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-2" onclick="return addComment.moveForm('comment-2', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Bill Z</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-3" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Rahul Shah
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-3" title="Permalink to this comment">
+        <time datetime="2018-03-07T00:22:09+00:00">March 07, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>FYI -  /etc/defaults/hostapd  was in /etc/default/hostapd</p>
+
+<p>thanks for the awesome guide.</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-3" onclick="return addComment.moveForm('comment-3', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Rahul Shah</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-4" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Marc
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-4" title="Permalink to this comment">
+        <time datetime="2018-03-08T17:24:08+00:00">March 08, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>This worked!! Thank you soooo much!!! :-)</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-4" onclick="return addComment.moveForm('comment-4', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Marc</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-5" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      thomas
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-5" title="Permalink to this comment">
+        <time datetime="2018-04-01T20:09:12+00:00">April 01, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>it works …..I tried for 2 days all available tutorials on the 
+internet…then I flahes for the xxx-times a new SD -card and followedthis
+ tutorial step by step and then I was “DISAPPIONTED”…the expected 
+frustration was not available, since it works , the AP…….thanks</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-5" onclick="return addComment.moveForm('comment-5', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to thomas</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-6" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      MrT
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-6" title="Permalink to this comment">
+        <time datetime="2018-03-25T17:11:30+00:00">March 25, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>Yes, it’s works fine!</p>
+
+<p>Thanks a lot!</p>
+
+<p>Best regards</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-6" onclick="return addComment.moveForm('comment-6', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to MrT</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-7" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Rob
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-7" title="Permalink to this comment">
+        <time datetime="2018-02-16T21:10:40+00:00">February 16, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-7" onclick="return addComment.moveForm('comment-7', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Rob</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-8" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      John
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-8" title="Permalink to this comment">
+        <time datetime="2018-05-12T19:08:39+00:00">May 12, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-8" onclick="return addComment.moveForm('comment-8', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to John</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-9" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Bruno
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-9" title="Permalink to this comment">
+        <time datetime="2018-01-31T10:19:31+00:00">January 31, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>Thank you so much! This is actually the only one I tried that 
+worked.
+The only additional step for me was to add “net.ifnames=0” to 
+/boot/cmdline.txt in order to have iptables working fine and access 
+internet through the AP.
+Check ifconfig output and this thread 
+(https://raspberrypi.stackexchange.com/questions/72346/there-is-no-eth0-when-i-input-ifconfig)</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-9" onclick="return addComment.moveForm('comment-9', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Bruno</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-10" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Chris
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-10" title="Permalink to this comment">
+        <time datetime="2018-03-25T09:04:37+00:00">March 25, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>It doesn’t seem to work so just to clarify things. In my home 
+network i have 192.168.10.x addresses in which 192.168.10.254 is my 
+default gateway. Now when i configure my raspberry wlan0 IP address to 
+192.168.1.1 address it fails to show up the AP to connect. When i put an
+ address that is in range of my network (e.g 192.168.10.1) the AP shows 
+up correctly but when i connect a device to it i don’t have internet 
+access. Now in the dnsmasq.conf i tried having addresses in range of 
+192.168.10.x and 192.168.1.x but none of them work. From my raspberry 
+that acts as router i can ping my home default gateway. So i cant figure
+ out what the issue might be. (i check all the cables are connected and 
+working correctly).</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-10" onclick="return addComment.moveForm('comment-10', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Chris</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-11" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      HammervoltJoe
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-11" title="Permalink to this comment">
+        <time datetime="2018-03-04T12:26:27+00:00">March 04, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>OMG thanks. I was following various tutorials for the last day 
+and none of them would work. Yours is the only one that worked and at 
+the first time too.</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-11" onclick="return addComment.moveForm('comment-11', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to HammervoltJoe</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-12" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Brian LONNON
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-12" title="Permalink to this comment">
+        <time datetime="2018-04-27T11:08:06+00:00">April 27, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>How can I use my Pi3 as a router? I have set up wlan0 as the 
+AP, but whatever I do, the wifi dongle comes up as a second AP! I have 
+tried entries in dhcpcd.conf and the now discontinued network/interfaces
+ all to no avail! The frustration is killing me!</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-12" onclick="return addComment.moveForm('comment-12', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Brian LONNON</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-13" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      doug
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-13" title="Permalink to this comment">
+        <time datetime="2018-05-12T22:58:13+00:00">May 12, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-13" onclick="return addComment.moveForm('comment-13', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to doug</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-14" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      MrT
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-14" title="Permalink to this comment">
+        <time datetime="2018-03-25T17:45:33+00:00">March 25, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>Yes, it’s works fine!</p>
+
+<p>Thanks a lot!</p>
+
+<p>Best regards</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-14" onclick="return addComment.moveForm('comment-14', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to MrT</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-15" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      benkelaci
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-15" title="Permalink to this comment">
+        <time datetime="2018-02-21T10:10:13+00:00">February 21, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>Hi,</p>
+
+<p>Thank you very much. I also think that this article is very useful (other ones did not work). One note:
+sudo nano /etc/defaults/hostapd -&gt; should be: sudo nano /etc/default/hostapd</p>
+
+<p>Thanks again.</p>
+
+<p>Regards, 
+benkelaci</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-15" onclick="return addComment.moveForm('comment-15', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to benkelaci</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-16" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Craig
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-16" title="Permalink to this comment">
+        <time datetime="2018-04-19T14:46:33+00:00">April 19, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>I am a total newbie to Raspberry PI 3 etc. but what I want it 
+to do is receive a wifi signal and then feed it to another wifi modem to
+ feed my workshop. is this the setup I need. or can I even do it., I 
+have a spare wifi router just need to get a signal to it to broadcast. I
+ will be using an external range extender antenna on the raspberry.</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-16" onclick="return addComment.moveForm('comment-16', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Craig</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-17" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      kasi
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-17" title="Permalink to this comment">
+        <time datetime="2018-03-21T21:48:05+00:00">March 21, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-17" onclick="return addComment.moveForm('comment-17', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to kasi</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-18" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Bill Z
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-18" title="Permalink to this comment">
+        <time datetime="2018-03-19T17:22:46+00:00">March 19, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-18" onclick="return addComment.moveForm('comment-18', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Bill Z</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-19" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Chris
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-19" title="Permalink to this comment">
+        <time datetime="2018-03-25T09:13:14+00:00">March 25, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>Sorry for the double commend. So i managed to make it work by 
+only using addresses in range of 10.0.0.x in both dhcpcd.conf (for 
+static IP address) and dnsmasq.conf for the range addresses. Also in 
+dhcpcd.conf i put as static routers = my-default-gateway. I dont know if
+ this what i was suppose to do but just to let everyone know in case 
+they have a similar issue. Overall great tutorial thanks.</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-19" onclick="return addComment.moveForm('comment-19', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Chris</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-20" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      benkelaci
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-20" title="Permalink to this comment">
+        <time datetime="2018-03-25T07:27:03+00:00">March 25, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>Have you plugged the Ethernet cable properly? Have you checked 
+the eth0 IP address? Can you ping your router? If your router is on 
+192.168.1.x subnet, then this might be a problem, then try your static 
+IP address in /etc/dhcpcd.conf (wlan0) for a different subnet (e.g.: 
+192.168.10.x).</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-20" onclick="return addComment.moveForm('comment-20', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to benkelaci</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-21" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Craig
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-21" title="Permalink to this comment">
+        <time datetime="2018-04-19T14:34:15+00:00">April 19, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>I am a total newbie to Raspberry PI 3 etc. but what I want it 
+to do is receive a wifi signal and then feed it to another wifi modem to
+ feed my workshop. is this the setup I need. or can I even do it., I 
+have a spare wifi router just need to get a signal to it to broadcast. I
+ will be using an external range extender antenna on the raspberry.</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-21" onclick="return addComment.moveForm('comment-21', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Craig</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-22" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Chris
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-22" title="Permalink to this comment">
+        <time datetime="2018-03-25T07:48:53+00:00">March 25, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>I will try that since my default gateway is 192.168.10.254. I 
+will configure wlan to give addresses in range of 10.10.1.1 and test it.</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-22" onclick="return addComment.moveForm('comment-22', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Chris</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-23" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      doug
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-23" title="Permalink to this comment">
+        <time datetime="2018-05-12T23:05:50+00:00">May 12, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-23" onclick="return addComment.moveForm('comment-23', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to doug</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-24" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Chris
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-24" title="Permalink to this comment">
+        <time datetime="2018-03-25T09:05:24+00:00">March 25, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>It doesn’t seem to work so just to clarify things. In my home 
+network i have 192.168.10.x addresses in which 192.168.10.254 is my 
+default gateway. Now when i configure my raspberry wlan0 IP address to 
+192.168.1.1 address it fails to show up the AP to connect. When i put an
+ address that is in range of my network (e.g 192.168.10.1) the AP shows 
+up correctly but when i connect a device to it i don’t have internet 
+access. Now in the dnsmasq.conf i tried having addresses in range of 
+192.168.10.x and 192.168.1.x but none of them work. From my raspberry 
+that acts as router i can ping my home default gateway. So i cant figure
+ out what the issue might be. (i check all the cables are connected and 
+working correctly).</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-24" onclick="return addComment.moveForm('comment-24', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Chris</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-25" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      Papageno
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-25" title="Permalink to this comment">
+        <time datetime="2018-01-28T06:48:24+00:00">January 28, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>Dear Author</p>
+
+<p>There is only one comment: Thanks, Thanks, Thanks.
+After trying many tutorials this is the first one whitch helped me to succeed.</p>
+
+<p>Best Regards
+  Papageno</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-25" onclick="return addComment.moveForm('comment-25', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to Papageno</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+          
+          
+  
+  <!---->
+          
+          
+          
+          
+          <article id="comment-26" class="js-comment comment  ">
+  <div class="comment__body">
+    <h3 class="comment__author-name">
+      k3nz0
+    </h3>
+    <div class="comment__timestamp">
+      
+        <a href="#comment-26" title="Permalink to this comment">
+        <time datetime="2018-05-09T22:25:28+00:00">May 09, 2018</time>
+        </a>
+      
+    </div>
+    <div class="comment__content">
+      <p>Hello, how can I connect 2 wifis interfaces, one would be 
+connected to the internet and the other would be the access point. I 
+need the internet to be available through the access point and ethernet.
+ Can anybody help me. regards</p>
+
+    </div>
+  
+    
+      <div class="comment__reply">
+        <a rel="nofollow" class="btn" href="#comment-26" onclick="return addComment.moveForm('comment-26', 'Raspberry-Pi-router', 'respond', 'Raspberry-Pi-router')">Reply to k3nz0</a>
+      </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+        
+      </div>
+      <!-- End static comments -->
+    
+
+    
+    <!-- Start new comment form -->
+    <div id="respond">
+      <h2 class="page__section-label">Leave a Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://wrbrooks.github.io/blog/2017/10/Raspberry-Pi-router/#respond" style="display:none;">Cancel reply</a></small></h2>
+      <p class="instruct"><a href="https://daringfireball.net/projects/markdown/syntax">Markdown</a> is allowed. Email addresses will not be published.</p>
+      <form id="comment-form" class="page__form js-form form pure-form pure-form-stacked" method="post" action="https://api.staticman.net/v2/entry/wrbrooks/wrbrooks.github.io/master/comments">
+        <fieldset>
+          <label for="comment-form-message"><strong>Comment</strong> <span class="required">*</span></label>
+          <textarea type="text" rows="6" id="comment-form-message" name="fields[message]" spellcheck="true"></textarea>
+        <!--</fieldset>
+        <fieldset>-->
+          <label for="comment-form-name"><strong>Name</strong> <span class="required">*</span></label>
+          <input id="comment-form-name" name="fields[name]" spellcheck="false" type="text" value="">
+        <!--</fieldset>
+        <fieldset>-->
+          <label for="comment-form-email"><strong>Email</strong> <small>(used for reply notifications)</small></label>
+          <input id="comment-form-email" name="fields[email]" spellcheck="false" type="email" value="">
+          <label for="comment-form-reply" class="pure-checkbox">
+            <input id="comment-form-reply" name="options[subscribe]" value="email" type="checkbox">
+            Notify me of new comments by email.
+          </label>
+        <!--</fieldset>-->
+        <!-- Start comment form alert messaging -->
+        <p class="hidden js-notice">
+          <span class="js-notice-text"></span>
+        </p>
+        <!-- End comment form alert messaging -->
+        <!--<fieldset>-->
+          <div class="g-recaptcha" data-sitekey="6LdOcT8UAAAAAB99Y3CB_FZWwnY2mGK6XjXUuOZd"><div style="width: 304px; height: 78px;"><div><iframe srcdoc="<!DOCTYPE html><html dir=&quot;ltr&quot; lang=&quot;en&quot;><head>
+<base href=&quot;https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LdOcT8UAAAAAB99Y3CB_FZWwnY2mGK6XjXUuOZd&amp;co=aHR0cHM6Ly9zb21lc3F1YXJlcy5vcmc6NDQz&amp;hl=en&amp;v=v1526338122299&amp;size=normal&amp;cb=7bfs7q89ete2&quot;><meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;>
+<meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;>
+<style type=&quot;text/css&quot;>
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu72xKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu5mxKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7mxKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4WxKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7WxKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7GxKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2*/ url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCRc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBxc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCxc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fChc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4.woff2*/ url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCRc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfABc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCBc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBxc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCxc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfChc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBBc4.woff2*/ url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+</style>
+<link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://www.gstatic.com/recaptcha/releases/v1526338122299/styles__ltr.css&quot;>
+
+<script type=&quot;text/javascript&quot; data-savepage-src=&quot;https://www.gstatic.com/recaptcha/releases/v1526338122299/recaptcha__en.js&quot; nonce=&quot;TqahojGhTgtF9Tgl9xsfUw&quot;></script>
+<style id=&quot;savepage-cssvariables&quot;>
+  :root {
+  }
+</style>
+                            </head>
+<body><div id=&quot;rc-anchor-alert&quot; class=&quot;rc-anchor-alert&quot;></div>
+<input type=&quot;hidden&quot; id=&quot;recaptcha-token&quot; value=&quot;03AOLTBLRMcr9aARJNw-uOIZ6Az58RZlaEdEBr9W0C6Kcq7jGIrzt81AX_S1o1_znInySfOod-TuvN8dCCXOdhNT3y_TLnjo_tnGZeMAghaL7D0OwlezOiqMoIKbtikE5BztDQ6vlwiXxffCJ3p-E3kW_bFDvJCD-omaPFimAr9cpKQ6t8kJDLB5MLGqPFQzE-Gz8bWYh51ChvfKeP4hk78C_rrWowdpbtYUPPrcJikiZ8r7aAHqzgrza1mjo4DA4vQMOP7tNIFJAX9w7NI_2pnHMwsZRb5QCOKTejRdwBNVMDcb0VdfKRihCPwrhrfkTKGWh9Rg52A1Zk&quot;>
+<script type=&quot;text/javascript&quot; nonce=&quot;TqahojGhTgtF9Tgl9xsfUw&quot;></script></body></html>" data-savepage-crossorigin="" data-savepage-src="https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LdOcT8UAAAAAB99Y3CB_FZWwnY2mGK6XjXUuOZd&co=aHR0cHM6Ly9zb21lc3F1YXJlcy5vcmc6NDQz&hl=en&v=v1526338122299&size=normal&cb=7bfs7q89ete2" src="" role="presentation" scrolling="no" data-savepage-sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" sandbox="" data-savepage-key="0-0" width="304" height="78" frameborder="0"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea></div></div>
+          <button type="submit" id="comment-form-submit" class="pure-button pure-button-primary btn btn--large">Submit Comment</button>
+        </fieldset>
+
+        <fieldset class="hidden" style="display:none;">
+          <input name="options[origin]" value="https://wrbrooks.github.io/blog/2017/10/Raspberry-Pi-router/" type="hidden">
+          <input id="comment-parent" name="options[parent]" value="Raspberry-Pi-router" type="hidden">
+          <input id="comment-post-id" name="options[slug]" value="2017-10-30-Raspberry-Pi-router" type="hidden">
+          <input id="comment-form-content" name="fields[content]" autocomplete="off" type="text" value="">
+          <input name="options[reCaptcha][siteKey]" value="6LdOcT8UAAAAAB99Y3CB_FZWwnY2mGK6XjXUuOZd" type="hidden">
+          <input name="options[reCaptcha][secret]" value="adShwf7Ueu8M1EFYHNYydee5BNOtMfRtGsf0d9GlpJ9sZHtvq72F5Ba4iKNl8oxo/Q9IhU9PRGS2HsPadiarLuNzpGsT34MekMxU/lVnl2TUQbCTXkmSxSFFMEpZDEAvZEe7E9gq6cFUnvVYjiANKJ2izB4V8ACQ9NbHvXsqwfQ=" type="hidden">
+        </fieldset>
+      </form>
+    </div>
+    <!-- End new comment form -->
+    
+    
+  
+</section>
+
+  </div>
+
+
+          <div id="footer">
+  <hr>
+  <div class="pure-g">
+    <div class="pure-u-1-2">    
+      Wesley Brooks<br>
+      brooks.wesley@gmail.com
+    </div>
+    <div class="pure-u-1-2">
+      <a href="https://github.com/wrbrooks">github.com/wrbrooks</a><br>
+      <a href="https://twitter.com/schweigefox">@schweigefox</a>
+    </div>
+  </div>
+
+  <div>
+    <h6 id="copyright-notice">Copyright: Wesley Brooks 2018 - <a href="http://www.wtfpl.net/">WTFPL</a></h6>
+  </div>
+</div>
+        </div>
+      </div>
+      
+      <!-- Javascript: -->
+        <!-- Load javascript plugins -->
+        <script type="text/javascript" data-savepage-src="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/barefoot.js"></script>
+        
+        <!-- Annotations include footnotes and comments -->
+        <script type="text/javascript" data-savepage-src="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/annotations.js"></script>
+
+        <!-- lazy load images -->
+        <script data-savepage-src="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/lazyload.js"></script>
+        <script></script>
+
+      <!-- load MathJax -->
+      <script type="text/x-mathjax-config;executed=true"></script>
+      <script data-savepage-src="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/MathJax.js"></script>
+
+
+      <!-- Google Analytics -->
+      <script></script>
+    
+
+<div style="background-color: #fff; border: 1px solid #ccc; box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2); position: absolute; left: 0px; top: -10000px; transition: visibility 0s linear 0.3s, opacity 0.3s linear; opacity: 0; visibility: hidden; z-index: 2000000000;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: #fff; opacity: 0.05;  filter: alpha(opacity=5)"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0; height: 0; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0; height: 0; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe srcdoc="<!DOCTYPE html><html dir=&quot;ltr&quot; lang=&quot;en&quot;><head>
+<base href=&quot;file:///C:/Users/vpanini/Downloads/Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/bframe.html&quot;><meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;>
+<meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;>
+
+<title>reCAPTCHA</title>
+<style type=&quot;text/css&quot;>
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu72xKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu5mxKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7mxKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4WxKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7WxKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7GxKOzY.woff2*/ url() format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2*/ url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCRc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBxc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCxc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fChc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4.woff2*/ url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCRc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfABc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCBc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBxc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCxc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfChc4EsA.woff2*/ url() format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), /*savepage-url=//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBBc4.woff2*/ url() format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+</style>
+<link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;bframe_data/styles__ltr.css&quot;>
+
+<script type=&quot;text/javascript&quot; data-savepage-src=&quot;recaptcha__en.js&quot; nonce=&quot;027n6nw0z1G+/ESEzBcbsUqQnXo&quot;></script>
+<style id=&quot;savepage-cssvariables&quot;>
+  :root {
+  }
+</style>
+            </head>
+<body><input id=&quot;recaptcha-token&quot; type=&quot;hidden&quot; value=&quot;&quot;>
+<script type=&quot;text/javascript&quot; nonce=&quot;027n6nw0z1G+/ESEzBcbsUqQnXo&quot;></script><div></div><div></div></body></html>" data-savepage-crossorigin="" title="recaptcha challenge" data-savepage-src="Using%20Raspberry%20Pi%203%20running%20Stretch%20for%20a%20WiFi%20router_files/bframe.html" src="" style="width: 100%; height: 100%;" scrolling="no" data-savepage-sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" sandbox="" name="rbfbgzvmxq57" data-savepage-key="0-1" frameborder="0"></iframe></div></div></body></html>
