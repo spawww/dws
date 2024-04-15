@@ -1,0 +1,24 @@
+body {
+   max-width : 40rem
+}
+p.titolo {
+  font-size : 1.5rem;
+}
+hr {
+   margin-left: 2rem; 
+   margin-right: 2rem; 
+}
+img {
+  height : 1rem;
+}
+img.large {
+  height : 1.5rem;
+}
+.finepagina {
+  border-top-style: solid;
+  border-width: thin;
+  display:inline
+}
+.conslinee {
+  white-space: pre-line;
+}
