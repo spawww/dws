@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<body onLoad=ShoppingList();>
+<body onLoad=aggiornaTesto();>
   <div id="ruota"></div>
 </body>
 
@@ -21,7 +21,21 @@ function aggiornaTesto()
   })
   .then(userData => {
     // Process the retrieved user data
-    products = userData;
+    var listItems = "<ul>";
+    userData.forEach(product => {
+        listItems += `<li>${product.nomeFile}</li>`;
+    });
+//  const listItems = products.map(product =>
+//    <li
+//      key={product.id}
+//      style={{
+//        color: product.isFruit ? 'magenta' : 'darkgreen'
+//      }}
+//    >
+//      {product.title}
+//    </li>
+  const div = document.querySelector("div");
+  div.innerHTML = listItems + "</ul>";
   })
   .catch(error => {
     console.error('Error:', error);
@@ -29,7 +43,6 @@ function aggiornaTesto()
 }
 
 function ShoppingList() {
-    aggiornaTesto();
     var listItems = "<ul>";
     products.forEach(product => {
         listItems += `<li>${product.nomeFile}</li>`;
