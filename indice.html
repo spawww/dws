@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<body onLoad=ShoppingList()>
+  <div id="ruota"></div>
+</body>
+
+<script>
+
+const indirizzo = 'https://spawww.github.io/dws/indice.json';
+
+function aggiornaTesto()
+{
+  fetch(indirizzo)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(userData => {
+    // Process the retrieved user data
+    const products = userData;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+function ShoppingList() {
+    var listItems = "<ul>";
+    products.forEach(product => {
+        listItems += `<li>${product.nomeFile}</li>`;
+    });
+//  const listItems = products.map(product =>
+//    <li
+//      key={product.id}
+//      style={{
+//        color: product.isFruit ? 'magenta' : 'darkgreen'
+//      }}
+//    >
+//      {product.title}
+//    </li>
+  const div = document.querySelector("div");
+  div.innerHTML = listItems + "</ul>";
+}
+</script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+h4 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+h5 {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+h6 {
+  margin-top: 0;
+  font-size: 12px;
+}
+
+code {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-inline-start: 20px;
+}
+
+
+</style>
+</html>

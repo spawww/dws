@@ -1,5 +1,6 @@
 import os
 from datetime import datetime 
+import json
 
 from bottle import template
 
@@ -28,6 +29,9 @@ def scambio(rotta, prefix, infix, infix2, suffix):
                          })
             size += dimensione
     lrit = sorted(lrit, key = lambda k : k['dataModifica'], reverse=True)
+    with open('C:/_D_/github/dws/indice.json', 'w') as f:
+        json.dump(lrit,f)
+
     return template('templates/scambio.tpl', listaFile=lrit, title=title, size=fileSizeReadable(size), rotta=rotta)
 
 def isVisible(nf):
