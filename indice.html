@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<body onLoad="aggiornaTesto();ShoppingList();">
+<body onLoad=ShoppingList();>
   <div id="ruota"></div>
 </body>
 
@@ -27,6 +27,7 @@ function aggiornaTesto()
 }
 
 function ShoppingList() {
+    aggiornaTesto();
     var listItems = "<ul>";
     products.forEach(product => {
         listItems += `<li>${product.nomeFile}</li>`;
