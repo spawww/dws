@@ -8,6 +8,8 @@
 
 const indirizzo = 'https://spawww.github.io/dws/indice.json';
 
+var products;
+
 function aggiornaTesto()
 {
   fetch(indirizzo)
@@ -19,7 +21,7 @@ function aggiornaTesto()
   })
   .then(userData => {
     // Process the retrieved user data
-    const products = userData;
+    products = userData;
   })
   .catch(error => {
     console.error('Error:', error);
