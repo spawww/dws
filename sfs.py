@@ -25,6 +25,7 @@ def scambio(rotta, prefix, infix, infix2, suffix):
                          'dataModifica' : convertiTimeStamp(os.path.getmtime(REPO_DWS[rotta] + nf)),
                          'percorsoFile' : rotta + '/' + nf,
                          'nomeFile' : nf,
+                         'sizeFile' : os.path.getsize(REPO_DWS[rotta] + nf),
                          'dimensione' : fileSizeReadable(os.path.getsize(REPO_DWS[rotta] + nf)),
                          })
             size += dimensione
@@ -41,7 +42,7 @@ def isVisible(nf):
     return False
 
 def convertiTimeStamp(ts):
-    return datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+    return datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
 
 def fileSizeReadable(num):
     for unit in ['b','Kb','Mb']:

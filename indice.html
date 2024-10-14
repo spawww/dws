@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
+<head>
+<title>DWS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" href="favicon.ico?v=0">
+<link rel="stylesheet" href="static/css/stile.css">
+</head>
 <body onLoad=aggiornaTesto();>
-  <div id="ruota"></div>
+<p class="titolo"><img class="large" src="static/images/logo.png" alt="logo"> DWS</p>
+<div id="ruota"></div>
 </body>
 
 <script>
 
-const indirizzo = 'https://spawww.github.io/dws/indice.json';
+//const indirizzo = 'https://spawww.github.io/dws/indice.json';
+const indirizzo = 'http://127.0.0.1:8000/indice.json';
 
 var products;
 
@@ -21,94 +31,36 @@ function aggiornaTesto()
   })
   .then(userData => {
     // Process the retrieved user data
-    var listItems = "<ul>";
+    var listItems = "";
+    var numFiles = 0;
+    var size = 0;
     userData.forEach(product => {
-        listItems += `<li>${product.nomeFile}</li>`;
+        listItems += `<a href="${product.percorsoFile}">${product.nomeFile}</a>`;
+        listItems += `<br>`;
+        listItems += `${product.dataModifica} ${fileSizeReadable(product.sizeFile)}`;
+        listItems += `<br>`;
+        listItems += `<img src="static/images/separatore.png" alt="--------">`;
+        listItems += ` <a href="${product.percorsoFile}" download><img src="static/images/scarica.png" alt="scarica"></a> <br><br>`;
+        numFiles += 1;
+        size += product.sizeFile;
     });
-//  const listItems = products.map(product =>
-//    <li
-//      key={product.id}
-//      style={{
-//        color: product.isFruit ? 'magenta' : 'darkgreen'
-//      }}
-//    >
-//      {product.title}
-//    </li>
-  const div = document.querySelector("div");
-  div.innerHTML = listItems + "</ul>";
+    const div = document.querySelector("div");
+    div.innerHTML = listItems + `<p class="finepagina">${numFiles} files ${fileSizeReadable(size)}.</p>`;
   })
   .catch(error => {
     console.error('Error:', error);
   });
 }
 
-function ShoppingList() {
-    var listItems = "<ul>";
-    products.forEach(product => {
-        listItems += `<li>${product.nomeFile}</li>`;
-    });
-//  const listItems = products.map(product =>
-//    <li
-//      key={product.id}
-//      style={{
-//        color: product.isFruit ? 'magenta' : 'darkgreen'
-//      }}
-//    >
-//      {product.title}
-//    </li>
-  const div = document.querySelector("div");
-  div.innerHTML = listItems + "</ul>";
+function fileSizeReadable(num) {
+    for (let unit of ['b','Kb','Mb']) {
+        if (Math.abs(num) < 1024.0) {
+            return (num.toFixed() + " " + unit);
+        }
+        num /= 1024.0;
+    }
+    return (num.toFixed(1) + ' Gb');
 }
+
 </script>
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: sans-serif;
-  margin: 20px;
-  padding: 0;
-}
-
-h1 {
-  margin-top: 0;
-  font-size: 22px;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-h3 {
-  margin-top: 0;
-  font-size: 18px;
-}
-
-h4 {
-  margin-top: 0;
-  font-size: 16px;
-}
-
-h5 {
-  margin-top: 0;
-  font-size: 14px;
-}
-
-h6 {
-  margin-top: 0;
-  font-size: 12px;
-}
-
-code {
-  font-size: 1.2em;
-}
-
-ul {
-  padding-inline-start: 20px;
-}
-
-
-</style>
 </html>
