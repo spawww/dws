@@ -15,15 +15,9 @@
 
 <script>
 
-//const indirizzo = 'https://spawww.github.io/dws/indice.json';
-//const indirizzo = 'http://127.0.0.1:8000/indice.json';
-const indirizzo = 'indice.json';
-
-var products;
-
 function aggiornaTesto()
 {
-  fetch(indirizzo)
+  fetch('indice.json')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
