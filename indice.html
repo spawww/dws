@@ -8,14 +8,28 @@
 <link rel="icon" href="favicon.ico?v=0">
 <link rel="stylesheet" href="static/css/stile.css">
 </head>
-<body onLoad=aggiornaTesto();>
-<p class="titolo"><img class="large" src="static/images/logo.png" alt="logo"> DWS</p>
+<body onLoad='aggiornaTesto();'>
+<p id="tit2" class="titolo"><img class="large" src="static/images/logo.png" alt="logo"> DWS</p>
 <div id="ruota"></div>
 
 <script>
 
 function aggiornaTesto()
 {
+  const params = new URLSearchParams(document.location.search);
+  var infix = params.get("infix");
+  infix = infix != null ? infix.toLowerCase() : '';
+  var postfix = params.get("postfix");
+  postfix = postfix != null ? postfix.toLowerCase() : '';
+
+  var title = 'DWS';
+  if (infix != '') title += ' *' + infix + '*'; 
+  if (postfix != '') title += ' *' + postfix; 
+  const titolo = document.querySelector("title");
+  titolo.innerHTML = title;
+  const titolo2 = document.getElementById("tit2")
+  titolo2.innerHTML = `<img class="large" src="static/images/logo.png" alt="logo"> ${title}`;
+
   fetch('indice.json')
   .then(response => {
     if (!response.ok) {
@@ -29,6 +43,7 @@ function aggiornaTesto()
     var numFiles = 0;
     var size = 0;
     userData.forEach(product => {
+      if (product.nomeFile.toLowerCase().includes(infix) && product.nomeFile.toLowerCase().endsWith(postfix)) {
         listItems += `<a href="${product.percorsoFile}">${product.nomeFile}</a>`;
         listItems += `<br>`;
         listItems += `${product.dataModifica} ${fileSizeReadable(product.sizeFile)}`;
@@ -37,6 +52,7 @@ function aggiornaTesto()
         listItems += ` <a href="${product.percorsoFile}" download><img src="static/images/scarica.png" alt="scarica"></a> <br><br>`;
         numFiles += 1;
         size += product.sizeFile;
+      }
     });
     const div = document.querySelector("div");
     div.innerHTML = listItems + `<p class="finepagina">${numFiles} files ${fileSizeReadable(size)}.</p>`;
