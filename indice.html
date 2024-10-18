@@ -8,9 +8,9 @@
 <link rel="icon" href="favicon.ico?v=0">
 <link rel="stylesheet" href="static/css/stile.css">
 </head>
-<body onLoad='aggiornaTesto();'>
-<p id="tit2" class="titolo"><img class="large" src="static/images/logo.png" alt="logo"> DWS</p>
-<div id="ruota"></div>
+<body>
+<p id="tit2" class="titolo">DWS</p>
+<div id="listaFile"></div>
 
 <script>
 
@@ -22,13 +22,13 @@ function aggiornaTesto()
   var postfix = params.get("postfix");
   postfix = postfix != null ? postfix.toLowerCase() : '';
 
-  var title = 'DWS';
-  if (infix != '') title += ' *' + infix + '*'; 
-  if (postfix != '') title += ' *' + postfix; 
+  var htitle = 'DWS';
+  if (infix != '') htitle += ' *' + infix + '*'; 
+  if (postfix != '') htitle += ' *' + postfix; 
   const titolo = document.querySelector("title");
-  titolo.innerHTML = title;
+  titolo.innerHTML = htitle;
   const titolo2 = document.getElementById("tit2")
-  titolo2.innerHTML = `<img class="large" src="static/images/logo.png" alt="logo"> ${title}`;
+  titolo2.innerHTML = `<img class="large" src="static/images/logo.png" alt="logo"> ${htitle}`;
 
   fetch('indice.json')
   .then(response => {
@@ -54,8 +54,8 @@ function aggiornaTesto()
         size += product.sizeFile;
       }
     });
-    const div = document.querySelector("div");
-    div.innerHTML = listItems + `<p class="finepagina">${numFiles} files ${fileSizeReadable(size)}.</p>`;
+    const listaf = document.getElementById("listaFile");
+    listaf.innerHTML = listItems + `<p class="finepagina">${numFiles} files ${fileSizeReadable(size)}.</p>`;
   })
   .catch(error => {
     console.error('Error:', error);
@@ -72,6 +72,9 @@ function fileSizeReadable(num) {
     return (num.toFixed(1) + ' Gb');
 }
 
+window.onload = (event) => { aggiornaTesto(); };
+
 </script>
+
 </body>
 </html>
