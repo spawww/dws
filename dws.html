@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<title>DWS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" href="favicon.ico?v=0">
+<link rel="stylesheet" href="static/css/stile.css">
+</head>
+<body>
+<p id="tit2" class="titolo">DWS</p>
+<div id="listaFile"></div>
+
+<script>
+
+function aggiornaTesto()
+{
+  const params = new URLSearchParams(document.location.search);
+  var infix = params.get("infix");
+  infix = infix != null ? infix.toLowerCase() : '';
+  var postfix = params.get("postfix");
+  postfix = postfix != null ? postfix.toLowerCase() : '';
+
+  var htitle = 'DWS';
+  if (infix != '') htitle += ' *' + infix + '*'; 
+  if (postfix != '') htitle += ' *' + postfix; 
+  const titolo = document.querySelector("title");
+  titolo.innerHTML = htitle;
+  const titolo2 = document.getElementById("tit2")
+  titolo2.innerHTML = `<img class="large" src="static/images/logo.png" alt="logo"> ${htitle}`;
+
+  fetch('indice.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(userData => {
+    // Process the retrieved user data
+    var listItems = "";
+    var numFiles = 0;
+    var size = 0;
+    userData.forEach(product => {
+      if (product.nomeFile.toLowerCase().includes(infix) && product.nomeFile.toLowerCase().endsWith(postfix)) {
+        listItems += `<a href="${product.percorsoFile}">${product.nomeFile}</a>`;
+        listItems += `<br>`;
+        listItems += `${product.dataModifica} ${fileSizeReadable(product.sizeFile)}`;
+        listItems += `<br>`;
+        listItems += `<img src="static/images/separatore.png" alt="--------">`;
+        listItems += ` <a href="${product.percorsoFile}" download><img src="static/images/scarica.png" alt="scarica"></a> <br><br>`;
+        numFiles += 1;
+        size += product.sizeFile;
+      }
+    });
+    const listaf = document.getElementById("listaFile");
+    listaf.innerHTML = listItems + `<p class="finepagina">${numFiles} files ${fileSizeReadable(size)}.</p>`;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+function fileSizeReadable(num) {
+    for (let unit of ['b','Kb','Mb']) {
+        if (Math.abs(num) < 1024.0) {
+            return (num.toFixed() + " " + unit);
+        }
+        num /= 1024.0;
+    }
+    return (num.toFixed(1) + ' Gb');
+}
+
+window.onload = (event) => { aggiornaTesto(); };
+
+</script>
+
+</body>
+</html>
