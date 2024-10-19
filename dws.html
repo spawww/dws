@@ -24,7 +24,8 @@ function aggiornaTesto()
 
   var htitle = 'DWS';
   if (infix != '') htitle += ' *' + infix + '*'; 
-  if (postfix != '') htitle += ' *' + postfix; 
+  if (postfix != '') htitle += ' [' + postfix + ']'; 
+  var setExtension = (postfix != '') ? new Set(postfix.split(',')) : new Set(); 
   const titolo = document.querySelector("title");
   titolo.innerHTML = htitle;
   const titolo2 = document.getElementById("tit2")
@@ -43,7 +44,8 @@ function aggiornaTesto()
     var numFiles = 0;
     var size = 0;
     userData.forEach(product => {
-      if (product.nomeFile.toLowerCase().includes(infix) && product.nomeFile.toLowerCase().endsWith(postfix)) {
+      var estensione = product.nomeFile.toLowerCase().substring(product.nomeFile.lastIndexOf(".")+1);
+      if (product.nomeFile.toLowerCase().includes(infix) && (setExtension.size == 0 || setExtension.has(estensione))) {
         listItems += `<a href="${product.percorsoFile}">${product.nomeFile}</a>`;
         listItems += `<br>`;
         listItems += `${product.dataModifica} ${fileSizeReadable(product.sizeFile)}`;
