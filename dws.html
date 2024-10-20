@@ -29,7 +29,7 @@ function aggiornaTesto()
   const titolo = document.querySelector("title");
   titolo.innerHTML = htitle;
   const titolo2 = document.getElementById("tit2")
-  titolo2.innerHTML = `<img class="large" src="static/images/logo.png" alt="logo"> ${htitle}`;
+  titolo2.innerHTML = `<a id="linkRicerca"><img class="large" src="static/images/logo.png" alt="logo"></a> ${htitle}`;
 
   fetch('indice.json')
   .then(response => {
@@ -41,10 +41,15 @@ function aggiornaTesto()
   .then(userData => {
     // Process the retrieved user data
     var listItems = "";
+    var estensioni = "";
     var numFiles = 0;
     var size = 0;
     userData.forEach(product => {
       var estensione = product.nomeFile.toLowerCase().substring(product.nomeFile.lastIndexOf(".")+1);
+      if (estensioni.indexOf(estensione + ",") == -1)
+      {
+        estensioni += estensione + ",";
+      }
       if (product.nomeFile.toLowerCase().includes(infix) && (setExtension.size == 0 || setExtension.has(estensione))) {
         listItems += `<a href="${product.percorsoFile}">${product.nomeFile}</a>`;
         listItems += `<br>`;
@@ -58,6 +63,11 @@ function aggiornaTesto()
     });
     const listaf = document.getElementById("listaFile");
     listaf.innerHTML = listItems + `<p class="finepagina">${numFiles} files ${fileSizeReadable(size)}.</p>`;
+    const linkR = document.getElementById("linkRicerca");
+    if (estensioni.endsWith(",")) {
+        estensioni = estensioni.substring(0,estensioni.length-1);
+    }
+    linkR.href = `dwsSearch.html?listaEstensioni=${estensioni}`;
   })
   .catch(error => {
     console.error('Error:', error);

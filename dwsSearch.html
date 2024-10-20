@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<title>DWS Search</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" href="favicon.ico?v=0">
+<link rel="stylesheet" href="static/css/stile.css">
+</head>
+<body>
+
+<p class="titolo">DWS Search</p>
+
+<form action="javascript:stampaScelta()">
+  Infix <input type="text" id="infix" name="infix" value="">
+  <br>
+  <br>
+  <div id="listFileType">
+  </div>
+  <p><input type="submit" name="submit" value="Ricerca"></p>
+</form>
+
+<script>
+
+function stampaScelta()
+{
+    var scelte = "";
+    const elems = document.getElementsByName("estensione");
+    for (let i = 0; i < elems.length; i++) {
+        if (elems[i].checked) {
+            scelte += elems[i].value + ",";
+	}
+    }
+    if (scelte.endsWith(",")) {
+        scelte = scelte.substring(0,scelte.length-1);
+    }
+    const strs = document.getElementById("infix");
+    document.location.href = "dws.html?infix=" + strs.value + "&postfix=" + scelte;
+}
+
+function updateListFileType()
+{
+  const params = new URLSearchParams(document.location.search);
+  var listaEstensioni = params.get("listaEstensioni");
+  listaEstensioni = listaEstensioni != null ? listaEstensioni : '';
+  if (listaEstensioni != "")
+  {
+    var selectItems = "";
+    var estensioni = listaEstensioni.split(',');
+    estensioni.sort();
+    for (let i = 0; i < estensioni.length; i++) {
+      var estensione = estensioni[i];
+      selectItems += `<input type="checkbox" name="estensione" value="${estensione}">${estensione}<br>`;
+    }
+    const elem = document.getElementById("listFileType")
+    elem.innerHTML = selectItems;
+  }
+}
+
+window.onload = (event) => { updateListFileType(); };
+
+</script>
+
+</body>
+</html>
