@@ -2,8 +2,6 @@ import os
 from datetime import datetime 
 import json
 
-from bottle import template
-
 REPO_DWS = None
 TITLE = None
 
@@ -26,14 +24,11 @@ def scambio(rotta, prefix, infix, infix2, suffix):
                          'percorsoFile' : rotta + '/' + nf,
                          'nomeFile' : nf,
                          'sizeFile' : os.path.getsize(REPO_DWS[rotta] + nf),
-                         'dimensione' : fileSizeReadable(os.path.getsize(REPO_DWS[rotta] + nf)),
                          })
             size += dimensione
     lrit = sorted(lrit, key = lambda k : k['dataModifica'], reverse=True)
-    with open('C:/_D_/github/dws/indice.json', 'w') as f:
+    with open('C:/_D_/github/dws/dws.json', 'w') as f:
         json.dump(lrit,f)
-
-    return template('templates/scambio.tpl', listaFile=lrit, title=title, size=fileSizeReadable(size), rotta=rotta)
 
 def isVisible(nf):
     if (os.path.isfile(nf)):
@@ -43,13 +38,6 @@ def isVisible(nf):
 
 def convertiTimeStamp(ts):
     return datetime.fromtimestamp(ts).strftime('%Y-%m-%d')
-
-def fileSizeReadable(num):
-    for unit in ['b','Kb','Mb']:
-        if abs(num) < 1024.0:
-            return ("%3.0f %s" % (num, unit)).strip()
-        num /= 1024.0
-    return ("%.1f %s" % (num, 'Gb')).strip()
 
 def initRepos():
     global REPO_DWS
@@ -68,6 +56,5 @@ def addRepo(rotta, title, folder):
 if __name__ == "__main__":
     initRepos()
     addRepo('docs', 'DWS', 'C:/_D_/github/dws/docs/')
-    with open('C:/_D_/github/dws/index.html', 'w') as fout:
-        fout.write(scambio('docs', '', '', '', ''))
+    scambio('docs', '', '', '', '')
 

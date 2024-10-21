@@ -31,7 +31,7 @@ function aggiornaTesto()
   const titolo2 = document.getElementById("tit2")
   titolo2.innerHTML = `<a id="linkRicerca"><img class="large" src="static/images/logo.png" alt="logo"></a> ${htitle}`;
 
-  fetch('indice.json')
+  fetch('dws.json')
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
