@@ -29,7 +29,7 @@ function aggiornaTesto()
   const titolo = document.querySelector("title");
   titolo.innerHTML = htitle;
   const titolo2 = document.getElementById("tit2")
-  titolo2.innerHTML = `<img class="large" src="static/images/logo.png" alt="logo"> ${htitle} <a class="destra" id="linkRicerca"><img class="large" src="static/images/find.png" alt="cerca"></a>`;
+  titolo2.innerHTML = `${htitle} <a class="destra" id="linkRicerca"><img class="large" src="static/images/find.png" alt="cerca"></a>`;
 
   fetch('dws.json')
   .then(response => {
