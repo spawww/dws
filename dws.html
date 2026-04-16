@@ -9,7 +9,9 @@
 <link rel="stylesheet" href="static/css/stile.css">
 </head>
 <body>
-<div id="tit2" class="titolo">DWS</div>
+<span class="titolo">DWS</span>
+<span id="tit2" ></span>
+<span><a class="destra" id="linkRicerca"><img class="large" src="static/images/find.png" alt="cerca"></a></span>;
 <div id="listaFile"></div>
 
 <script>
@@ -22,14 +24,12 @@ function aggiornaTesto()
   var postfix = params.get("postfix");
   postfix = postfix != null ? postfix.toLowerCase() : '';
 
-  var htitle = 'DWS';
+  var htitle = '';
   if (infix != '') htitle += ' *' + infix + '*'; 
   if (postfix != '') htitle += ' [' + postfix + ']'; 
   var setExtension = (postfix != '') ? new Set(postfix.split(',')) : new Set(); 
-  const titolo = document.querySelector("title");
-  titolo.innerHTML = htitle;
   const titolo2 = document.getElementById("tit2")
-  titolo2.innerHTML = `${htitle} <a class="destra" id="linkRicerca"><img class="large" src="static/images/find.png" alt="cerca"></a>`;
+  titolo2.innerHTML = `${htitle}`;
 
   fetch('dws.json')
   .then(response => {
