@@ -10,8 +10,8 @@
 </head>
 <body>
 <span class="titolo">DWS</span>
-<span id="tit2" ></span>
-<span><a class="destra" id="linkRicerca"><img class="large" src="static/images/find.png" alt="cerca"></a></span>;
+<span id="tit2"></span>
+<span><a class="destra" id="linkRicerca"><img class="large" src="static/images/find.png" alt="cerca"></a></span>
 <div id="listaFile"></div>
 
 <script>
@@ -29,7 +29,7 @@ function aggiornaTesto()
   if (postfix != '') htitle += ' [' + postfix + ']'; 
   var setExtension = (postfix != '') ? new Set(postfix.split(',')) : new Set(); 
   const titolo2 = document.getElementById("tit2")
-  titolo2.innerHTML = `${htitle}`;
+  titolo2.innerHTML = ${htitle};
 
   fetch('dws.json')
   .then(response => {
