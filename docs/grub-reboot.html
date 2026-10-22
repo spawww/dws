@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>grub-reboot </title>
+  </head>
+  <body>
+    <div class="n6owBd awi2gc" data-sfc-cp="" data-sfc-root="c"
+      data-hveid="CAIIAAgPEAA" data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 400; margin: 12px 0px 16px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);"><span
+        data-subtree="aimfl" data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);">The
+        purpose of </span><code dir="ltr" class="KDcb0c"
+        data-sfc-root="c" data-processed="true"
+style="font-family: monospace; font-size: 14px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0.8px solid rgb(240, 242, 245);">grub-reboot</code> is <mark class="b6AQX"
+        data-wiz-attrbind="class=LmTnd_1m/cFwyDc" data-sfc-root="c"
+        data-ved="2ahUKEwjIpaDN482XAxVsgf0HHbqkJZYQuJAPeggIAggACA8QAQ"
+        data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 500; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);">to
+        instruct the GRUB bootloader to boot into a specific menu entry
+        for <strong class="rQesXe MPyX" data-sfc-cp=""
+          data-sfc-root="c" data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 500; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);">the
+          next single reboot only</strong>, without permanently changing
+        your default boot order</mark>.<span> [<a
+          href="https://man.archlinux.org/man/grub-reboot.8.en">1</a>]</span></div>
+    <div class="yhAwj" data-sfc-cp="" data-sfc-root="c"
+      data-processed="true" data-sfc-inited="2"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 14px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);"></div>
+    <div class="ZLzG0d ncoeY E8xBUb" role="heading" aria-level="3"
+      data-animation-nesting="" data-sfc-cp=""
+      data-wiz-attrbind="aria-level=LmTnd_30/fLk2Md" data-sfc-root="c"
+      data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 20px; font-weight: 600; margin: 24px 0px 12px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);">Key
+      Details</div>
+    <ul class="XSq4R KI3fJ" data-sfc-cp="" data-sfc-root="c"
+      data-hveid="CAIIAAgTEAA" data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 400; margin: 12px 0px 16px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);">
+      <li class="Z1qcYe" data-sfc-cp="" data-sfc-root="c"
+        data-hveid="CAIIAAgTEAE" data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 400; margin: 0px 0px 12px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);"><span
+          class="iNqyIf" data-sfc-cp="" data-sfc-root="c"
+          data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);"><strong
+            class="rQesXe MPyX" data-sfc-cp="" data-sfc-root="c"
+            data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 700; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);">One-
+            Time Boot:</strong> It lets you test a different operating
+          system, an older Linux kernel, or a recovery option on your
+          next restart. After that reboot finishes, GRUB automatically
+          reverts to your regular default boot entry.</span><span> [<a
+            href="https://wiki.debian.org/GrubReboot">1</a>, <a
+href="https://chrisarges.net/posts/2016-02-25-grub-reboot-with-submenus/">2</a>,
+          <a
+href="https://cubepath.com/docs/linux-internals/grub-bootloader-configuration-and-recovery">3</a>,
+          <a href="https://man.archlinux.org/man/grub-reboot.8.en">4</a>]</span></li>
+      <li class="Z1qcYe" data-sfc-cp="" data-sfc-root="c"
+        data-hveid="CAIIAAgTEAY" data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 400; margin: 0px 0px 12px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);"><span
+          class="iNqyIf" data-sfc-cp="" data-sfc-root="c"
+          data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);"><strong
+            class="rQesXe MPyX" data-sfc-cp="" data-sfc-root="c"
+            data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 700; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);">How
+            to Specify Entries:</strong> You can target a menu item by
+          its number (starting at <code dir="ltr" class="KDcb0c"
+            data-sfc-root="c" data-processed="true"
+style="font-family: monospace; font-size: 14px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0.8px solid rgb(240, 242, 245);">0</code>),
+          its title string, or a path through submenus using a
+          greater-than sign (<code dir="ltr" class="KDcb0c"
+            data-sfc-root="c" data-processed="true"
+style="font-family: monospace; font-size: 14px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0.8px solid rgb(240, 242, 245);">&gt;</code>)
+          (for example: <code dir="ltr" class="KDcb0c"
+            data-sfc-root="c" data-processed="true"
+style="font-family: monospace; font-size: 14px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0.8px solid rgb(240, 242, 245);">sudo
+            grub-reboot "Advanced options for Ubuntu&gt;Ubuntu, with
+            Linux 6.8.0-79-generic"</code>).</span><span> [<a
+href="https://manpages.ubuntu.com/manpages/focal/man8/grub-reboot.8.html">1</a>,
+          <a href="https://man.archlinux.org/man/grub-reboot.8.en">2</a>,
+          <a
+href="https://cubepath.com/docs/linux-internals/grub-bootloader-configuration-and-recovery">3</a>]</span></li>
+      <li class="Z1qcYe" data-sfc-cp="" data-sfc-root="c"
+        data-hveid="CAIIAAgTEAs" data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);"><span
+          class="iNqyIf" data-sfc-cp="" data-sfc-root="c"
+          data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);"><strong
+            class="rQesXe MPyX" data-sfc-cp="" data-sfc-root="c"
+            data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 700; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);">Prerequisites:</strong>
+          It requires administrator privileges (<code dir="ltr"
+            class="KDcb0c" data-sfc-root="c" data-processed="true"
+style="font-family: monospace; font-size: 14px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0.8px solid rgb(240, 242, 245);">sudo</code>),
+          and your system's GRUB environment block must be writable (it
+          may not work if your <code dir="ltr" class="KDcb0c"
+            data-sfc-root="c" data-processed="true"
+style="font-family: monospace; font-size: 14px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0.8px solid rgb(240, 242, 245);">/
+            boot</code> is on certain LVM or MDRAID configurations).</span><span>
+          [<a
+href="https://www.reddit.com/r/linux4noobs/comments/tzrbkt/why_does_grubreboot_require_sudo_but_reboot_doesnt/">1</a>,
+          <a href="https://man.archlinux.org/man/grub-reboot.8.en">2</a>,
+          <a
+href="https://manpages.ubuntu.com/manpages/focal/man8/grub-reboot.8.html">3</a>]</span></li>
+    </ul>
+    <div class="yhAwj" data-sfc-cp="" data-sfc-root="c"
+      data-processed="true" data-sfc-inited="2"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 14px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);"></div>
+    <div class="AHmQrc" data-sfc-cp="" data-sfc-root="c"
+      data-hveid="CAIIAAgUEAA" data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 14px; font-weight: 400; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);">
+      <div class="n6owBd awi2gc" data-sfc-cp="" data-sfc-root="c"
+        data-hveid="CAIIAAgUEAE" data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 400; margin: 12px 0px 16px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);">Would
+        you like help finding the <strong class="rQesXe MPyX"
+          data-sfc-cp="" data-sfc-root="c" data-processed="true"
+style="font-family: Google Sans, Arial, sans-serif, Noto Color Emoji; font-size: 16px; font-weight: 700; margin: 0px; text-decoration: none; border-bottom: 0px rgb(22, 23, 26);">exact
+          menu title or number</strong> for an entry on your system, or
+        writing a script to automate rebooting into a specific OS?<span></span></div>
+    </div>
+    <p data-path-to-node="0" class="first-token"
+style="--animation-duration: 600ms; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+        class=""
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><br>
+      </span></p>
+      <hr>
+    <p data-path-to-node="0" class="first-token"
+style="--animation-duration: 600ms; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+        class=""
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">If a headless server hangs completely during the boot phase (such as freezing at a systemd service,</span><span
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+        locking up during hardware initialization,</span><span
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+        or suffering a kernel panic),</span><span
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+        the standard </span><code data-path-to-node="0"
+        data-index-in-node="186"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">grub-reboot</code><span
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+        flag won't automatically clear itself because the OS never fully
+        reaches the state required to consume the </span><code
+        data-path-to-node="0" data-index-in-node="305"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">next_entry</code><span
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+        environment variable.</span></p>
+    <p data-path-to-node="1"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">To
+        ensure the server automatically falls back to your old stable
+        kernel if it hangs or fails to boot,</span><span
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+        you need a true </span><b data-path-to-node="1"
+        data-index-in-node="118"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">watchdog
+        fallback mechanism</b><span
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+        rather than just a one-time boot flag.</span></p>
+    <h3 data-path-to-node="3" class=""
+style="font-family: Google Sans, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">Method
+      1: Use GRUB's Built-in <code data-path-to-node="3"
+        data-index-in-node="30"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">savedefault</code>
+      and Fallback (Recommended)</h3>
+    <p data-path-to-node="4"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">GRUB
+        has native support for remembering the last successful boot or
+        falling back to a secondary entry if the primary one fails.</span><span
+        class=""
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+        Configuring this requires updating your GRUB defaults.</span></p>
+    <div class="attachment-container unknown md-has-block-component"
+style="--animation-duration: 549ms; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+      <div role="list" class="sequence-container" data-hveid="0"
+        data-ved="0CAAQse0SahcKEwiMxq2L7M2XAxUAAAAAHQAAAAAQSg"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+        <div role="listitem" class="sequence-event ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+          <div class="sequence-event-content"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+            <div class="sequence-event-description gds-body-l"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+                data-test-id="sequence-export-header"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"
+                class="only-show-to-message-actions"><strong
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">1.Edit
+                  your GRUB configuration:</strong>Requires sudo.</span>
+              <p class="ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">Open
+                the GRUB configuration file using your preferred text
+                editor:</p>
+              <div _ngcontent-ng-c3374693344=""
+class="code-block ng-tns-c3374693344-17 ng-animate-disabled ng-trigger ng-trigger-codeBlockRevealAnimation"
+style="display: block; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"
+                data-hveid="1">
+                <div _ngcontent-ng-c3374693344=""
+class="formatted-code-block-internal-container ng-tns-c3374693344-17"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+                  <div _ngcontent-ng-c3374693344=""
+                    class="animated-opacity ng-tns-c3374693344-17"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+                    <div _ngcontent-ng-c3374693344=""
+class="code-block-decoration header-formatted gds-emphasized-body-m ng-tns-c3374693344-17 ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+                        _ngcontent-ng-c3374693344=""
+                        class="ng-tns-c3374693344-17"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">Bash</span>
+                      <div _ngcontent-ng-c3374693344=""
+class="buttons ng-tns-c3374693344-17 ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><button
+                          _ngcontent-ng-c2937890888=""
+class="mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted"
+                          aria-label="Scarica codice"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-focus-indicator"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-mdc-button-touch-target"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span></button><button
+                          _ngcontent-ng-c2937890888=""
+class="mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted"
+                          aria-label="Copia codice"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-focus-indicator"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-mdc-button-touch-target"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span></button></div>
+                    </div>
+                    <pre _ngcontent-ng-c3374693344=""
+                    class="ng-tns-c3374693344-17"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><code
+                    _ngcontent-ng-c3374693344="" role="text"
+                    data-test-id="code-content"
+class="code-container formatted ng-tns-c3374693344-17"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">sudo nano /default/grub
+</code></pre>
+                  </div>
+                </div>
+              </div>
+              <p class="ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><i
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">(Note:
+                  On some distributions, this file is located at <code
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">/
+                    etc/default/grub</code>).</i></p>
+            </div>
+          </div>
+        </div>
+        <div role="listitem" class="sequence-event ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+          <div class="sequence-event-content"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+            <div class="sequence-event-description gds-body-l"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+                data-test-id="sequence-export-header"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"
+                class="only-show-to-message-actions"><strong
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">2.Enable
+                  saved default booting:</strong>Update GRUB parameters.</span>
+              <p class="ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">Modify
+                or add the following lines to track the default boot
+                entry:</p>
+              <div _ngcontent-ng-c3374693344=""
+class="code-block ng-tns-c3374693344-18 ng-animate-disabled ng-trigger ng-trigger-codeBlockRevealAnimation"
+style="display: block; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"
+                data-hveid="4">
+                <div _ngcontent-ng-c3374693344=""
+class="formatted-code-block-internal-container ng-tns-c3374693344-18"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+                  <div _ngcontent-ng-c3374693344=""
+                    class="animated-opacity ng-tns-c3374693344-18"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+                    <div _ngcontent-ng-c3374693344=""
+class="code-block-decoration header-formatted gds-emphasized-body-m ng-tns-c3374693344-18 ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+                        _ngcontent-ng-c3374693344=""
+                        class="ng-tns-c3374693344-18"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">Plaintext</span>
+                      <div _ngcontent-ng-c3374693344=""
+class="buttons ng-tns-c3374693344-18 ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><button
+                          _ngcontent-ng-c2937890888=""
+class="mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted"
+                          aria-label="Scarica codice"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-focus-indicator"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-mdc-button-touch-target"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span></button><button
+                          _ngcontent-ng-c2937890888=""
+class="mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted"
+                          aria-label="Copia codice"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-focus-indicator"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-mdc-button-touch-target"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span></button></div>
+                    </div>
+                    <pre _ngcontent-ng-c3374693344=""
+                    class="ng-tns-c3374693344-18"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><code
+                    _ngcontent-ng-c3374693344="" role="text"
+                    data-test-id="code-content"
+class="code-container formatted ng-tns-c3374693344-18"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+</code></pre>
+                  </div>
+                </div>
+              </div>
+              <p class="ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><i
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">Verification:</i>
+                Ensure these variables are uncommented (no leading <code
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">#</code>)
+                and saved properly in the file.</p>
+            </div>
+          </div>
+        </div>
+        <div role="listitem" class="sequence-event ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+          <div class="sequence-event-content"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+            <div class="sequence-event-description gds-body-l"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+                data-test-id="sequence-export-header"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"
+                class="only-show-to-message-actions"><strong
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">3.Update
+                  GRUB bootloader:</strong>Apply changes.</span>
+              <p class="ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">Regenerate
+                your main configuration file so the changes take effect:</p>
+              <div _ngcontent-ng-c3374693344=""
+class="code-block ng-tns-c3374693344-19 ng-animate-disabled ng-trigger ng-trigger-codeBlockRevealAnimation"
+style="display: block; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"
+                data-hveid="0"
+                data-ved="0CAAQhtANahcKEwiMxq2L7M2XAxUAAAAAHQAAAAAQSw">
+                <div _ngcontent-ng-c3374693344=""
+class="formatted-code-block-internal-container ng-tns-c3374693344-19"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+                  <div _ngcontent-ng-c3374693344=""
+                    class="animated-opacity ng-tns-c3374693344-19"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">
+                    <div _ngcontent-ng-c3374693344=""
+class="code-block-decoration header-formatted gds-emphasized-body-m ng-tns-c3374693344-19 ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+                        _ngcontent-ng-c3374693344=""
+                        class="ng-tns-c3374693344-19"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">Bash</span>
+                      <div _ngcontent-ng-c3374693344=""
+class="buttons ng-tns-c3374693344-19 ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><button
+                          _ngcontent-ng-c2937890888=""
+class="mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted"
+                          aria-label="Scarica codice"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-focus-indicator"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-mdc-button-touch-target"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span></button><button
+                          _ngcontent-ng-c2937890888=""
+class="mdc-icon-button mat-mdc-icon-button mat-mdc-button-base mat-badge mat-unthemed mat-badge-overlap mat-badge-above mat-badge-after mat-badge-small mat-badge-hidden ng-star-inserted"
+                          aria-label="Copia codice"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><span
+class="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-focus-indicator"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span><span
+                            class="mat-mdc-button-touch-target"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"></span></button></div>
+                    </div>
+                    <pre _ngcontent-ng-c3374693344=""
+                    class="ng-tns-c3374693344-19"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><code
+                    _ngcontent-ng-c3374693344="" role="text"
+                    data-test-id="code-content"
+class="code-container formatted ng-tns-c3374693344-19"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">sudo update-grub
+</code></pre>
+                  </div>
+                </div>
+              </div>
+              <p class="ng-star-inserted"
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;"><i
+style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;">Verification:</i>
+                The command completes without syntax errors, outputting
+                that it has successfully generated the grub.cfg file.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p><br>
+    </p>
+  </body>
+</html>
